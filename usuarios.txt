@@ -1,0 +1,8 @@
+﻿1,SuperAdmin,admin,admin,ADMINISTRADOR,2025-05-20 10:03:44
+2,Anderson Pino,apino,apino,ADMINISTRADOR,2025-05-14 13:47:37
+3,Pablo Barreto,pbarreto,pbarreto,ADMINISTRADOR,2025-05-09T14:16:03.1442599
+4,Yuris Acevedo Morelos,yacevedo,yacevedo,ADMINISTRADOR,2025-05-09T14:47:51.452046
+5,Maria Camila Perez,mperez,mperez,AUXILIAR,2025-05-14 12:40:43
+6,Andrea Licona,alicona,alicona,COORDINADOR,2025-05-09T14:49:10.5164001
+1,Duvan Wilchez Cuello,dwilchez,dwilchez,ADMINISTRADOR,2025-05-17 09:39:20
+1,1,1,1,1,2025-05-18T22:53:32.7269612
