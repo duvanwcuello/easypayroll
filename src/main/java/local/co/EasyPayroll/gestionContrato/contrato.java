@@ -1,10 +1,11 @@
 package local.co.EasyPayroll.gestionContrato;
-
-
 import java.time.*;
-class contrato {
+
+class Contrato {
+
+    // Atributos de la clase Contrato
     private int idContrato;
-    private String estado; // A = Activo, I = Inactivo
+    private String estado;
     private String numeroContrato;
     private String idEmpleado;
     private String identificacionEmpleado;
@@ -162,8 +163,8 @@ class contrato {
         this.salarioEmpleado = salarioEmpleado; 
     }
 
-    // Formato para guardar contrato como texto en archivo
     public String toString() {
+
         return idContrato + "," + estado + "," + numeroContrato + "," + idEmpleado + "," + identificacionEmpleado + "," +
                primerNombre + "," + segundoNombre + "," + primerApellido + "," + segundoApellido + "," +
                fechaNacimiento + "," + direccionResidenciaEmpleado + "," + barrioEmpleado + "," + ciudadEmpleado + "," +

@@ -2,9 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+package local.co.EasyPayroll.gestionNomina;
 
-package local.co.EasyPayroll.gestionNovedades;
-
+/**
+ * para calcular las noveades tomamos como referencia la inforacion actual 
+ * https://www.gerencie.com/horas-extras-y-recargos-nocturnos-dominicales-y-festivos.html
+ * @author duvan Wilchez Cuello
+ */
 public class calculoNovedades {
     
     //calculamos el valor de la hora Ordinaria del Empleado

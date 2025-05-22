@@ -1,0 +1,227 @@
+package local.co.EasyPayroll.seguridad;
+
+import java.io.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import local.co.EasyPayroll.utilidades.ContinuaEnter;
+import local.co.EasyPayroll.utilidades.limpiarPantalla;
+import local.co.EasyPayroll.utilidades.datosDeUsoGeneral;
+
+public class logginUsuario {
+
+    //Creamos Objeto Usuario para almacenar datos 
+    static class Usuario {
+
+        private String nombreEmpleado;
+        private String nombreUsuario;
+        private String contrasenia;
+        private String rol;
+
+        Usuario(String nombreEmpleado, String nombreUsuario, String contrasena, String rol) {
+
+            this.nombreEmpleado = nombreEmpleado;
+            this.nombreUsuario = nombreUsuario;
+            this.contrasenia = contrasena;
+            this.rol = rol;
+
+        }
+
+        public String getNombreEmpleado() {
+            return nombreEmpleado;
+        }
+
+        public String getNombreUsuario() {
+            return nombreUsuario;
+        }
+
+        public String getContrasena() {
+            return contrasenia;
+        }
+
+        public String getRol() {
+            return rol;
+        }
+    }
+    
+    public static void solicitarDatosSesionInicial() {
+
+        for (int intento = 1; intento <= datosDeUsoGeneral.getIntentosMaximos(); intento++) {
+
+            System.out.print("\t\tINICIA SESIÓN"+"----------------------------------\n");
+
+            System.out.println("\n");
+            String usuarioIngresado = validarDatosIngresados("- Digite su usuario: ");
+            if (usuarioIngresado == null) cancelarOperacion("INFO: Se superaron los intentos permitidos.");
+
+            String passwordIngresado = validarDatosIngresados("- Digite su Contraseña: ");
+            if (passwordIngresado == null) cancelarOperacion("INFO: Se superaron los intentos permitidos.");
+            System.out.println("\n");
+
+            Usuario usuarioValidado = validarCredenciales(usuarioIngresado, passwordIngresado);
+
+            if (usuarioValidado != null) {
+
+                limpiarPantalla.limpiarConsola();
+                actualizarUltimaSesion(usuarioIngresado);
+
+                System.out.print("""
+                -------------------------------------------
+                |     BIENVENIDO A EasyPayroll V1.0.1     |
+                -------------------------------------------
+                """);
+
+                System.out.println("\n¡Saludos!, Iniciaste sesion como " + usuarioValidado.getNombreEmpleado());
+                System.out.println("-------------------------------------------");
+                ContinuaEnter.PressEnter('C');
+
+                menuUsuarios.menuPrincipalUsuario(usuarioValidado.getRol());
+
+            } else {
+
+                limpiarPantalla.limpiarConsola();
+                mostrarErrorDeInicio(intento, usuarioIngresado, passwordIngresado);
+            }
+        }
+
+        System.out.println("Ha superado el número de intentos permitidos.");
+        System.exit(0);
+    }
+
+    private static String validarDatosIngresados(String mensaje) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        for (int intentos = 1; intentos <= datosDeUsoGeneral.getIntentosMaximos(); intentos++) {
+
+            System.out.print(mensaje);
+            String entrada = scanner.nextLine();
+
+            if (entrada == null || entrada.trim().isEmpty()) {
+
+                System.out.println("\nADVERTENCIA: El campo no puede estar en blanco. Intento " + intentos + " de " + datosDeUsoGeneral.getIntentosMaximos() + "\n");
+
+            } else {
+
+                return entrada.trim();
+            }
+        }
+        
+        return null;
+    }
+
+    private static Usuario validarCredenciales(String usuarioIngresado, String passwordIngresado) {
+
+        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
+
+            String linea;
+
+            while ((linea = br.readLine()) != null) {
+
+                String[] datos = linea.split("\\,");
+
+                if (datos.length >= 6 && datos[2].equals(usuarioIngresado) && datos[3].equals(passwordIngresado)) {
+
+                    return new Usuario(datos[1], datos[2], datos[3], datos[4]);
+                }
+            }
+
+        } catch (IOException e) {
+
+            System.out.println("Error al leer el archivo de usuarios: " + e.getMessage());
+        }
+
+        return null;
+    }
+
+    private static void actualizarUltimaSesion(String nombreUsuario) {
+
+        List<String> lineasActualizadas = new ArrayList<>();
+        String fechaActual = LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYYY-MM-DD HH:MM:SS"));
+
+        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
+
+            String linea;
+
+            while ((linea = br.readLine()) != null) {
+
+                String[] datos = linea.split(",");
+
+                if (datos.length >= 6 && datos[2].equals(nombreUsuario)) {
+
+                    datos[5] = fechaActual;
+                    linea = String.join(",", datos);
+
+                }
+
+                lineasActualizadas.add(linea);
+            }
+
+        } catch (IOException e) {
+
+            System.out.println("Error al leer para actualizar última sesión: " + e.getMessage());
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosDeUsoGeneral.getArchivoUsuarios()))) {
+
+            for (String linea : lineasActualizadas) {
+
+                bw.write(linea);
+                bw.newLine();
+            }
+
+        } catch (IOException e) {
+
+            System.out.println("Error al guardar actualización de última sesión: " + e.getMessage());
+        }
+    }
+
+    private static void cancelarOperacion(String mensaje) {
+
+        System.out.println(mensaje);
+        System.out.println("Operación cancelada. ¡Hasta pronto!");
+        System.exit(0);
+    }
+
+    private static void mostrarErrorDeInicio(int intento, String usuarioIngresado, String passwordIngresado) {
+
+        System.out.println("-------------------------------------------");
+        System.out.println("| ERROR: Usuario o contraseña incorrectos.|");
+        System.out.println("| Verifique los datos, Intento N°: " + intento + "      |");
+        System.out.println("-------------------------------------------\n");
+    }
+
+    public static void recuperarContrasena() {
+
+        Scanner scanner = new Scanner(System.in);
+        limpiarPantalla.limpiarConsola();
+
+        System.out.println("----------------------------------------");
+        System.out.println("|        RESTABLECER CONTRASEÑA        |");
+        System.out.println("----------------------------------------");
+
+        System.out.print("- Ingrese su nombre de usuario: ");
+        String usuario = scanner.nextLine().trim();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
+
+            String linea;
+
+            while ((linea = br.readLine()) != null) {
+
+                String[] datos = linea.split(",");
+
+                if (datos.length >= 6 && datos[2].equals(usuario)) {
+
+                    System.out.println("\nUsuario encontrado: " + datos[2] + "Por seguridad, contacte con el administrador del sistema para restablecer su contraseña.");
+                }
+            }
+
+            System.out.println("Usuario no encontrado.");
+
+        } catch (IOException e) {
+
+            System.out.println("Error al leer el archivo de usuarios: " + e.getMessage());
+        }
+    }
+}

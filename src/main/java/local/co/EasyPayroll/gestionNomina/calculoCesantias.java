@@ -1,20 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package local.co.EasyPayroll.gestionNomina;
 
 import local.co.EasyPayroll.gestionParametrosGenerales.parametrosGenerales;
-
-/**
- * Las cesantías se deben liquidar cuando ocurra uno de los siguientes casos:
- *      - Cuando el contrato de trabajo termine.
- *      - Cuando el trabajador pase de tener un salario normal a un salario integral.
- *      - Cada año con corte a 31 de diciembre.
- * Cuando el contrato de trabajo termine, las cesantías que se liquiden se pagan directamente al trabajador.
- * Las cesantías que se deben liquidar todos los años con corte a 31 de diciembre se consignan en el fondo de cesantías antes del 14 de febrero de cada año.
- * @author Duvan wilchez Cuello
- */
 
 public class calculoCesantias {
     
@@ -29,7 +15,7 @@ public class calculoCesantias {
     */
     
         
-    public static double calculoCesantias(double salarioEmpleado, int diasLaborados){
+    public static double calculoCesantias (double salarioEmpleado, int diasLaborados){
            
        double salarioMinimo = parametrosGenerales.conceptosLegales.getSalarioMinimo();
        double auxTransporte = parametrosGenerales.conceptosLegales.getAuxTransporte();
@@ -38,7 +24,8 @@ public class calculoCesantias {
            
            double cesantiasEmpleado = (((salarioEmpleado + auxTransporte) * diasLaborados) / 360);
            return cesantiasEmpleado;
-           }else{
+
+        }else{
 
             double cesantiasEmpleado = ((salarioEmpleado  * diasLaborados) / 360);
             return cesantiasEmpleado;

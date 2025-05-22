@@ -4,8 +4,9 @@ import java.io.*;
 import java.time.*;
 import java.util.*;
 
-
+import local.co.EasyPayroll.utilidades.ContinuaEnter;
 import local.co.EasyPayroll.utilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.utilidades.limpiarPantalla;
 import local.co.EasyPayroll.gestionEmpleado.nuevoEmpleado;
 
 
@@ -20,136 +21,201 @@ public class nuevoContrato {
     // Crea un nuevo contrato verificando condiciones iniciales
     public static void crearNuevoContrato(){
          
-        // Actualiza el contador según el último contrato guardado
+        limpiarPantalla.limpiarConsola();
         cargarContadorId();
         
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("POR FAVOR REGISTRE LOS DATOS DEL NUEVO CONTRATO");
         System.out.println("--------------------------------------------------");
-        System.out.println("\nEl siguiente contrato quedará registrado\nbajo el Numero de Registro Unico (NRU): "+ contadorId);
-        System.out.print("\nIngrese Número de contrato: ");
+        System.out.println("|           CREACIÓN DE CONTRATOS                |");
+        System.out.println("--------------------------------------------------");
+
+        System.out.println("\nEl siguiente contrato quedará registrado bajo el Numero de Registro Unico (NRU): "+ contadorId);
+        System.out.print("\n- Ingrese Número de contrato: ");
         String numeroDeContrato = scanner.nextLine();
 
         // Verifica si el contrato ya existe
         if (validarExistenciaContrato(numeroDeContrato)) {
-            System.out.println("------------------------------------------");
-            System.out.println("El contrato "+numeroDeContrato+" ya existe.");
-            System.out.print("¿Desea editarlo? (1. SI | 2. NO): ");
-            System.out.print("Indique una Opcion: ");
+
+            System.out.println("\n---------------------------------------------");
+            System.out.println("El contrato " + numeroDeContrato + " ya existe.");
+
+            System.out.println("\n¿Desea editarlo? (1. SI | 2. NO):");
+            System.out.print("- Indique una opcion: ");
+
             int seleccion = scanner.nextInt();
             scanner.nextLine();
 
             if (seleccion == 1) {
+
                 editarContrato.editarContratoGuardado(numeroDeContrato);
+
             } else {
+
                 System.out.println("Saliendo...");
             }
+
         } else {
+
             // Solicita identificación del empleado para buscarlo en archivo empleados
-            System.out.print("Ingrese la identificación del empleado: ");
-            String identificacionEmpleado = scanner.nextLine();
+            System.out.println("- Identificación del empleado: " + numeroDeContrato);
+            String identificacionEmpleado = numeroDeContrato;
 
-            if (!empleadoExiste(identificacionEmpleado)){
-                 System.out.println("---------------------------");
-                 System.out.println("\n¡ALERTA!\n¡¡EL EMPLEADO NO EXISTE!!.\nPor Favor Registre nuevo empleado.\n");
-                 System.out.println("---------------------------");
+            if (!empleadoExiste(identificacionEmpleado)) {
+                
+                System.out.println("\nINFO: El empleado no existe, debe registrarlo como empleado nuevo.");
+                System.out.print("¿Desea registrar nuevo empleado? (1. SI | 2. NO):");
 
-                // Llama Metodo para crear nuevo empleado. 
-                nuevoEmpleado.crearNuevoEmpleado();  
+                int resp = scanner.nextInt();
+                scanner.nextLine();
 
-            } else if (validaEstadoContrato(identificacionEmpleado)){
-                System.out.println("\n¡ALERTA!\n!!Este empleado ya tiene un contrato activo.\nNo se puede registrar Un nuevo contrato.¡¡");
+                if(resp == 2){
+
+                    System.out.println("\nOperación cancelada por el usuario.");
+                    ContinuaEnter.PressEnter('E');
+                    return;
+                    
+                }else if(resp == 1){
+
+                    nuevoEmpleado.crearNuevoEmpleado();
+                }
+
+            } else if (validaEstadoContrato(identificacionEmpleado)) {
+
+                System.out.println("INFO: Este empleado ya tiene un contrato ACTIVO.");
+                ContinuaEnter.PressEnter('E');
                 return;
             }
 
-            // Si todo lo válidado esta Ok, solicita datos adicionales y guarda el contrato
-            contrato contrato = solicitarDatosContrato(numeroDeContrato, identificacionEmpleado);
-            
+            // Si todo es válido, solicita datos adicionales y guarda el contrato
+            Contrato contrato = solicitarDatosContrato(numeroDeContrato, identificacionEmpleado);
+
             if (contrato != null) {
-                //enviamos datos al contrato para ser guardado
+                
                 guardarContrato(contrato);
-                //sumamos contador
                 contadorId++;
-                System.out.println("\nCONTRATO CREADO EXITOSAMENTE.");
+
+                System.out.println("\nSUCCES: Contrato creado correctamente. \n");
+                ContinuaEnter.PressEnter('E');
+
             } else {
-                //esto es opcional, proviene de la primera version del codigo antes de meterle las mejoras de crear directamente el empleado.
-                System.out.println("Empleado no encontrado. No se pudo crear el contrato.");
+                
+                System.out.println("ERROR: Empleado no encontrado, No se pudo crear el contrato.  \n");
+                ContinuaEnter.PressEnter('C');
+
             }
         }
     }
 
     // Carga el ultimo ID para seguir la secuencia de creación de contratos
     private static void cargarContadorId() {
+
         try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()))) {
+
             String linea;
             int maxId = 0;
+
             while ((linea = br.readLine()) != null) {
+
                 String[] datos = linea.split(",");
                 int id = Integer.parseInt(datos[0]);
+
                 if (id > maxId) maxId = id;
             }
+
             contadorId = maxId + 1;
+
         } catch (IOException e) {
+            
             System.out.println("No se pudo cargar el ID desde archivo: " + e.getMessage());
         }
     }
 
     // Verifica si un empleado ya está registrado en el sistema
     private static boolean empleadoExiste(String identificacion) {
+
         try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoEmpleados()))) {
+
             String linea;
+
             while ((linea = br.readLine()) != null) {
+
                 String[] datos = linea.split(",");
+
                 if (datos[1].equals(identificacion)) {
                     return true;
                 }
             }
+
         } catch (IOException e) {
+
             System.out.println("Error al leer archivo de empleados: " + e.getMessage());
         }
+
         return false;
     }
 
     // Verifica si un empleado ya tiene un contrato activo
     private static boolean validaEstadoContrato(String identificacion) {
+
         try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()))) {
+
             String linea;
+
             while ((linea = br.readLine()) != null) {
+
                 String[] datos = linea.split(",");
+
                 if (datos[4].equals(identificacion) && datos[1].equalsIgnoreCase("A")) {
+
                     return true;
                 }
             }
+
         } catch (IOException e) {
+
             System.out.println("Error al leer contratos: " + e.getMessage());
         }
+
         return false;
     }
 
     // Verifica si un número de contrato ya existe
     private static boolean validarExistenciaContrato(String numeroDeContrato) {
+
         try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()))) {
+
             String linea;
+
             while ((linea = br.readLine()) != null) {
+
                 String[] datos = linea.split(",");
+
                 if (datos[2].equals(numeroDeContrato)) {
+
                     return true;
                 }
             }
         } catch (IOException e) {
+
             System.out.println("Error al leer el archivo: " + e.getMessage());
         }
+
         return false;
     }
 
-    // Solicita datos faltantes del contrato y construye el objeto Contrato
-    public static contrato solicitarDatosContrato(String numeroContrato, String identificacion) {
+    // Solicita datos faltantes del contrato y construye el objeto `Contrato`
+    public static Contrato solicitarDatosContrato(String numeroContrato, String identificacion) {
+
         try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoEmpleados()))) {
+
             String linea;
+
             while ((linea = br.readLine()) != null) {
+
                 String[] datos = linea.split(",");
+
                 if (datos[1].equals(identificacion)) {
-                    contrato contrato = new contrato();
+
+                    Contrato contrato = new Contrato();
                     contrato.setIdContrato(contadorId);
                     contrato.setNumeroContrato(numeroContrato);
                     contrato.setIdEmpleado(datos[0]);
@@ -164,43 +230,59 @@ public class nuevoContrato {
                     contrato.setCiudadEmpleado(datos[13]);
                     contrato.setDepartamentoEmpleado(datos[14]);
 
-                    System.out.print("Ingrese tipo de contrato: ");
-                    contrato.setTipoContrato(scanner.nextLine());
+                    System.out.println("\n--------------------------------------------------");
+                    System.out.println("|           CONTINUA CREANDO EL CONTRATO         |");
+                    System.out.println("--------------------------------------------------");
 
-                    System.out.print("Ingrese fecha de inicio del contrato (yyyy-MM-dd): ");
+                    System.out.println("\n- Número de contrato: " + numeroContrato);
+                    System.out.println("- Nombre del empleado: " + datos[2] + " " + datos[3] + " " + datos[4] + " " + datos[5]);
+                    System.out.println("- Identificación del empleado: " + identificacion);
+
+                    System.out.print("- Ingrese tipo de contrato: ");
+                    contrato.setTipoContrato(scanner.nextLine().toUpperCase());
+
+                    System.out.print("- Ingrese fecha de inicio del contrato (YYYY-MM-DD): ");
                     contrato.setFechaInicioContrato(LocalDate.parse(scanner.nextLine()));
 
-                    System.out.print("Ingrese cargo del empleado: ");
-                    contrato.setCargoEmpleado(scanner.nextLine());
+                    System.out.print("- Ingrese cargo del empleado: ");
+                    contrato.setCargoEmpleado(scanner.nextLine().toUpperCase());
 
-                    System.out.print("Ingrese salario del empleado: ");
+                    System.out.print("- Ingrese salario del empleado: ");
+
                     while (!scanner.hasNextDouble()) {
-                        System.out.print("Salario inválido. Intente nuevamente: ");
+
+                        System.out.print("Salario inválido, intente nuevamente: ");
                         scanner.next();
                     }
+
                     contrato.setSalarioEmpleado(scanner.nextDouble());
                     scanner.nextLine();
 
-                    contrato.setEstado("A");  // Por defecto, contrato nuevo está activo
+                    contrato.setEstado("A");
                     return contrato;
                 }
             }
+
         } catch (IOException e) {
+
             System.out.println("Error al leer empleados: " + e.getMessage());
+
         }
+
         return null;
     }
 
     // Guarda el contrato en el archivo de texto
-    private static void guardarContrato(contrato contrato) {
+    private static void guardarContrato(Contrato contrato) {
+
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosDeUsoGeneral.getArchivoContratos(), true))) {
+
             bw.write(contrato.toString());
             bw.newLine();
+
         } catch (IOException e) {
+
             System.out.println("Error al guardar el contrato: " + e.getMessage());
         }
     }
-
-    
-   
 }

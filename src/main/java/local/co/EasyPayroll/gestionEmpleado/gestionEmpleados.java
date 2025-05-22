@@ -1,55 +1,83 @@
 package local.co.EasyPayroll.gestionEmpleado;
 
-import java.util.*;
-public class gestionEmpleados {
+import java.util.Scanner;
 
-      
-    /**
-     * Método principal para gestionar empleados.
-     * Despliega un menú con opciones para crear, consultar o editar empleados.
-     * Ejecuta la acción correspondiente según la opción seleccionada por el usuario.
-     * @param rolActual Rol del usuario que está gestionando empleados.
-     */
-    public static void gestionEmpleado(String rolActual) {
+import local.co.EasyPayroll.seguridad.menuUsuarios;
+import local.co.EasyPayroll.utilidades.limpiarPantalla;
+
+public class gestionEmpleados {
+    
+    public static void gestionEmpleado(String rolActual){
+       
         Scanner scanner = new Scanner(System.in);
-        boolean continuar = true;
-        while (continuar) {
-            System.out.println("\n*********************************");
-            System.out.println("GESTIÓN DE EMPLEADOS");
-            System.out.println("-------------------------------");
-            System.out.println("1. Crear nuevo empleado");
-            System.out.println("2. Consultar empleado existente");
-            System.out.println("3. Editar empleado existente");
-            System.out.println("4. Mostrar todos los empleados");
-            System.out.println("5. Salir");
-            System.out.println("-------------------------------");
+        
+        while (true) {
+         
+            System.out.println("-----------------------------------");
+            System.out.println("|      GESTION DE EMPLEADOS       |");
+            System.out.println("-----------------------------------");
+            System.out.println("| 1. Crear nuevo empleado         |");
+            System.out.println("| 2. Consultar empleado           |");
+            System.out.println("| 3. Editar empleado              |");
+            System.out.println("| 4. Mostrar todos los empleados  |");
+            System.out.println("| 5. Atras                        |");
+            System.out.println("| 0. Salir                        |");
+            System.out.println("-----------------------------------\n");
+
             System.out.print("Seleccione una opción: ");
+            
             int selecciondeUsuario = scanner.nextInt();
-            scanner.nextLine(); // Limpiar el buffer
+            scanner.nextLine();
 
             switch (selecciondeUsuario) {
+
                 case 1:
+
+                    limpiarPantalla.limpiarConsola();
                     nuevoEmpleado.crearNuevoEmpleado();
                     break;
+
                 case 2:
+
+                    limpiarPantalla.limpiarConsola();
                     consultaEmpleado.consultarEmpleadoExistente();
                     break;
+
                 case 3:
-                    System.out.print("Ingrese Identificacion del Empleado: ");
+
+                    limpiarPantalla.limpiarConsola();
+                    System.out.println("------------------------------------");
+                    System.out.println("|        EDICIÓN DE EMPLEADOS      |");
+                    System.out.println("------------------------------------\n");
+
+                    System.out.print("- Ingrese la identificación del empleado a editar: ");
                     String identificacion = scanner.nextLine();
+                    
+                    limpiarPantalla.limpiarConsola();
                     editarEmpleado.editarEmpleadoExistente(identificacion);
                     break;
+
                 case 4:
+                
+                    limpiarPantalla.limpiarConsola();
                     consultaEmpleado.mostrarEmpleados();
                     break;
+
                 case 5:
-                    continuar = false;
-                    System.out.println("Saliendo de la gestión de Empleados...");
+
+                    menuUsuarios.menuPrincipalUsuario(rolActual);
                     break;
-                default:
-                    scanner.close();
-                    System.out.println("Opción no válida. Intente de nuevo.");
+
+                case 0:
+
+                    limpiarPantalla.limpiarConsola();
+                    System.out.println("Cerrando sesión, Saliendo...");
+                    System.exit(0);
+                    return;
                     
+                default:
+                
+                    System.out.println("ERROR: Opción no válida. Intente de nuevo.");
             }
         }
     }

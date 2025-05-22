@@ -1,19 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package local.co.EasyPayroll.utilidades;
 
-/**
- *
- * @author sistemas.ctg
- */
 public class limpiarPantalla {
     
-     public static void limpiarConsola() {
-        for (int i = 0; i < 50; i++) {
-            System.out.println();
+    public static void limpiarConsola() {
+        try {
+            // Limpiar la consola en Windows
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                // Limpiar la consola en Unix/Linux/Mac
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+        } catch (Exception e) {
+            System.out.println("Error al limpiar la consola: " + e.getMessage());
         }
     }
-    
 }

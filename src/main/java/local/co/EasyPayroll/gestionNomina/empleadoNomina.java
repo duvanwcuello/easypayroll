@@ -20,6 +20,7 @@ public class empleadoNomina {
     }
 
     public empleadoNomina(String identificacion, String nombre, double salarioBase) {
+        
         this.identificacion = identificacion;
         this.nombre = nombre;
         this.salarioBase = salarioBase;

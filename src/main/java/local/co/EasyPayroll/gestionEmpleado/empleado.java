@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package local.co.EasyPayroll.gestionEmpleado;
 
 import java.time.*;
 
 class Empleado {
+
     private int id;
     private String identificacion;
     private String primerNombre;
@@ -92,6 +89,7 @@ class Empleado {
                     String segundoApellido, LocalDate fechaNacimiento, String tipoSangre,
                     String sexo, String estadoCivil, String nivelEstudio, String correoElectronico,
                     String direccionResidencia, String barrio, String ciudad, String departamento) {
+
         this.id = id;
         this.identificacion = identificacion;
         this.primerNombre = primerNombre;
@@ -110,6 +108,3 @@ class Empleado {
         this.departamento = departamento;
     }
 }
-
-    
-   

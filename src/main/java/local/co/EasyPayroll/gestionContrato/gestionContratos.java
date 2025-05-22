@@ -2,52 +2,82 @@ package local.co.EasyPayroll.gestionContrato;
 
 import java.util.Scanner;
 
+import local.co.EasyPayroll.seguridad.menuUsuarios;
+import local.co.EasyPayroll.utilidades.limpiarPantalla;
+
 public class gestionContratos {
 
-     @SuppressWarnings("resource")
-     
-    public static void gestionContrato(){
-        Scanner scanner = new Scanner(System.in);
-        boolean continuar = true;
-        while (continuar) {
-            //System.out.println("\n*********************************");
-               System.out.println("\nGESTION DE CONTRATOS");
-               System.out.println("-------------------------------");
-               System.out.println("1. Crear nuevo contrato");
-               System.out.println("2. Consultar contrato existente");
-               System.out.println("3. Editar contrato existente");
-               System.out.println("4. Mostrar Consolidado de Contratos");
-              // por implementar System.out.println("4. Volver al MENU PRINCIPAL");
-               System.out.println("5. Salir");
-               System.out.println("-------------------------------");
-               System.out.print("Seleccione una opción: ");
-               int selecciondeUsuario = scanner.nextInt();
-               scanner.nextLine(); // Limpiar el buffer
+    public static void gestionContrato(String rolActual) {
 
-           switch (selecciondeUsuario) {
-               case 1:
-                   nuevoContrato.crearNuevoContrato();
-                   break;
-               case 2:
-                   consultaContrato.consultarContratoExistente();
-                   break;
-               case 3:
-                    System.out.print("Indique Numero de contrato a Editar: ");
+        Scanner scanner = new Scanner(System.in);
+        
+        while (true) {
+
+            limpiarPantalla.limpiarConsola();
+
+            System.out.println("\n---------------------------------");
+            System.out.println("|      GESTION DE CONTRATOS     |");
+            System.out.println("---------------------------------");
+            System.out.println("| 1. Crear nuevo contrato       |");
+            System.out.println("| 2. Consultar contrato         |");
+            System.out.println("| 3. Editar contrato            |");
+            System.out.println("| 4. Consolidado de Contratos   |");
+            System.out.println("| 5. Atras                      |");
+            System.out.println("| 0. Salir                      |");
+            System.out.println("---------------------------------\n");
+
+            System.out.print("- Seleccione una opción: ");
+            int selecciondeUsuario = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (selecciondeUsuario) {
+
+                case 1:
+
+                    limpiarPantalla.limpiarConsola();
+                    nuevoContrato.crearNuevoContrato();
+                    break;
+
+                case 2:
+
+                    limpiarPantalla.limpiarConsola();
+                    consultaContrato.consultarContratoExistente();
+                    break;
+
+                case 3:
+
+                    limpiarPantalla.limpiarConsola();
+                    System.out.println("-------------------------------------------");
+                    System.out.println("|           EDICIÓN DE CONTRATOS          |");
+                    System.out.println("-------------------------------------------\n");
+
+                    System.out.print("- Ingrese el Numero de contrato a editar: ");
                     String numeroContratoEditar = scanner.nextLine();
                     editarContrato.editarContratoGuardado(numeroContratoEditar);
-                   break;
-              case 4:
+                    break;
+
+                case 4:
+
+                    limpiarPantalla.limpiarConsola();
                     consultaContrato.mostrarContratos();
                     break;
-               case 5:
-                   continuar = false;
-                    System.out.println("Saliendo de la gestión de Contratos...");
+
+                case 5:
+
+                    menuUsuarios.menuPrincipalUsuario(rolActual);
                     break;
+
+                case 0:
+
+                   System.out.println("Operación cancelada por el usuario.");
+                   System.out.println("Saliendo...");
+                   System.exit(0);
+                   return;
+
                 default:
-                    scanner.close();
-                    System.out.println("Opción no válida. Intente de nuevo.");
-           }
-               
+
+                   System.out.println("Opción no válida. Intente de nuevo.");
+            }
         } 
     }
 }

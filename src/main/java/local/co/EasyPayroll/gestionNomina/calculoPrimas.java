@@ -1,18 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package local.co.EasyPayroll.gestionNomina;
+import local.co.EasyPayroll.gestionParametrosGenerales.parametrosGenerales;
 
- import local.co.EasyPayroll.gestionParametrosGenerales.parametrosGenerales;
-/**
- *
- * @author Duvan Wilchez Cuello
- */
 public class calculoPrimas {
     
     // funcion para calcular Primas.
-    
     public static double calculoPrimas(double salarioEmpleado, int diasLaborados){
            
        double salarioMinimo = parametrosGenerales.conceptosLegales.getSalarioMinimo();

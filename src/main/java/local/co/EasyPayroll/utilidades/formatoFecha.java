@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package local.co.EasyPayroll.utilidades;
 
 import java.time.LocalDate;
@@ -9,30 +5,34 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
-/**
- *
- * @author sistemas.ctg
- */
 public class formatoFecha {
     
-   public static LocalDate solicitarFechaNacimiento() {
-    Scanner scanner = new Scanner(System.in);
-    LocalDate fechaNacimiento = null;
-    boolean fechaValida = false;
+    public static LocalDate solicitarFechaNacimiento() {
 
-    while (!fechaValida) {
-        String inputFecha = scanner.nextLine();
-        try {
-            fechaNacimiento = LocalDate.parse(inputFecha, DateTimeFormatter.ISO_LOCAL_DATE);
-            fechaValida = true;
-        } catch (DateTimeParseException e) {
-            System.out.println("Formato inválido. Por favor use yyyy-MM-dd.");
-            System.out.print("Ingrese la fecha de nacimiento nuevamente: ");
+        Scanner sc = new Scanner(System.in);
+        LocalDate fechaNacimiento = null;
+        boolean fechaValida = false;
+
+        while (!fechaValida) {
+
+            String inputFecha = sc.nextLine();
+
+            try {
+
+                fechaNacimiento = LocalDate.parse(inputFecha, DateTimeFormatter.ISO_LOCAL_DATE);
+                fechaValida = true;
+
+            } catch (DateTimeParseException e) {
+                
+                System.out.println("Formato inválido. Por favor use YYYY-MM-DD.");
+                System.out.print("Ingrese la fecha de nacimiento nuevamente: ");
+            }
+
+            sc.close();
         }
-    }
 
-    return fechaNacimiento;
-   }
+        return fechaNacimiento;
+    }
 }
    
 
