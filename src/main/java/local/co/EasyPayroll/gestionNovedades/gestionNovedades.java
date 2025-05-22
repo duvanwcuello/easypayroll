@@ -30,7 +30,7 @@ public class gestionNovedades {
             
             switch (selecciondeUsuario) {
                case 1:
-                   novedades.registrarNovedades();
+                   novedades.registrarNovedadesxEmpleado();;
                    break;
                case 2:
                     

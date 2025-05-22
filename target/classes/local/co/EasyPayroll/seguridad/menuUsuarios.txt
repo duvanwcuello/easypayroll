@@ -7,6 +7,7 @@ import local.co.EasyPayroll.gestionNomina.gestionNominas;
 import local.co.EasyPayroll.gestionNovedades.novedades;
 import local.co.EasyPayroll.gestionParametrosGenerales.gestionParametros;
 import local.co.EasyPayroll.utilidades.limpiarPantalla;
+import local.co.EasyPayroll.aplicacion;
 import local.co.EasyPayroll.gestionContrato.*;
 
 public class menuUsuarios {
@@ -93,7 +94,7 @@ public class menuUsuarios {
                 case 6:
 
                     limpiarPantalla.limpiarConsola();
-                    informesNomina.motrarInformes(rolActual);
+                    informesNomina.mostrarInformes(rolActual);
                     break;
 
                 case 7:
@@ -105,9 +106,9 @@ public class menuUsuarios {
                 case 0:
 
                     continuar = false;
-                    System.out.println("Operación cancelada por el usuario.");
-                    System.out.println("Saliendo..."); 
-                    System.exit(0);
+                    
+                    limpiarPantalla.limpiarConsola();
+                    aplicacion.main(null);
             }
         }
     }
@@ -158,7 +159,7 @@ public class menuUsuarios {
                 case 4:
                 
                     limpiarPantalla.limpiarConsola();
-                    informesNomina.motrarInformes(rolActual);
+                    informesNomina.mostrarInformes(rolActual);
                     break;
 
                 case 0:
@@ -230,7 +231,7 @@ public class menuUsuarios {
                 case 5:
 
                     limpiarPantalla.limpiarConsola();
-                    informesNomina.motrarInformes(rolActual);
+                    informesNomina.mostrarInformes(rolActual);
                     break;
 
                 case 0:

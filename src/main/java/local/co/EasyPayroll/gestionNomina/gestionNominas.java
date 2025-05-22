@@ -40,7 +40,7 @@ public class gestionNominas {
                 case 2:
 
                     limpiarPantalla.limpiarConsola();
-                    informesNomina.motrarInformes(rolActual);
+                    informesNomina.mostrarInformes(rolActual);
 
                 case 0:
 

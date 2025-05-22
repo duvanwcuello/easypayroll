@@ -5,7 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.utilidades.ContinuaEnter;
+import local.co.EasyPayroll.utilidades.continuarEjecucionPrograma;
+import local.co.EasyPayroll.utilidades.continuarUsuario;
 import local.co.EasyPayroll.utilidades.datosDeUsoGeneral;
 import local.co.EasyPayroll.utilidades.limpiarPantalla;
 
@@ -60,7 +61,7 @@ public class consultaEmpleado {
                     System.out.println("-----------------------------------------------------");
 
                     empleadoEncontrado = true;
-                    ContinuaEnter.PressEnter('E');
+                    continuarEjecucionPrograma.continuarConTeclado();
                     break;
 
                 }
@@ -125,7 +126,7 @@ public class consultaEmpleado {
 
             System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------");
 
-            ContinuaEnter.PressEnter('C');
+            continuarEjecucionPrograma.continuarConTeclado();
 
         } catch (IOException e) {
 
@@ -133,7 +134,7 @@ public class consultaEmpleado {
             System.out.println("| ERROR: No se pudo leer el archivo de empleados. " + e.getMessage()+ "|");
             System.out.println("-------------------------------------------------------\n");
 
-            ContinuaEnter.PressEnter('E');
+            continuarEjecucionPrograma.continuarConTeclado();
         }
     }
 }

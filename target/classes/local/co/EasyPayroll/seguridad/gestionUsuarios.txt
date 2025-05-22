@@ -43,35 +43,35 @@ public class gestionUsuarios {
 
                     limpiarPantalla.limpiarConsola();
                     crearNuevoUsuario();
-                    ContinuaEnter.PressEnter('E');
+                    continuarEjecucionPrograma.continuarConTeclado();
                     break;
 
                 case 2:
 
                     limpiarPantalla.limpiarConsola();
                     consultarUsuarioExistente();
-                    ContinuaEnter.PressEnter('E');
+                    continuarEjecucionPrograma.continuarConTeclado();
                     break;
 
                 case 3:
 
                     limpiarPantalla.limpiarConsola();
                     editarUsuarioGuardado();
-                    ContinuaEnter.PressEnter('E');
+                    continuarEjecucionPrograma.continuarConTeclado();
                     break;
 
                 case 4:
 
                     limpiarPantalla.limpiarConsola();
                     eliminarUsuarioGuardado();
-                    ContinuaEnter.PressEnter('E');
+                    continuarEjecucionPrograma.continuarConTeclado();
                     break;
 
                 case 5:
 
                     limpiarPantalla.limpiarConsola();
                     mostrarTodosLosUsuarios();
-                    ContinuaEnter.PressEnter('E');
+                    continuarEjecucionPrograma.continuarConTeclado();
                     break;
 
                 case 6:
@@ -202,7 +202,7 @@ public class gestionUsuarios {
             """ + e.getMessage());
 
             System.out.println("\n");
-            ContinuaEnter.PressEnter('C');
+            continuarEjecucionPrograma.continuarConTeclado();
             return false;
         }
     }
@@ -317,7 +317,7 @@ public class gestionUsuarios {
             
             """ + e.getMessage());
 
-            ContinuaEnter.PressEnter('C');
+            continuarEjecucionPrograma.continuarConTeclado();
 
         }
 
@@ -331,7 +331,7 @@ public class gestionUsuarios {
 
             """);
 
-            ContinuaEnter.PressEnter('C');
+            continuarEjecucionPrograma.continuarConTeclado();
         }
     }
 

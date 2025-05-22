@@ -4,12 +4,12 @@ import java.io.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import local.co.EasyPayroll.utilidades.ContinuaEnter;
+
+import local.co.EasyPayroll.utilidades.continuarEjecucionPrograma;
 import local.co.EasyPayroll.utilidades.limpiarPantalla;
 import local.co.EasyPayroll.utilidades.datosDeUsoGeneral;
 
 public class logginUsuario {
-
     //Creamos Objeto Usuario para almacenar datos 
     static class Usuario {
 
@@ -48,9 +48,9 @@ public class logginUsuario {
 
         for (int intento = 1; intento <= datosDeUsoGeneral.getIntentosMaximos(); intento++) {
 
-            System.out.print("\t\tINICIA SESIÓN"+"----------------------------------\n");
-
-            System.out.println("\n");
+            System.out.println("--------------------------------------------");
+            System.out.println("\t\tINICIA SESIÓN");
+            System.out.println("--------------------------------------------\n");
             String usuarioIngresado = validarDatosIngresados("- Digite su usuario: ");
             if (usuarioIngresado == null) cancelarOperacion("INFO: Se superaron los intentos permitidos.");
 
@@ -71,9 +71,9 @@ public class logginUsuario {
                 -------------------------------------------
                 """);
 
-                System.out.println("\n¡Saludos!, Iniciaste sesion como " + usuarioValidado.getNombreEmpleado());
+                System.out.println("\n¡Saludos!," + usuarioValidado.getNombreEmpleado());
                 System.out.println("-------------------------------------------");
-                ContinuaEnter.PressEnter('C');
+                continuarEjecucionPrograma.continuarConTeclado();
 
                 menuUsuarios.menuPrincipalUsuario(usuarioValidado.getRol());
 
@@ -93,85 +93,60 @@ public class logginUsuario {
         Scanner scanner = new Scanner(System.in);
 
         for (int intentos = 1; intentos <= datosDeUsoGeneral.getIntentosMaximos(); intentos++) {
-
             System.out.print(mensaje);
             String entrada = scanner.nextLine();
-
+           
             if (entrada == null || entrada.trim().isEmpty()) {
-
                 System.out.println("\nADVERTENCIA: El campo no puede estar en blanco. Intento " + intentos + " de " + datosDeUsoGeneral.getIntentosMaximos() + "\n");
-
             } else {
-
                 return entrada.trim();
             }
-        }
-        
+        }      
         return null;
     }
 
     private static Usuario validarCredenciales(String usuarioIngresado, String passwordIngresado) {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
-
+        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))){
             String linea;
-
             while ((linea = br.readLine()) != null) {
-
-                String[] datos = linea.split("\\,");
-
-                if (datos.length >= 6 && datos[2].equals(usuarioIngresado) && datos[3].equals(passwordIngresado)) {
-
-                    return new Usuario(datos[1], datos[2], datos[3], datos[4]);
+               String[] datos = linea.split("\\,");
+               if (datos.length >= 6 && datos[2].equals(usuarioIngresado) && datos[3].equals(passwordIngresado)){
+                   return new Usuario(datos[1], datos[2], datos[3], datos[4]);
                 }
             }
-
         } catch (IOException e) {
-
             System.out.println("Error al leer el archivo de usuarios: " + e.getMessage());
         }
-
         return null;
     }
 
-    private static void actualizarUltimaSesion(String nombreUsuario) {
+    private static void actualizarUltimaSesion(String nombreUsuario){
 
         List<String> lineasActualizadas = new ArrayList<>();
+
         String fechaActual = LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYYY-MM-DD HH:MM:SS"));
 
         try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
-
             String linea;
-
             while ((linea = br.readLine()) != null) {
-
                 String[] datos = linea.split(",");
-
-                if (datos.length >= 6 && datos[2].equals(nombreUsuario)) {
-
+                if (datos.length >= 6 && datos[2].equals(nombreUsuario)){
                     datos[5] = fechaActual;
                     linea = String.join(",", datos);
-
                 }
-
                 lineasActualizadas.add(linea);
             }
-
         } catch (IOException e) {
-
             System.out.println("Error al leer para actualizar última sesión: " + e.getMessage());
         }
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosDeUsoGeneral.getArchivoUsuarios()))) {
-
             for (String linea : lineasActualizadas) {
-
                 bw.write(linea);
                 bw.newLine();
             }
-
         } catch (IOException e) {
-
             System.out.println("Error al guardar actualización de última sesión: " + e.getMessage());
         }
     }
@@ -203,8 +178,7 @@ public class logginUsuario {
         System.out.print("- Ingrese su nombre de usuario: ");
         String usuario = scanner.nextLine().trim();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
-
+        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))){
             String linea;
 
             while ((linea = br.readLine()) != null) {

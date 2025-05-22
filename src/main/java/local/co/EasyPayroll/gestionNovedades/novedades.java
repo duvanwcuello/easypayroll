@@ -6,7 +6,8 @@ import java.time.LocalDate;
 import java.util.*;
 
 import local.co.EasyPayroll.seguridad.menuUsuarios;
-import local.co.EasyPayroll.utilidades.ContinuaEnter;
+import local.co.EasyPayroll.utilidades.continuarEjecucionPrograma;
+import local.co.EasyPayroll.utilidades.continuarUsuario;
 import local.co.EasyPayroll.utilidades.datosDeUsoGeneral;
 import local.co.EasyPayroll.utilidades.formatoMoneda;
 import local.co.EasyPayroll.utilidades.limpiarPantalla;
@@ -71,7 +72,7 @@ public class novedades {
                 default:
 
                     System.out.println("Opción no válida, por favor, seleccione una opción válida.");
-                    ContinuaEnter.PressEnter('C');
+                    continuarEjecucionPrograma.continuarConTeclado();
             }
         }
     }
@@ -95,7 +96,7 @@ public class novedades {
         if (!archivo.exists()) {
 
             System.out.println("\nERROR: El archivo no existe en la ruta especificada o Operación cancelada.");
-            ContinuaEnter.PressEnter('C');
+            continuarEjecucionPrograma.continuarConTeclado();
             return;
         }
 
@@ -122,12 +123,12 @@ public class novedades {
             }
 
             System.out.println("-------------------------------------------------------------------------------------------------------");
-            ContinuaEnter.PressEnter('E');
+            continuarEjecucionPrograma.continuarConTeclado();
 
         } catch (IOException e) {
 
             System.out.println("\nERROR: No se puede leer el archivo: " + e.getMessage());
-            ContinuaEnter.PressEnter('C');
+            continuarEjecucionPrograma.continuarConTeclado();
         }
     }
 
@@ -152,7 +153,7 @@ public class novedades {
             if (quincenaMes.isEmpty() || quincenaMes == null || quincenaMes.length() != 10) {
 
                 System.out.println("\nERROR: Formato incorrecto, por favor, intente nuevamente.");
-                ContinuaEnter.PressEnter('C');
+                continuarEjecucionPrograma.continuarConTeclado();
                 return;
 
             }else{
@@ -207,14 +208,14 @@ public class novedades {
             if (linea == null) {
 
                 System.out.println("\nSUCCES: Registro exitoso.");                
-                ContinuaEnter.PressEnter('C');
+                continuarEjecucionPrograma.continuarConTeclado();
 
             }
                 
         } catch (IOException e) {
 
             System.out.println("\nERROR: No se guardaron las novedades: " + e.getMessage());
-            ContinuaEnter.PressEnter('E');
+            continuarEjecucionPrograma.continuarConTeclado();
         }
    
     }
@@ -241,7 +242,7 @@ public class novedades {
             if (quincenaMes.isEmpty() || quincenaMes == null || quincenaMes.length() != 10) {
 
                 System.out.println("\nERROR: Formato incorrecto, por favor, intente nuevamente.");
-                ContinuaEnter.PressEnter('C');
+                continuarEjecucionPrograma.continuarConTeclado();
                 return;
 
             }else{
@@ -275,7 +276,7 @@ public class novedades {
         } catch (IOException e) {
 
             System.out.println("\nERROR: No se pudo leer empleados.txt: " + e.getMessage());
-            ContinuaEnter.PressEnter('E');
+            continuarEjecucionPrograma.continuarConTeclado();
             return;
         }
 
@@ -283,7 +284,7 @@ public class novedades {
             
             System.out.println("\nERROR: El empleado con identificación " + idEmpleado + " no existe,");
             System.out.println("INFO: Por favor, Dirijase al modulo de empleados y registrelo.");
-            ContinuaEnter.PressEnter('E');
+            continuarEjecucionPrograma.continuarConTeclado();
             return;
         }
 
@@ -295,7 +296,7 @@ public class novedades {
         if (!archivoNovedades.exists()) {
 
             System.out.println("\nERROR: El archivo de novedades no existe. No se puede registrar la novedad.");
-            ContinuaEnter.PressEnter('C');
+            continuarEjecucionPrograma.continuarConTeclado();
             return;
         }
 
@@ -316,14 +317,14 @@ public class novedades {
         } catch (IOException e) {
 
             System.out.println("\nERROR: No se pudo leer el archivo: " + e.getMessage());
-            ContinuaEnter.PressEnter('E');
+            continuarEjecucionPrograma.continuarConTeclado();
             return;
         }
 
         if (novedadExiste) {
 
             System.out.println("\nERROR: Ya existe un registro de novedades para el empleado " + idEmpleado + " en el archivo " + rutaArchivo);
-            ContinuaEnter.PressEnter('E');
+            continuarEjecucionPrograma.continuarConTeclado();
             return;
         }
 
@@ -349,7 +350,7 @@ public class novedades {
         guardarNovedades(rutaArchivo, idEmpleado, quincenaMes, hed, hen, rn, hedDom, henDom, recDom);
 
         System.out.println("\nSUCCES: Registro guardado correctamente para el empleado: " + idEmpleado);
-        ContinuaEnter.PressEnter('E');
+        continuarEjecucionPrograma.continuarConTeclado();
     }
 
     private static void guardarNovedades(String archivo, String id, String periodo, double hed, double hen, double rn,double hedDom, double henDom, double recDom) {
@@ -362,7 +363,7 @@ public class novedades {
         } catch (IOException e) {
 
             System.out.println("\nERROR: No se guardaron las novedades: " + e.getMessage());
-            ContinuaEnter.PressEnter('E');
+            continuarEjecucionPrograma.continuarConTeclado();
         }
     }
 }

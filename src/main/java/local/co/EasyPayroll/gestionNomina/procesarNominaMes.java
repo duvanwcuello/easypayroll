@@ -34,7 +34,7 @@ public static void procesarNomina(){
     if (mes.isEmpty() || mes.length() < 10) {
 
         System.out.println("\nERROR: El nombre del archivo es invalido o esta vacío.");
-        ContinuaEnter.PressEnter('C');
+        continuarEjecucionPrograma.continuarConTeclado();
         procesarNomina();
         return;
     }
@@ -107,7 +107,7 @@ public static void procesarNomina(){
         }
 
         System.out.println("Procesamiento exitoso. Planilla generada: " + archivoPlanilla);
-        ContinuaEnter.PressEnter('C');
+        continuarEjecucionPrograma.continuarConTeclado();
 
         } catch (IOException e) {
 

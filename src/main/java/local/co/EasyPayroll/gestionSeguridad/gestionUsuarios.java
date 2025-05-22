@@ -1,10 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package local.co.EasyPayroll.gestionSeguridad;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,42 +20,68 @@ public class gestionUsuarios {
      */
     public static void menuGestionUsuario(String rolActual) {
         Scanner scanner = new Scanner(System.in);
+        
         boolean continuar = true;       
 
         while (continuar) {
-            System.out.println("\n*********************************");
-            System.out.println("GESTIÓN DE USUARIOS");
-            System.out.println("-------------------------------");
-            System.out.println("1. Crear nuevo Usuario");
-            System.out.println("2. Consultar usuario existente");
-            System.out.println("3. Editar usuario existente");
-            System.out.println("4. Mostrar todos los usuarios");
-            System.out.println("5. Regresar al MENÚ PRINCIPAL");
-            System.out.println("6. Salir");
-            System.out.println("-------------------------------");
+           System.out.println("----------------------------------");
+            System.out.println("|       GESTION DE USUARIOS      |");
+            System.out.println("----------------------------------");
+            System.out.println("| 1. Crear nuevo Usuario         |");
+            System.out.println("| 2. Consulta x usuario          |");
+            System.out.println("| 3. Editar usuario              |");
+            System.out.println("| 4. Eliminar usuario            |");
+            System.out.println("| 5. Consulta todos los usuarios |");
+            System.out.println("| 9. Atras                       |");
+            System.out.println("| 0. Salir                       |");
+            System.out.println("----------------------------------\n");
+            
             System.out.print("Seleccione una opción: ");
-            int seleccion = scanner.nextInt();
+            int selecciondeUsuario = scanner.nextInt();
             scanner.nextLine();
 
-            switch (seleccion) {
+            switch (selecciondeUsuario) {
                 case 1:
+                    limpiarPantalla.limpiarConsola();
+                    simulacionPrograma.continuarPrograma();
                     crearNuevoUsuario();
+                    
                     break;
                 case 2:
+                    limpiarPantalla.limpiarConsola();
                     consultarUsuarioExistente();
+                    simulacionPrograma.continuarConTeclado();
                     break;
                 case 3:
+                    limpiarPantalla.limpiarConsola();
                     editarUsuarioExistente();
+                    simulacionPrograma.continuarConTeclado();
                     break;
                 case 4:
+                    
+                    limpiarPantalla.limpiarConsola();
+                    eliminarUsuarioGuardado();
+
+                    limpiarPantalla.limpiarConsola();
                     mostrarTodosLosUsuarios();
+                    simulacionPrograma.continuarConTeclado();
                     break;
                 case 5:
-                    menuUsuarios.menuPrincipalUsuario(rolActual);
+                    limpiarPantalla.limpiarConsola();
+                    menuPorRolUsuario.menuPrincipalUsuario(rolActual);
+                    simulacionPrograma.continuarConTeclado();
                     return;
-                case 6:
+                case 9:
                     continuar = false;
                     System.out.println("Saliendo de la gestión de Usuarios...");
+                    break;
+                case 0:
+                    limpiarPantalla.limpiarConsola();
+                    System.out.println("¡Operacion Cancelada!...");
+                    System.out.println("Cerrando Programa...");
+                    simulacionPrograma.continuarPrograma();
+                    limpiarPantalla.limpiarConsola();
+                    System.exit(0);
                     break;
                 default:
                     scanner.close();
@@ -201,6 +226,58 @@ public class gestionUsuarios {
             System.out.println("Usuario no encontrado.");
         }
     }
+
+
+    public static void eliminarUsuarioGuardado() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("-------------------------------------");
+        System.out.println("|       ELIMINAR USUARIO            |");
+        System.out.println("-------------------------------------");
+
+        System.out.print("\n- Ingrese el nombre del usuario a eliminar: ");
+        String usuarioBuscado = scanner.nextLine().trim();
+
+        try {
+            List<String> lineas = Files.readAllLines(Paths.get(datosDeUsoGeneral.getArchivoUsuarios()));
+            boolean usuarioEncontrado = false;
+            List<String> lineasActualizadas = new ArrayList<>();
+
+            for (String linea : lineas) {
+                String[] datos = linea.split(",");
+                if (datos[2].equalsIgnoreCase(usuarioBuscado)) {
+                    usuarioEncontrado = true;
+                } else {
+                    lineasActualizadas.add(linea);
+                }
+            }
+
+            if (usuarioEncontrado) {
+
+                Files.write(Paths.get(datosDeUsoGeneral.getArchivoUsuarios()),lineasActualizadas);
+                System.out.println("""
+                --------------------------------------
+                | INFO: Usuario eliminado exitosamente. |
+                --------------------------------------
+                """);
+
+            } else {
+                System.out.println("""
+                --------------------------------------
+                | ERROR: Usuario no encontrado.       |
+                --------------------------------------
+                """);
+            }
+        } catch (IOException e) {
+            System.out.println("""
+            -------------------------------------------------
+            | ERROR: No se pudo eliminar el usuario.        |
+            -------------------------------------------------           
+            """ + e.getMessage());
+        }
+    }
+
 
     /**
      * Muestra una tabla con todos los usuarios registrados.

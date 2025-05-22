@@ -4,7 +4,8 @@ import java.io.*;
 import java.time.*;
 import java.util.*;
 
-import local.co.EasyPayroll.utilidades.ContinuaEnter;
+import local.co.EasyPayroll.utilidades.continuarEjecucionPrograma;
+import local.co.EasyPayroll.utilidades.continuarUsuario;
 import local.co.EasyPayroll.utilidades.datosDeUsoGeneral;
 import local.co.EasyPayroll.utilidades.limpiarPantalla;
 import local.co.EasyPayroll.gestionEmpleado.nuevoEmpleado;
@@ -70,7 +71,7 @@ public class nuevoContrato {
                 if(resp == 2){
 
                     System.out.println("\nOperación cancelada por el usuario.");
-                    ContinuaEnter.PressEnter('E');
+                    continuarEjecucionPrograma.continuarConTeclado();
                     return;
                     
                 }else if(resp == 1){
@@ -81,7 +82,7 @@ public class nuevoContrato {
             } else if (validaEstadoContrato(identificacionEmpleado)) {
 
                 System.out.println("INFO: Este empleado ya tiene un contrato ACTIVO.");
-                ContinuaEnter.PressEnter('E');
+                continuarEjecucionPrograma.continuarConTeclado();
                 return;
             }
 
@@ -94,12 +95,12 @@ public class nuevoContrato {
                 contadorId++;
 
                 System.out.println("\nSUCCES: Contrato creado correctamente. \n");
-                ContinuaEnter.PressEnter('E');
+                continuarEjecucionPrograma.continuarConTeclado();
 
             } else {
                 
                 System.out.println("ERROR: Empleado no encontrado, No se pudo crear el contrato.  \n");
-                ContinuaEnter.PressEnter('C');
+                continuarEjecucionPrograma.continuarConTeclado();
 
             }
         }

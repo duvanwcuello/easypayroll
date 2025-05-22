@@ -12,13 +12,14 @@ import local.co.EasyPayroll.gestionNomina.empleadoNomina;
 import local.co.EasyPayroll.gestionNomina.procesarNominaMes;
 import local.co.EasyPayroll.gestionParametrosGenerales.parametrosGenerales;
 import local.co.EasyPayroll.seguridad.menuUsuarios;
-import local.co.EasyPayroll.utilidades.ContinuaEnter;
+import local.co.EasyPayroll.utilidades.continuarEjecucionPrograma;
+import local.co.EasyPayroll.utilidades.continuarUsuario;
 import local.co.EasyPayroll.utilidades.formatoMoneda;
 import local.co.EasyPayroll.utilidades.limpiarPantalla;
 
 public class informesNomina {
 
-    public static void motrarInformes(String rolActual) {
+    public static void mostrarInformes(String rolActual) {
             
         Scanner scanner = new Scanner(System.in);        
         boolean continuar = true;
@@ -154,7 +155,7 @@ public class informesNomina {
         }
         
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
-        ContinuaEnter.PressEnter('C');
+        continuarEjecucionPrograma.continuarConTeclado();
 
     } catch (IOException e) {
 
@@ -200,7 +201,7 @@ public class informesNomina {
                     System.out.println("NETO A PAGAR: " +formatoMoneda.formatear(Double.parseDouble(d[8])));
                     System.out.println("-----------------------------------------");
 
-                    ContinuaEnter.PressEnter('C');
+                    continuarEjecucionPrograma.continuarConTeclado();
                     return;
                 }
             }

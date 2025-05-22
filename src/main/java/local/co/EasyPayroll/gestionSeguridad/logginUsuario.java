@@ -10,33 +10,45 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 import local.co.EasyPayroll.utilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.utilidades.simulacionPrograma;
 
 public class logginUsuario {
    
     /**
      * Método para solicitar los datos de inicio de sesión.
-     * Si se validan correctamente, permite el acceso al menú principal según el rol.
+     * Si se validan correctamente los datos ingresados, permite el acceso al menú principal según el rol.
      */
-    public static void solicitarDatosSesionInicial() {
-        for (int intento = 1; intento <= datosDeUsoGeneral.getIntentosMaximos(); intento++) {
+    public static void solicitarDatosSesionInicial(){
+
+        for (int intento = 1; intento <= datosDeUsoGeneral.getIntentosMaximos(); intento++){
             String usuarioIngresado = validarDatosIngresados("Ingrese Usuario Asignado: ");
-            if (usuarioIngresado == null) cancelarOperacion("Usuario canceló el ingreso de usuario.");
+            
+            if (usuarioIngresado == null) 
+                cancelarOperacion("Usuario canceló el ingreso de usuario.");
+                String passwordIngresado = validarDatosIngresados("Ingrese Contraseña: ");
 
-            String passwordIngresado = validarDatosIngresados("Ingrese Contraseña: ");
-            if (passwordIngresado == null) cancelarOperacion("Usuario canceló el ingreso de contraseña.");
+            if (passwordIngresado == null) 
+                cancelarOperacion("Usuario canceló el ingreso de contraseña.");  
+                Usuario usuarioValidado = validarCredenciales(usuarioIngresado, passwordIngresado);
 
-            Usuario usuarioValidado = validarCredenciales(usuarioIngresado, passwordIngresado);
-            if (usuarioValidado != null) {
+            if (usuarioValidado != null){
                 actualizarUltimaSesion(usuarioIngresado);
-                System.out.println("\nBienvenido. " +usuarioValidado.getNombreEmpleado());
-                menuUsuarios.menuPrincipalUsuario(usuarioValidado.getRol());
+                System.out.print("Ingresando...");
+                simulacionPrograma.simulaEjecucion();
+                
+                System.out.println("===============================");
+                System.out.println("|   BIENVENIDO A EASYPAYROLL  |"); 
+                System.out.println("===============================");
+                System.out.print("USUARIO EN SESION:\n" +usuarioValidado.getNombreEmpleado());
+
+                menuPorRolUsuario.menuPrincipalUsuario(usuarioValidado.getRol());
                 return;
             } else {
                 mostrarErrorDeInicio(intento, usuarioIngresado, passwordIngresado);
             }
         }
-
-        System.out.println("\n-------------------------------------------------------\nHa superado el número de intentos permitidos.\n");
+        System.out.println("\n-------------------------------------------------------\n");
+        System.out.println("Ha superado el número de intentos permitidos.\n");
         System.exit(0);
     }
 

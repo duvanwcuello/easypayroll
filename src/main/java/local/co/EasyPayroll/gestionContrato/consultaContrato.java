@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.utilidades.ContinuaEnter;
 import local.co.EasyPayroll.utilidades.datosDeUsoGeneral;
 import local.co.EasyPayroll.utilidades.limpiarPantalla;
 
@@ -49,7 +48,7 @@ public class consultaContrato {
                     System.out.println("° Salario: " + datos[17]);
                     System.out.println("----------------------------------------------------------\n");
 
-                    ContinuaEnter.PressEnter('E');
+                   // continuarUsuario.PressEnter('E');
                     contratoEncontrado = true;
                     break;
 
@@ -79,7 +78,7 @@ public class consultaContrato {
             } else {
 
                 System.out.println("\nOperación cancelada por el usuario.");
-                ContinuaEnter.PressEnter('E');
+              //  continuarUsuario.PressEnter('E');
 
             }
         }
@@ -111,7 +110,7 @@ public class consultaContrato {
             }
 
             System.out.println("------------------------------------------------------------------------------------------------------------------------------");
-            ContinuaEnter.PressEnter('C');
+          //  continuarUsuario.PressEnter('C');
 
         } catch (IOException e) {
 

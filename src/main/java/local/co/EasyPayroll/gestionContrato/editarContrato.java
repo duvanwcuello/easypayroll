@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.utilidades.ContinuaEnter;
+import local.co.EasyPayroll.utilidades.continuarEjecucionPrograma;
 import local.co.EasyPayroll.utilidades.datosDeUsoGeneral;
 import local.co.EasyPayroll.utilidades.limpiarPantalla;
 
@@ -104,7 +104,7 @@ public class editarContrato {
                                         System.out.println("| Salario registrado corectamente! " + nuevoSalario + "|");
                                         System.out.println("------------------------------------------------\n");
 
-                                        ContinuaEnter.PressEnter('C');
+                                        continuarEjecucionPrograma.continuarConTeclado();
                                         break;
 
                                     } else {

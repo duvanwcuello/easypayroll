@@ -5,7 +5,8 @@ import java.time.*;
 import java.util.*;
 
 import local.co.EasyPayroll.seguridad.gestionUsuarios;
-import local.co.EasyPayroll.utilidades.ContinuaEnter;
+import local.co.EasyPayroll.utilidades.continuarEjecucionPrograma;
+import local.co.EasyPayroll.utilidades.continuarUsuario;
 import local.co.EasyPayroll.utilidades.datosDeUsoGeneral;
 import local.co.EasyPayroll.utilidades.limpiarPantalla;
 
@@ -210,7 +211,7 @@ public class nuevoEmpleado {
             System.out.println("| INFO: Empleado creado exitosamente.    |");
             System.out.println("------------------------------------------\n");
 
-            ContinuaEnter.PressEnter('C');
+            continuarEjecucionPrograma.continuarConTeclado();
 
         } catch (IOException e) {
 
@@ -242,7 +243,7 @@ public class nuevoEmpleado {
             System.out.println("| ERROR: No se pudo leer el archivo de empleados. " + e.getMessage()+ "|");
             System.out.println("-------------------------------------------------------\n");
 
-            ContinuaEnter.PressEnter('E');
+            continuarEjecucionPrograma.continuarConTeclado();
         }
 
         return false;
@@ -271,7 +272,7 @@ public class nuevoEmpleado {
             System.out.println("| ERROR: No se pudo leer el archivo de empleados. " + e.getMessage()+ "|");
             System.out.println("-------------------------------------------------------\n");
 
-            ContinuaEnter.PressEnter('E');
+            continuarEjecucionPrograma.continuarConTeclado();
             return;
 
         }
