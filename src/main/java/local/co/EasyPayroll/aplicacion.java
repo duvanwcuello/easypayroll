@@ -1,38 +1,78 @@
 package local.co.EasyPayroll;
 
+import local.co.EasyPayroll.GestionUsuario.gestionUsuarios;
+import local.co.EasyPayroll.GestionUtilidades.limpiarPantalla;
+import local.co.EasyPayroll.GestionUtilidades.mensajesparaUsuarios;
+import local.co.EasyPayroll.gestionNomina.procesarNominaMes;
 import local.co.EasyPayroll.gestionSeguridad.logginUsuario;
 import local.co.EasyPayroll.gestionSeguridad.menuPorRolUsuario;
-import local.co.EasyPayroll.utilidades.limpiarPantalla;
-import local.co.EasyPayroll.utilidades.mensajesparaUsuarios;
 
 public class aplicacion {
     public static void main(String[] args) {
-        
-        //Variables globales
-        String rolUsuarioIngresado = null ;
 
-        // Instanciamos la clase limpiarPantalla
-        limpiarPantalla.limpiarConsola();
+         String rolUsuarioIngresado= "administrador" ;
+         String usuarioEnSesion = null;
         
-        // Llamamos al metodo que muestra la bienvenida
-        mensajesparaUsuarios.mostrarBienvenida();
-        
-        // presionamos una tecla para continuar
-       // continuarEjecucionPrograma.continuarPrograma();
-        
-        // Instanciamos la clase limpiarPantalla
-       // limpiarPantalla.limpiarConsola();
+        //  Produccion
+        //  ejecutandoProduccion(rolUsuarioIngresado);
 
-        //Solicitamos Inicio de Sesion al usuario
-        logginUsuario.solicitarDatosSesionInicial();
+        //  pruebas
+            pruebasModulos(rolUsuarioIngresado, usuarioEnSesion);
 
-        //Limpiamos la pantalla
-        limpiarPantalla.limpiarConsola();
-
-        //Cargamos el menu del usuario
-        menuPorRolUsuario.menuPrincipalUsuario(rolUsuarioIngresado);
+    
 
     }
 
+
+        private static void ejecutandoProduccion(String rolUsuarioIngresado){
+                //Variables globales
+            
+
+            // Instanciamos la clase limpiarPantalla
+            limpiarPantalla.limpiarConsola();
+            
+            // Llamamos al metodo que muestra la bienvenida
+            mensajesparaUsuarios.mostrarBienvenida();
+            
+            // presionamos una tecla para continuar
+        // continuarEjecucionPrograma.continuarPrograma();
+            
+            // Instanciamos la clase limpiarPantalla
+        // limpiarPantalla.limpiarConsola();
+
+            //Solicitamos Inicio de Sesion al usuario
+            logginUsuario.solicitarDatosSesionInicial();
+
+            //Limpiamos la pantalla
+            limpiarPantalla.limpiarConsola();
+
+            //Cargamos el menu del usuario
+            menuPorRolUsuario.menuPrincipalUsuario(rolUsuarioIngresado);
+
+        }
+
+        private static void pruebasModulos(String rolUsuarioIngresado, String usuarioEnSesion){
+
+            //prueba gestion de nomina
+            //gestionNominas.gestionNomina();
+            
+            //GESTION CONTRATOS TODO OK
+            //gestionContratos.gestionContrato();
+
+            //GESTION EMPLEADO TODO OK
+            //gestionEmpleados.gestionEmpleado(usuarioEnSesion);
+
+            //Solicitamos Inicio de Sesion al usuario
+            //logginUsuario.solicitarDatosSesionInicial();
+                    
+            //Cargamos el menu del usuario
+            // menuUsuarios.menuPrincipalUsuario(rolUsuarioIngresado);
+            
+             menuPorRolUsuario.menuPrincipalUsuario(rolUsuarioIngresado);;
+        
+        }
    
 }
+
+
+    

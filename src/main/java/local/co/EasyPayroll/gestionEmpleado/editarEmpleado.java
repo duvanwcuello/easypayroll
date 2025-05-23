@@ -8,9 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import local.co.EasyPayroll.utilidades.continuarEjecucionPrograma;
-import local.co.EasyPayroll.utilidades.continuarUsuario;
-import local.co.EasyPayroll.utilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.GestionUtilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.GestionUtilidades.simulacionPrograma;
 
 public class editarEmpleado {
     
@@ -77,7 +76,7 @@ public class editarEmpleado {
             System.out.println("| ERROR: No se pudo leer el archivo de empleados. " + e.getMessage()+ "|");
             System.out.println("-------------------------------------------------------\n");
 
-            continuarEjecucionPrograma.continuarConTeclado();
+            simulacionPrograma.continuarConTeclado();
             return;
 
         }
@@ -88,7 +87,7 @@ public class editarEmpleado {
             System.out.println("| ERROR: Empleado no encontrado.     |");
             System.out.println("--------------------------------------\n");
 
-            continuarEjecucionPrograma.continuarConTeclado();
+            simulacionPrograma.continuarConTeclado();
             return;
 
         }
@@ -106,7 +105,7 @@ public class editarEmpleado {
             System.out.println("| INFO: Empleado editado exitosamente!    |");
             System.out.println("-------------------------------------------\n");
 
-            continuarEjecucionPrograma.continuarConTeclado();
+            simulacionPrograma.continuarPrograma();
 
         } catch (IOException e) {
             
@@ -114,7 +113,7 @@ public class editarEmpleado {
             System.out.println("| ERROR: No se pudo guardar el empleado editado. " + e.getMessage()+ "|");
             System.out.println("-------------------------------------------------------\n");
 
-            continuarEjecucionPrograma.continuarConTeclado();
+            simulacionPrograma.continuarConTeclado();
         }
     }
 }

@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.utilidades;
+package local.co.EasyPayroll.GestionUtilidades;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

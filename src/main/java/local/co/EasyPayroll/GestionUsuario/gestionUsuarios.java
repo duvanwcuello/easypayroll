@@ -1,94 +1,40 @@
 
-package local.co.EasyPayroll.gestionSeguridad;
+package local.co.EasyPayroll.GestionUsuario;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import local.co.EasyPayroll.utilidades.*;
+import local.co.EasyPayroll.GestionUtilidades.*;
+import local.co.EasyPayroll.gestionSeguridad.menuPorRolUsuario;
 
 public class gestionUsuarios {
 
     private static int contadorIdUsuario = 1;
 
-    /**
-     * Muestra un menú interactivo para gestionar usuarios.
-     * Permite crear, consultar, editar, mostrar usuarios o salir del sistema.
-     */
-    public static void menuGestionUsuario(String rolActual) {
-        Scanner scanner = new Scanner(System.in);
-        
-        boolean continuar = true;       
+    //Cargamos el contador desde el archivo 
 
-        while (continuar) {
-           System.out.println("----------------------------------");
-            System.out.println("|       GESTION DE USUARIOS      |");
-            System.out.println("----------------------------------");
-            System.out.println("| 1. Crear nuevo Usuario         |");
-            System.out.println("| 2. Consulta x usuario          |");
-            System.out.println("| 3. Editar usuario              |");
-            System.out.println("| 4. Eliminar usuario            |");
-            System.out.println("| 5. Consulta todos los usuarios |");
-            System.out.println("| 9. Atras                       |");
-            System.out.println("| 0. Salir                       |");
-            System.out.println("----------------------------------\n");
-            
-            System.out.print("Seleccione una opción: ");
-            int selecciondeUsuario = scanner.nextInt();
-            scanner.nextLine();
+    private static void cargarContadorId() {
 
-            switch (selecciondeUsuario) {
-                case 1:
-                    limpiarPantalla.limpiarConsola();
-                    simulacionPrograma.continuarPrograma();
-                    crearNuevoUsuario();
-                    
-                    break;
-                case 2:
-                    limpiarPantalla.limpiarConsola();
-                    consultarUsuarioExistente();
-                    simulacionPrograma.continuarConTeclado();
-                    break;
-                case 3:
-                    limpiarPantalla.limpiarConsola();
-                    editarUsuarioExistente();
-                    simulacionPrograma.continuarConTeclado();
-                    break;
-                case 4:
-                    
-                    limpiarPantalla.limpiarConsola();
-                    eliminarUsuarioGuardado();
+        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
+            String linea;
+            int maxId = 0;
 
-                    limpiarPantalla.limpiarConsola();
-                    mostrarTodosLosUsuarios();
-                    simulacionPrograma.continuarConTeclado();
-                    break;
-                case 5:
-                    limpiarPantalla.limpiarConsola();
-                    menuPorRolUsuario.menuPrincipalUsuario(rolActual);
-                    simulacionPrograma.continuarConTeclado();
-                    return;
-                case 9:
-                    continuar = false;
-                    System.out.println("Saliendo de la gestión de Usuarios...");
-                    break;
-                case 0:
-                    limpiarPantalla.limpiarConsola();
-                    System.out.println("¡Operacion Cancelada!...");
-                    System.out.println("Cerrando Programa...");
-                    simulacionPrograma.continuarPrograma();
-                    limpiarPantalla.limpiarConsola();
-                    System.exit(0);
-                    break;
-                default:
-                    scanner.close();
-                    System.out.println("Opción no válida. Intente de nuevo.");
-           }
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(",");
+                int id = Integer.parseInt(datos[0]);
+                if (id > maxId) maxId = id;
+            }
+            contadorIdUsuario = maxId + 1;
+        } catch (IOException e) {         
+            System.out.println("No se pudo cargar el ID desde archivo: " + e.getMessage());
         }
     }
+
 
     /**
      * Crea un nuevo usuario con ID único, nombre de empleado, usuario, contraseña, rol y fecha de registro.
@@ -96,31 +42,58 @@ public class gestionUsuarios {
      */
     public static void crearNuevoUsuario() {
 
+        //leemos el ultimo Id del archivo
+        cargarContadorId();
+
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Ingrese nombre completo del empleado: ");
-        String nombreEmpleado = scanner.nextLine().trim();
 
+        System.out.println("---------------------------------------");
+        System.out.println("|       CREANDO NUEVO USUARIO         |");
+        System.out.println("---------------------------------------");
+        
         System.out.print("Ingrese nombre de usuario: ");
-        String usuario = scanner.nextLine().trim();
-
-        if (usuarioYaExiste(usuario)) {
-            System.out.println("El nombre de usuario ya está en uso.");
+        String usuarioNuevo = scanner.nextLine().trim();
+         
+        if (usuarioYaExiste(usuarioNuevo)) {
+            System.out.println("---------------------------------------");
+            System.out.println("\t\t¡ADVERTENCIA!");
+            System.out.println("El nombre de usuario ( "+usuarioNuevo.toUpperCase()+" ), ya está en uso.");
+            System.out.println("---------------------------------------");
+            System.out.print("¿Desea editar el usuario existente?");
+            System.err.print("(1. Sí | 2. No): ");
+            int opcion = scanner.nextInt();
+            
+            scanner.nextLine();
+            if (opcion == 1) {
+                limpiarPantalla.limpiarConsola();
+                editarUsuarioExistente();
+            } else {
+                System.out.println("Operación cancelada.....");
+                System.out.println("Volviendo a Gestion de Usuarios...");
+                simulacionPrograma.continuarPrograma();
+                limpiarPantalla.limpiarConsola();
+                menuGestionUsuario.menuGestionUsuarios(usuarioNuevo);
+            }
             return;
         }
-
+       
         System.out.print("Ingrese contraseña: ");
         String contrasena = scanner.nextLine().trim();
 
-        System.out.print("Ingrese rol (Administrador, Auxiliar, Coordinador): ");
+        System.out.print("Ingrese nombre completo del Nuevo Usuario: ");
+        String nombreEmpleado = scanner.nextLine().trim();
+
+        System.out.print("Ingrese rol a asignar \n(Administrador, Auxiliar, Coordinador): ");
         String rol = scanner.nextLine().trim().toUpperCase();
 
         String fechaRegistro = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosDeUsoGeneral.getArchivoUsuarios(), true))) {
-            bw.write(contadorIdUsuario + "," + nombreEmpleado + "," + usuario + "," + contrasena + "," + rol + "," + fechaRegistro);
+            bw.write(contadorIdUsuario + "," + nombreEmpleado + "," + usuarioNuevo + "," + contrasena + "," + rol + "," + fechaRegistro);
             bw.newLine();
-            System.out.println("Usuario creado exitosamente.");
+            System.out.println("Usuario Guardado Exitosamente.");
             contadorIdUsuario++;
+            limpiarPantalla.limpiarConsola();
         } catch (IOException e) {
             System.out.println("Error al guardar el usuario: " + e.getMessage());
         }
@@ -151,6 +124,9 @@ public class gestionUsuarios {
      */
     public static void consultarUsuarioExistente() {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("---------------------------------------");
+        System.out.println("|         CONSULTA DE USUARIOS        |");
+        System.out.println("---------------------------------------");
         System.out.print("Ingrese el nombre de usuario a consultar: ");
         String usuarioBuscado = scanner.nextLine().trim();
         boolean encontrado = false;
@@ -165,6 +141,7 @@ public class gestionUsuarios {
                     System.out.println("Usuario: " + datos[2]);
                     System.out.println("Rol: " + datos[4]);
                     System.out.println("Último Inicio de Sesión: " + datos[5]);
+                    System.out.println("\n");
                     encontrado = true;
                     break;
                 }
@@ -183,11 +160,12 @@ public class gestionUsuarios {
      * También actualiza la fecha del último inicio de sesión.
      */
     public static void editarUsuarioExistente() {
-
         Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Ingrese el nombre de usuario a editar: ");
-        String usuarioBuscado = scanner.nextLine().trim();
+        System.out.println("-----------------------------------");
+        System.out.println("\tEDITANDO USUARIOS");
+        System.out.println("-----------------------------------");
+        System.out.print("Ingrese Usuario a Editar:");
+        String usuarioIngresado = scanner.nextLine();
         
         List<String> usuariosActualizados = new ArrayList<>();
         boolean encontrado = false;
@@ -196,7 +174,7 @@ public class gestionUsuarios {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                if (datos.length >= 6 && datos[2].equalsIgnoreCase(usuarioBuscado)) {
+                if (datos.length >= 6 && datos[2].equalsIgnoreCase(usuarioIngresado)) {
                     System.out.print("Nueva contraseña: ");
                     datos[3] = scanner.nextLine().trim();
                     System.out.print("Nuevo rol: ");
@@ -219,6 +197,7 @@ public class gestionUsuarios {
                     bw.newLine();
                 }
                 System.out.println("Usuario actualizado correctamente.");
+                menuPorRolUsuario.menuPrincipalUsuario(usuarioIngresado);
             } catch (IOException e) {
                 System.out.println("Error al guardar cambios: " + e.getMessage());
             }
@@ -236,7 +215,7 @@ public class gestionUsuarios {
         System.out.println("|       ELIMINAR USUARIO            |");
         System.out.println("-------------------------------------");
 
-        System.out.print("\n- Ingrese el nombre del usuario a eliminar: ");
+        System.out.print("\n- Ingrese el nombre del usuario: ");
         String usuarioBuscado = scanner.nextLine().trim();
 
         try {
@@ -254,14 +233,17 @@ public class gestionUsuarios {
             }
 
             if (usuarioEncontrado) {
-
                 Files.write(Paths.get(datosDeUsoGeneral.getArchivoUsuarios()),lineasActualizadas);
                 System.out.println("""
-                --------------------------------------
+                -----------------------------------------
                 | INFO: Usuario eliminado exitosamente. |
-                --------------------------------------
+                -----------------------------------------
                 """);
-
+                simulacionPrograma.continuarPrograma();
+                limpiarPantalla.limpiarConsola();
+                gestionUsuarios.mostrarTodosLosUsuarios();
+                System.out.println("");
+                simulacionPrograma.continuarConTeclado();
             } else {
                 System.out.println("""
                 --------------------------------------
@@ -284,18 +266,21 @@ public class gestionUsuarios {
      * Incluye ID, nombre del empleado, nombre de usuario, contraseña cifrada, rol y último login.
      */
     public static void mostrarTodosLosUsuarios() {
-        System.out.printf("%-10s %-25s %-20s %-20s %-15s %-25s%n", "ID", "Nombre Empleado", "Usuario", "Contraseña", "Rol", "Último Login");
-        System.out.println("----------------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
+        System.out.printf("%-3s %-25s %-10s %-10s %-15s %-25s%n", "ID", "Nombre Empleado", "Usuario", "Contraseña", "Rol", "Último Login");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
 
         try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
                 if (datos.length >= 6) {
-                    System.out.printf("%-10s %-25s %-20s %-20s %-15s %-25s%n",
+                    System.out.printf("%-3s %-25s %-10s %-10s %-15s %-25s%n",
                             datos[0], datos[1], datos[2], datos[3], datos[4], datos[5]);
                 }
-            }
+            } System.out.println("-----------------------------------------------------------------------------------------------------");
+            
+            
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
         }

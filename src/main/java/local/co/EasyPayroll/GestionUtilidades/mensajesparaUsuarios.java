@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.utilidades;
+package local.co.EasyPayroll.GestionUtilidades;
 
 public class mensajesparaUsuarios {
 
@@ -20,5 +20,8 @@ public class mensajesparaUsuarios {
         //System.out.println("");
 
     }
+
+
+    
     
 }

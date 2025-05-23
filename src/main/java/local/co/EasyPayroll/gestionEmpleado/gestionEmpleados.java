@@ -2,8 +2,8 @@ package local.co.EasyPayroll.gestionEmpleado;
 
 import java.util.Scanner;
 
-import local.co.EasyPayroll.seguridad.menuUsuarios;
-import local.co.EasyPayroll.utilidades.limpiarPantalla;
+import local.co.EasyPayroll.GestionUtilidades.limpiarPantalla;
+import local.co.EasyPayroll.gestionSeguridad.menuPorRolUsuario;
 
 public class gestionEmpleados {
     
@@ -20,7 +20,7 @@ public class gestionEmpleados {
             System.out.println("| 2. Consultar empleado           |");
             System.out.println("| 3. Editar empleado              |");
             System.out.println("| 4. Mostrar todos los empleados  |");
-            System.out.println("| 5. Atras                        |");
+            System.out.println("| 9. Atras                        |");
             System.out.println("| 0. Salir                        |");
             System.out.println("-----------------------------------\n");
 
@@ -32,19 +32,15 @@ public class gestionEmpleados {
             switch (selecciondeUsuario) {
 
                 case 1:
-
                     limpiarPantalla.limpiarConsola();
                     nuevoEmpleado.crearNuevoEmpleado();
                     break;
-
                 case 2:
 
                     limpiarPantalla.limpiarConsola();
                     consultaEmpleado.consultarEmpleadoExistente();
                     break;
-
                 case 3:
-
                     limpiarPantalla.limpiarConsola();
                     System.out.println("------------------------------------");
                     System.out.println("|        EDICIÓN DE EMPLEADOS      |");
@@ -58,25 +54,18 @@ public class gestionEmpleados {
                     break;
 
                 case 4:
-                
                     limpiarPantalla.limpiarConsola();
                     consultaEmpleado.mostrarEmpleados();
                     break;
-
-                case 5:
-
-                    menuUsuarios.menuPrincipalUsuario(rolActual);
+                case 9:
+                    menuPorRolUsuario.menuPrincipalUsuario(rolActual);
                     break;
-
                 case 0:
-
                     limpiarPantalla.limpiarConsola();
                     System.out.println("Cerrando sesión, Saliendo...");
                     System.exit(0);
-                    return;
-                    
+                    return;                   
                 default:
-                
                     System.out.println("ERROR: Opción no válida. Intente de nuevo.");
             }
         }

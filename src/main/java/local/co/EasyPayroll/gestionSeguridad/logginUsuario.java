@@ -9,8 +9,9 @@ import java.util.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
-import local.co.EasyPayroll.utilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.utilidades.simulacionPrograma;
+import local.co.EasyPayroll.GestionUsuario.*;
+import local.co.EasyPayroll.GestionUtilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.GestionUtilidades.simulacionPrograma;
 
 public class logginUsuario {
    
@@ -23,14 +24,16 @@ public class logginUsuario {
         for (int intento = 1; intento <= datosDeUsoGeneral.getIntentosMaximos(); intento++){
             String usuarioIngresado = validarDatosIngresados("Ingrese Usuario Asignado: ");
             
-            if (usuarioIngresado == null) 
+            if (usuarioIngresado == null){
                 cancelarOperacion("Usuario canceló el ingreso de usuario.");
-                String passwordIngresado = validarDatosIngresados("Ingrese Contraseña: ");
-
-            if (passwordIngresado == null) 
+            }
+            
+            String passwordIngresado = validarDatosIngresados("Ingrese Contraseña: ");
+            if (passwordIngresado == null){
                 cancelarOperacion("Usuario canceló el ingreso de contraseña.");  
-                Usuario usuarioValidado = validarCredenciales(usuarioIngresado, passwordIngresado);
-
+            }
+            
+            Usuario usuarioValidado = validarCredenciales(usuarioIngresado, passwordIngresado);
             if (usuarioValidado != null){
                 actualizarUltimaSesion(usuarioIngresado);
                 System.out.print("Ingresando...");
@@ -75,6 +78,7 @@ public class logginUsuario {
     private static Usuario validarCredenciales(String usuarioIngresado, String passwordIngresado) {
         try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
             String linea;
+            
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
                 if (datos.length >= 6 && datos[2].equals(usuarioIngresado) && datos[3].equals(passwordIngresado)) {

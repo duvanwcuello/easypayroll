@@ -4,16 +4,15 @@ import java.io.*;
 import java.time.*;
 import java.util.*;
 
-import local.co.EasyPayroll.seguridad.gestionUsuarios;
-import local.co.EasyPayroll.utilidades.continuarEjecucionPrograma;
-import local.co.EasyPayroll.utilidades.continuarUsuario;
-import local.co.EasyPayroll.utilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.utilidades.limpiarPantalla;
+import local.co.EasyPayroll.GestionUtilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.GestionUtilidades.limpiarPantalla;
+import local.co.EasyPayroll.GestionUtilidades.simulacionPrograma;
 
 public class nuevoEmpleado {
 
     private static final Scanner scanner = new Scanner(System.in);
-    private static int contadorId = gestionUsuarios.obtenerSiguienteId(datosDeUsoGeneral.getArchivoEmpleados());
+    private static int contadorId = 1;
+    //gestionUsuarios.obtenerSiguienteId(datosDeUsoGeneral.getArchivoEmpleados());
 
     public static void crearNuevoEmpleado() {
 
@@ -21,173 +20,148 @@ public class nuevoEmpleado {
 
         System.out.println("----------------------------------------------------");
         System.out.println("|             CREAR NUEVO EMPLEADO                 |");
+        System.out.println("| Por Favor Ingrese los datos del nuevo empleado.  |");
         System.out.println("----------------------------------------------------\n");
         
-        System.out.print("- Ingrese la identificación del empleado: ");
+        
+        System.out.print("- Ingrese identificación: ");
         String identificacion = scanner.nextLine();
         identificacion = validarCampoString(identificacion, "identificación");
 
         if (existeEmpleado(identificacion)) {
 
-            System.out.println("\n----------------------------------------------------");
-            System.out.println("| ERROR: ID Fiscal " + identificacion + " esta duplicado. ");
-            System.out.println("----------------------------------------------------\n");
+            System.out.println("\n-----------------------------------------------------------");
+            System.out.println("| ¡ADVERTENCIA! Empleado con " + identificacion + " ya existe. ");
+            System.out.println("-----------------------------------------------------------\n");
 
             System.out.print("- ¿Desea editar al empleado? (1. SI | 2. NO): ");
-
             int seleccion = scanner.nextInt();
             scanner.nextLine();
 
             if (seleccion == 1) {
-
                 limpiarPantalla.limpiarConsola();
                 editarEmpleado.editarEmpleadoExistente(identificacion);
-
             } else {
-
                 limpiarPantalla.limpiarConsola();
             }
-
         } else {
-
             Empleado empleado = solicitarDatosEmpleado(identificacion);
             guardarEmpleado(empleado);
         }
     }
 
-    public static String validarCampoString(String valor, String etiqueta) {
+    private static String validarCampoString(String valor, String etiqueta) {
 
         while (valor == null || valor.trim().isEmpty()) {
-
-            if (etiqueta.equals("ciudad")) {
-
+            if (etiqueta.equals("ciudad")){
                 System.out.print("- Campo obligatorio, ingrese nuevamente la " + etiqueta + ": ");
-
             } else if (etiqueta.equals("identificación")) {
-
                 System.out.print("- Campo obligatorio, ingrese nuevamente la " + etiqueta + ": ");
-
             }else{
-
                 System.out.print("- Campo obligatorio, ingrese nuevamente el " + etiqueta + ": ");
             }
-
             valor = scanner.nextLine().toUpperCase();
-
             if (valor != null && !valor.trim().isEmpty()) {
-
                 return valor;
             }
         }
-
         return valor;
     }
 
-    public static LocalDate validarCampoFecha(LocalDate valor, String etiqueta) {
-
+    private static LocalDate validarCampoFecha(LocalDate valor, String etiqueta) {
         while (valor == null) {
-
             valor = LocalDate.parse(scanner.nextLine());
-
             if (valor != null) {
-
                 System.out.println("- Campo obligatorio, ingrese nuevamente la " + etiqueta + ": ");
                 return valor;
-                
             }
         }
-
         return valor;
     }
 
-    public static int validarCampoNumero(int valor, String etiqueta) {
-
+    private static int validarCampoNumero(int valor, String etiqueta) {
         while (valor == 0) {
-
             System.out.println("- Campo obligatorio, ingrese nuevamente el " + etiqueta + ": ");
             valor = scanner.nextInt();
-
             if (valor != 0) {
-
                 return valor;
             }
         }
-
         return valor;
     }
 
-    // Solicita información del nuevo empleado a crear
-    public static Empleado solicitarDatosEmpleado(String identificacion) {
+    // Solicita información del nuevo empleado a crear y validamos datos con las funciones validar datos
+    private static Empleado solicitarDatosEmpleado(String identificacion) {
 
-        System.out.print("\n- Ingrese el primer nombre: ");
+        System.out.print("* Primer Nombre: ");
         String primerNombre = scanner.nextLine().toUpperCase();
         primerNombre = validarCampoString(primerNombre, "primer Nombre");
 
-        System.out.print("- Ingrese el segundo nombre: ");
+        System.out.print("* Segundo Nombre: ");
         String segundoNombre = scanner.nextLine().toUpperCase();
         segundoNombre = validarCampoString(segundoNombre, "segundo Nombre");
 
-        System.out.print("- Ingrese el primer apellido: ");
+        System.out.print("* Primer apellido: ");
         String primerApellido = scanner.nextLine().toUpperCase();
         primerApellido = validarCampoString(primerApellido, "primer Apellido");
 
-        System.out.print("- Ingrese el segundo apellido: ");
+        System.out.print("* Segundo apellido: ");
         String segundoApellido = scanner.nextLine().toUpperCase();
         segundoApellido = validarCampoString(segundoApellido, "segundo Apellido");
 
-        System.out.print("- Ingrese la fecha de nacimiento (YYYY-MM-DD): ");
+        System.out.print("* Fecha de nacimiento (YYYY-MM-DD): ");
         LocalDate fechaNacimiento = LocalDate.parse(scanner.nextLine());
         fechaNacimiento = validarCampoFecha(fechaNacimiento, "fecha de nacimiento");
 
-        System.out.print("- Ingrese el tipo de sangre: ");
+        System.out.print("* RH y Tipo de Sangre: ");
         String tipoSangre = scanner.nextLine().toUpperCase();
         tipoSangre = validarCampoString(tipoSangre, "tipo de sangre");
 
-        System.out.print("- Ingrese el sexo - (M/F): ");
+        System.out.print("* Genero - (M/F): ");
         String sexo = scanner.nextLine().toUpperCase();
         sexo = validarCampoString(sexo, "sexo");
 
-        System.out.print("- Ingrese el estado civil: ");
+        System.out.print("* Estado Civil: ");
         String estadoCivil = scanner.nextLine().toUpperCase();
         estadoCivil = validarCampoString(estadoCivil, "estado civil");
 
-        System.out.print("- Ingrese el nivel de estudio: ");
+        System.out.print("* Nivel de estudio: ");
         String nivelEstudio = scanner.nextLine().toUpperCase();
         nivelEstudio = validarCampoString(nivelEstudio, "nivel de estudio");
 
-        System.out.print("- Ingrese el correo electrónico: ");
+        System.out.print("* Correo electrónico: ");
         String correoElectronico = scanner.nextLine();
         correoElectronico = validarCampoString(correoElectronico, "correo electrónico");
 
-        System.out.print("- Ingrese la dirección de residencia: ");
+        System.out.print("* Dirección de Residencia: ");
         String direccionResidencia = scanner.nextLine().toUpperCase();
         direccionResidencia = validarCampoString(direccionResidencia, "dirección de residencia");
 
-        System.out.print("- Ingrese el barrio: ");
+        System.out.print("* Barrio: ");
         String barrio = scanner.nextLine().toUpperCase();
         barrio = validarCampoString(barrio, "barrio");
 
-        System.out.print("- Ingrese la ciudad: ");
+        System.out.print("* Ciudad: ");
         String ciudad = scanner.nextLine().toUpperCase();
         ciudad = validarCampoString(ciudad, "ciudad");
         
-        System.out.print("- Ingrese el departamento: ");
+        System.out.print("* Departamento: ");
         String departamento = scanner.nextLine().toUpperCase();
         departamento = validarCampoString(departamento, "departamento");
         
+        // la funcion retorna datos tipo empleado para guardarlo
         return new Empleado(contadorId, identificacion, primerNombre, segundoNombre, primerApellido,
                 segundoApellido, fechaNacimiento, tipoSangre, sexo, estadoCivil, nivelEstudio,
                 correoElectronico, direccionResidencia, barrio, ciudad, departamento);
 
     }
 
-    // Guarda la información en el archivo
+    // Recibe tipo de datos Empleado y Guarda la información en el archivo
     public static void guardarEmpleado(Empleado empleado) {
-
         String rutaArchivo = datosDeUsoGeneral.getArchivoEmpleados();
 
+        //leemos el archivo  yenviamos los datos tipo empleado separados por coma (,)
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
-
             bw.write(empleado.getId() + "," +
             empleado.getIdentificacion() + "," +
             empleado.getPrimerNombre() + "," +
@@ -207,16 +181,15 @@ public class nuevoEmpleado {
 
             bw.newLine();
 
+            simulacionPrograma.simulaEjecucion();
             System.out.println("\n------------------------------------------");
-            System.out.println("| INFO: Empleado creado exitosamente.    |");
+            System.out.println("| INFO: Empleado Guadado Exitosamente.    |");
             System.out.println("------------------------------------------\n");
-
-            continuarEjecucionPrograma.continuarConTeclado();
+            simulacionPrograma.simulaEjecucion();
+            limpiarPantalla.limpiarConsola();
 
         } catch (IOException e) {
-
             System.out.println("Error al guardar el empleado: " + e.getMessage());
-
         }
     }
 
@@ -224,26 +197,21 @@ public class nuevoEmpleado {
     private static boolean existeEmpleado(String identificacion) {
 
         try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoEmpleados()))) {
-
             String linea;
 
             while ((linea = br.readLine()) != null) {
-
                 String[] datos = linea.split(",");
-
                 if (datos[1].equals(identificacion)) {
-
                     return true;
                 }
             }
 
         } catch (IOException e) {
-
             System.out.println("\n-------------------------------------------------------");
             System.out.println("| ERROR: No se pudo leer el archivo de empleados. " + e.getMessage()+ "|");
             System.out.println("-------------------------------------------------------\n");
 
-            continuarEjecucionPrograma.continuarConTeclado();
+            simulacionPrograma.continuarConTeclado();
         }
 
         return false;
@@ -272,7 +240,7 @@ public class nuevoEmpleado {
             System.out.println("| ERROR: No se pudo leer el archivo de empleados. " + e.getMessage()+ "|");
             System.out.println("-------------------------------------------------------\n");
 
-            continuarEjecucionPrograma.continuarConTeclado();
+            simulacionPrograma.continuarConTeclado();
             return;
 
         }

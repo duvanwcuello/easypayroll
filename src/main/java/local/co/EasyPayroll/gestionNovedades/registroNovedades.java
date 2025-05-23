@@ -4,7 +4,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
-import local.co.EasyPayroll.utilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.GestionUtilidades.datosDeUsoGeneral;
 
 public class registroNovedades {
     

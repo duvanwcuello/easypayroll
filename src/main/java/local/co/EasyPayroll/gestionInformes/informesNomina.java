@@ -7,15 +7,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+import local.co.EasyPayroll.GestionUtilidades.formatoMoneda;
+import local.co.EasyPayroll.GestionUtilidades.limpiarPantalla;
+import local.co.EasyPayroll.GestionUtilidades.simulacionPrograma;
 import local.co.EasyPayroll.gestionNomina.calculoNovedades;
 import local.co.EasyPayroll.gestionNomina.empleadoNomina;
 import local.co.EasyPayroll.gestionNomina.procesarNominaMes;
 import local.co.EasyPayroll.gestionParametrosGenerales.parametrosGenerales;
-import local.co.EasyPayroll.seguridad.menuUsuarios;
-import local.co.EasyPayroll.utilidades.continuarEjecucionPrograma;
-import local.co.EasyPayroll.utilidades.continuarUsuario;
-import local.co.EasyPayroll.utilidades.formatoMoneda;
-import local.co.EasyPayroll.utilidades.limpiarPantalla;
+import local.co.EasyPayroll.gestionSeguridad.menuPorRolUsuario;
 
 public class informesNomina {
 
@@ -33,7 +32,7 @@ public class informesNomina {
             System.out.println("-----------------------------------");  
             System.out.println("| 1. Planilla de pago de Nomina   |");
             System.out.println("| 2. Mostrar Volante de pago      |");
-            System.out.println("| 3. Atras                        |");
+            System.out.println("| 9. Atras                        |");
             System.out.println("| 0. Salir                        |");
             System.out.println("-----------------------------------\n");
 
@@ -54,7 +53,7 @@ public class informesNomina {
 
                 case 3:
 
-                    menuUsuarios.menuPrincipalUsuario(rolActual);
+                    menuPorRolUsuario.menuPrincipalUsuario(rolActual);
                     break;
 
                 case 0:
@@ -155,7 +154,7 @@ public class informesNomina {
         }
         
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
-        continuarEjecucionPrograma.continuarConTeclado();
+        simulacionPrograma.continuarConTeclado();
 
     } catch (IOException e) {
 
@@ -201,7 +200,7 @@ public class informesNomina {
                     System.out.println("NETO A PAGAR: " +formatoMoneda.formatear(Double.parseDouble(d[8])));
                     System.out.println("-----------------------------------------");
 
-                    continuarEjecucionPrograma.continuarConTeclado();
+                    simulacionPrograma.continuarConTeclado();
                     return;
                 }
             }

@@ -2,8 +2,8 @@ package local.co.EasyPayroll.gestionNomina;
 
 import java.util.Scanner;
 
+import local.co.EasyPayroll.GestionUtilidades.limpiarPantalla;
 import local.co.EasyPayroll.gestionInformes.informesNomina;
-import local.co.EasyPayroll.utilidades.limpiarPantalla;
 
 public class gestionNominas {
     

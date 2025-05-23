@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import local.co.EasyPayroll.GestionUtilidades.*;
 import local.co.EasyPayroll.gestionNovedades.calculoNovedades;
 import local.co.EasyPayroll.gestionParametrosGenerales.parametrosGenerales.*;
-import local.co.EasyPayroll.utilidades.*;
 
     
 public class procesarNominaMes{
@@ -34,7 +34,7 @@ public static void procesarNomina(){
     if (mes.isEmpty() || mes.length() < 10) {
 
         System.out.println("\nERROR: El nombre del archivo es invalido o esta vacío.");
-        continuarEjecucionPrograma.continuarConTeclado();
+        simulacionPrograma.continuarConTeclado();
         procesarNomina();
         return;
     }
@@ -107,7 +107,7 @@ public static void procesarNomina(){
         }
 
         System.out.println("Procesamiento exitoso. Planilla generada: " + archivoPlanilla);
-        continuarEjecucionPrograma.continuarConTeclado();
+        simulacionPrograma.continuarPrograma();
 
         } catch (IOException e) {
 
