@@ -48,7 +48,7 @@ public class editarUsuarios {
             }
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
-            return;
+           // return;
         }
 
         if (encontrado) {
@@ -65,6 +65,7 @@ public class editarUsuarios {
         } else {
             System.out.println("Usuario no encontrado.");
         }
+        scanner.close();
     }
     
 }

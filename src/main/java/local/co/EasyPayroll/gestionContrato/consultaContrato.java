@@ -67,6 +67,7 @@ public class consultaContrato {
                 nuevoContrato.crearNuevoContrato();
             } else {
                 System.out.println("\nOperación cancelada por el usuario.");
+                scanner.close();
                 simulacionPrograma.continuarConTeclado();
             }
         }

@@ -109,7 +109,7 @@ public class editarContrato {
         
         if(!contratoExistente) {
             System.out.println("Contrato no encontrado.");
-            return;
+            
         }
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosDeUsoGeneral.getArchivoContratos()))) {
@@ -120,6 +120,6 @@ public class editarContrato {
             System.out.println("Contrato actualizado exitosamente.");
         } catch (IOException e) {
             System.out.println("Error al guardar los cambios del contrato: " + e.getMessage());
-        }
+        } scanner.close();
     }
 }

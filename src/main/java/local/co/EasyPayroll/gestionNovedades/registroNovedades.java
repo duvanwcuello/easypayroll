@@ -66,7 +66,7 @@ public class registroNovedades {
             simulacionPrograma.continuarConTeclado();
             return;
         }
-
+        
         if (!empleadoExiste) {
             
             System.out.println("\nERROR: El empleado con identificación " + idEmpleado + " no existe,");
@@ -127,11 +127,14 @@ public class registroNovedades {
         guardarNovedades(rutaArchivo, idEmpleado, quincenaMes, hed, hen, rn, hedDom, henDom, recDom);
 
         System.out.println("\nSUCCES: Registro guardado correctamente para el empleado: " + idEmpleado);
+        
+        scanner.close();
         simulacionPrograma.continuarPrograma();
+    
     }
 
 
-     public static void registroMasivoNovedades() {
+    public static void registroMasivoNovedades() {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -206,12 +209,13 @@ public class registroNovedades {
         } catch (IOException e) {
             System.out.println("\nERROR: No se guardaron las novedades: " + e.getMessage());
             simulacionPrograma.continuarConTeclado();
-        } scanner.close();  
+        } 
+        scanner.close();  
     }
 
 
 
-     private static void guardarNovedades(String archivo, String id, String periodo, double hed, double hen, double rn,double hedDom, double henDom, double recDom) {
+     private static void guardarNovedades(String archivo, String id, String periodo, double hed, double hen, double rn,double hedDom, double henDom, double recDom){
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
             bw.write(LocalDate.now() + "," + id + "," + periodo + "," + hed + "," + hen + "," + rn + "," + hedDom + "," + henDom + "," + recDom);

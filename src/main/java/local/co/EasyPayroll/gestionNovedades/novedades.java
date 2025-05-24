@@ -1,13 +1,10 @@
 
 package local.co.EasyPayroll.gestionNovedades;
 
-import java.io.*;
-import java.time.LocalDate;
+
 import java.util.*;
 
 import local.co.EasyPayroll.gestionSeguridad.menuUsuarios;
-import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.formatoMoneda;
 import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
 import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
@@ -64,6 +61,7 @@ public class novedades {
                     simulacionPrograma.continuarConTeclado();
             }
         }
+        scanner.close();
     }
 
    

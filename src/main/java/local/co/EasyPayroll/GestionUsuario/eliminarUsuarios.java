@@ -64,5 +64,6 @@ public class eliminarUsuarios {
             -------------------------------------------------           
             """ + e.getMessage());
         }
+        scanner.close();
     }
 }

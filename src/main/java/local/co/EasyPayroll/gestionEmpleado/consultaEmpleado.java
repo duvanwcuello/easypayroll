@@ -95,8 +95,7 @@ public class consultaEmpleado {
 
                 limpiarPantalla.limpiarConsola();
             }
-        }
-           
+        }scanner.close();      
     }
     
     public static void consultarTodosLosEmpleados() {

@@ -2,7 +2,6 @@ package local.co.EasyPayroll.gestionEmpleado;
 
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionSeguridad.menuUsuarios;
 import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
 import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 

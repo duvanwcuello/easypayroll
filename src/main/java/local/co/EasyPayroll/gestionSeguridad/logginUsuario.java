@@ -60,6 +60,7 @@ public class logginUsuario {
      */
     private static String validarDatosIngresados(String mensaje) {
         Scanner scanner = new Scanner(System.in);
+        
         for (int intentos = 1; intentos <= datosDeUsoGeneral.getIntentosMaximos(); intentos++) {
             System.out.print(mensaje);
             String entrada = scanner.nextLine();
@@ -68,6 +69,7 @@ public class logginUsuario {
             } else {
                 return entrada.trim();
             }
+            scanner.close(); 
         }
         return null;
     }

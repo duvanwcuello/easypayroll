@@ -10,7 +10,7 @@ public class aplicacion {
     public static void main(String[] args) {
 
         String rolUsuarioIngresado= null;
-        String usuarioEnSesion = null;
+       // String usuarioEnSesion = null;
         //Produccion
           ejecutarProduccion(rolUsuarioIngresado);
 
@@ -44,15 +44,16 @@ public class aplicacion {
 
     }
 
+    @SuppressWarnings("unused")
     private static void pruebasModulos(String rolUsuarioIngresado, String usuarioEnSesion){
 
         //prueba gestion de nomina
         //gestionNominas.gestionNomina();
         
-        //GESTION CONTRATOS TODO OK
+        //GESTION CONTRATOS 
         //gestionContratos.gestionContrato();
 
-        //GESTION EMPLEADO TODO OK
+        //GESTION EMPLEADO 
         //gestionEmpleados.gestionEmpleado(usuarioEnSesion);
 
         recuperarContrasenia.recuperarContrasena();

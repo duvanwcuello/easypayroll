@@ -55,5 +55,6 @@ public class volantesDePago {
         } catch (IOException e) {
             System.out.println("\nERROR: No fue posible leer el archivo: " + e.getMessage());
         }
+        scanner.close();
     }
 }

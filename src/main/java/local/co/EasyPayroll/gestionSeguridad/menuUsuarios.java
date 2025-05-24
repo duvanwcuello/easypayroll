@@ -133,6 +133,7 @@ public class menuUsuarios {
             System.out.println("¡Error! Debes ingresar un número entero.");
             menuPrincipalUsuario(rolActual);
         }
+        scanner.close();
     }
     
 
@@ -201,6 +202,7 @@ public class menuUsuarios {
             System.out.println("¡Error! Debes ingresar un número entero.");
             menuPrincipalUsuario(rolActual);
         }
+        scanner.close();
     }
 
     public static void menuUsuarioAuxiliar(String rolActual){
@@ -262,5 +264,6 @@ public class menuUsuarios {
             System.out.println("¡Error! Debes ingresar un número entero.");
             menuPrincipalUsuario(rolActual);
         }
+        scanner.close();
     }
 }

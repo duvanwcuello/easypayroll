@@ -17,6 +17,7 @@ public class simulacionPrograma {
         Scanner scanner = new Scanner (System.in);
         System.out.print("Presione ENTER para continuar... ");
         scanner.nextLine(); 
+        scanner.close();
     }
 
      public static void simulaEjecucion(){

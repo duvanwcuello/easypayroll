@@ -104,7 +104,7 @@ public class informePlanillaPagos {
     } catch (IOException e) {
 
         System.out.println("Error al leer la planilla: " + e.getMessage());
-    }
+    }scanner.close();
 }
     
 }

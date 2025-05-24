@@ -51,7 +51,7 @@ public class nuevoUsuario {
                 limpiarPantalla.limpiarConsola();
                 gestionUsuarios.menuGestionUsuarios(usuarioNuevo);
             }
-            return;
+          // return;
         }
        
         System.out.print("Ingrese contraseña: ");
@@ -74,6 +74,7 @@ public class nuevoUsuario {
         } catch (IOException e) {
             System.out.println("Error al guardar el usuario: " + e.getMessage());
         }
+        scanner.close();
     }
     
     //Cargamos el contador desde el archivo empleados

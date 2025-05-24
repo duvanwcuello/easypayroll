@@ -78,6 +78,7 @@ public class nuevoEmpleado {
         return valor;
     }
 
+    @SuppressWarnings("unused")
     private static int validarCampoNumero(int valor, String etiqueta) {
         while (valor == 0) {
             System.out.println("- Campo obligatorio, ingrese nuevamente el " + etiqueta + ": ");

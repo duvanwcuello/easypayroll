@@ -43,6 +43,7 @@ public class consultarUsuarios {
         if (!encontrado) {
             System.out.println("Usuario no encontrado.");
         }
+        scanner.close();
     }
 
         /**

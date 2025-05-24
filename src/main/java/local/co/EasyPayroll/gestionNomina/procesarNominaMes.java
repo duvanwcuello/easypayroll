@@ -36,7 +36,7 @@ public static void procesarNomina(){
         System.out.println("\nERROR: El nombre del archivo es invalido o esta vacío.");
         simulacionPrograma.continuarConTeclado();
         procesarNomina();
-        return;
+        //return;
     }
     
     try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()));
@@ -113,6 +113,7 @@ public static void procesarNomina(){
 
             System.out.println("Error al procesar nómina: " + e.getMessage());
         }
+        scanner.close();
     }
 
     public static void calcularNomina() {

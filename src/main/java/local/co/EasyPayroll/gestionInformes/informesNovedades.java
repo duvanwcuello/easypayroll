@@ -31,7 +31,7 @@ public class informesNovedades {
         if (!archivo.exists()) {
             System.out.println("\nERROR: El archivo no existe en la ruta especificada o Operación cancelada.");
             simulacionPrograma.continuarConTeclado();
-            return;
+            //return;
         }
 
         System.out.println("\n-------------------------------------------------------------------------------------------------------");
