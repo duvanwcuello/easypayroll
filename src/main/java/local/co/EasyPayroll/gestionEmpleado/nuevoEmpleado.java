@@ -4,9 +4,9 @@ import java.io.*;
 import java.time.*;
 import java.util.*;
 
-import local.co.EasyPayroll.GestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.GestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.GestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
 public class nuevoEmpleado {
 
@@ -21,8 +21,7 @@ public class nuevoEmpleado {
         System.out.println("----------------------------------------------------");
         System.out.println("|             CREAR NUEVO EMPLEADO                 |");
         System.out.println("| Por Favor Ingrese los datos del nuevo empleado.  |");
-        System.out.println("----------------------------------------------------\n");
-        
+        System.out.println("----------------------------------------------------\n");       
         
         System.out.print("- Ingrese identificación: ");
         String identificacion = scanner.nextLine();
@@ -91,7 +90,7 @@ public class nuevoEmpleado {
     }
 
     // Solicita información del nuevo empleado a crear y validamos datos con las funciones validar datos
-    private static Empleado solicitarDatosEmpleado(String identificacion) {
+    public static Empleado solicitarDatosEmpleado(String identificacion) {
 
         System.out.print("* Primer Nombre: ");
         String primerNombre = scanner.nextLine().toUpperCase();
@@ -221,28 +220,22 @@ public class nuevoEmpleado {
     public static void enviarDatosEditarEmpleado(String identificacion) {
 
         try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoEmpleados()))) {
-
             String linea;
 
             while ((linea = br.readLine()) != null) {
-
                 String[] datos = linea.split(",");
-
                 if (datos[1].equals(identificacion)) {
-
                     editarEmpleado.editarEmpleadoExistente(identificacion);
                 }
             }
 
         } catch (IOException e) {
-
             System.out.println("\n-------------------------------------------------------");
             System.out.println("| ERROR: No se pudo leer el archivo de empleados. " + e.getMessage()+ "|");
             System.out.println("-------------------------------------------------------\n");
 
             simulacionPrograma.continuarConTeclado();
             return;
-
         }
     }
 

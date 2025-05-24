@@ -7,71 +7,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.GestionUtilidades.formatoMoneda;
-import local.co.EasyPayroll.GestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.GestionUtilidades.simulacionPrograma;
 import local.co.EasyPayroll.gestionNomina.calculoNovedades;
 import local.co.EasyPayroll.gestionNomina.empleadoNomina;
 import local.co.EasyPayroll.gestionNomina.procesarNominaMes;
 import local.co.EasyPayroll.gestionParametrosGenerales.parametrosGenerales;
-import local.co.EasyPayroll.gestionSeguridad.menuPorRolUsuario;
+import local.co.EasyPayroll.gestionUtilidades.formatoMoneda;
+import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
-public class informesNomina {
+public class informePlanillaPagos {
 
-    public static void mostrarInformes(String rolActual) {
-            
-        Scanner scanner = new Scanner(System.in);        
-        boolean continuar = true;
-
-        while (continuar) {
-
-            limpiarPantalla.limpiarConsola();
-
-            System.out.println("-----------------------------------");
-            System.out.println("|    MOSTRAR INFORMES DE NOMINA   |");
-            System.out.println("-----------------------------------");  
-            System.out.println("| 1. Planilla de pago de Nomina   |");
-            System.out.println("| 2. Mostrar Volante de pago      |");
-            System.out.println("| 9. Atras                        |");
-            System.out.println("| 0. Salir                        |");
-            System.out.println("-----------------------------------\n");
-
-            System.out.print("- Seleccione una Opcion: ");
-            int seleccion = scanner.nextInt();
-
-            switch(seleccion){
-
-                case 1:
-
-                    mostrarPlanilla();
-                    break;
-
-                case 2:
-                    
-                    mostrarVolanteEmpleado();
-                    break;
-
-                case 3:
-
-                    menuPorRolUsuario.menuPrincipalUsuario(rolActual);
-                    break;
-
-                case 0:
-
-                    continuar = false;
-                    System.out.println("Saliendo del sistema...");
-                    System.exit(0);
-                    break;
-
-                default:
-                
-                    System.out.println("Opción no válida. Intente de nuevo.");
-                    break;
-            }
-        }
-            
-    }
-    
     public static void mostrarPlanilla() {
 
     Scanner scanner = new Scanner(System.in);
@@ -161,55 +106,5 @@ public class informesNomina {
         System.out.println("Error al leer la planilla: " + e.getMessage());
     }
 }
-
-    public static void mostrarVolanteEmpleado() {
-
-        Scanner scanner = new Scanner (System.in);
-        limpiarPantalla.limpiarConsola();
-
-        System.out.println("\n------------------------------------------");
-        System.out.println("|         GENERAR VOLANTE DE PAGO         |");
-        System.out.println("------------------------------------------\n");
-
-        System.out.print("- Mes de la planilla (1Q-MMMYYYY): ");
-        String mes = scanner.nextLine().toUpperCase();
-
-        System.out.print("- Identificación del empleado: ");
-        String id = scanner.nextLine();
-
-        String archivo = "planilla_" + mes + ".txt";
-
-        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-
-            String linea;
-            
-            while ((linea = br.readLine()) != null) {
-
-                String[] d = linea.split(",");
-
-                if (d[0].equals(id)) {
-
-                    System.out.println("\n============ VOLANTE DE PAGO ============");
-                    System.out.println("|) Empleado: " + d[1]);
-                    System.out.println("|) Salario base: " + formatoMoneda.formatear(Double.parseDouble(d[2])));
-                    System.out.println("|) Auxilio transporte: " +formatoMoneda.formatear(Double.parseDouble(d[3])));
-                    System.out.println("|) Recargos: " +formatoMoneda.formatear(Double.parseDouble(d[4])));
-                    System.out.println("|) Total devengado: " + formatoMoneda.formatear(Double.parseDouble(d[5])));
-                    System.out.println("|) Salud: " + formatoMoneda.formatear(Double.parseDouble(d[6])) + " | Pensión: " + formatoMoneda.formatear(Double.parseDouble(d[7])));
-                    System.out.println("=========================================");
-                    System.out.println("NETO A PAGAR: " +formatoMoneda.formatear(Double.parseDouble(d[8])));
-                    System.out.println("-----------------------------------------");
-
-                    simulacionPrograma.continuarConTeclado();
-                    return;
-                }
-            }
-
-            System.out.println("\nERROR: Empleado no encontrado en la planilla.");
-
-        } catch (IOException e) {
-
-            System.out.println("\nERROR: No fue posible leer el archivo: " + e.getMessage());
-        }
-    }
+    
 }

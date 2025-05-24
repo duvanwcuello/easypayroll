@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.GestionUsuario;
+package local.co.EasyPayroll.gestionUsuario;
 
 /**
      * Clase usuario 

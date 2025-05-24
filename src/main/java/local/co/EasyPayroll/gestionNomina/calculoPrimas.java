@@ -9,8 +9,7 @@ public class calculoPrimas {
        double salarioMinimo = parametrosGenerales.conceptosLegales.getSalarioMinimo();
        double auxTransporte = parametrosGenerales.conceptosLegales.getAuxTransporte();
 
-       if (salarioEmpleado <= (salarioMinimo * 2)){
-           
+       if (salarioEmpleado <= (salarioMinimo * 2)){       
            double primaEmpleado = (((salarioEmpleado + auxTransporte) * diasLaborados) / 360);
            return primaEmpleado;
            }else{

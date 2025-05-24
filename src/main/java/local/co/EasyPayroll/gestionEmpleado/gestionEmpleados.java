@@ -2,17 +2,18 @@ package local.co.EasyPayroll.gestionEmpleado;
 
 import java.util.Scanner;
 
-import local.co.EasyPayroll.GestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionSeguridad.menuPorRolUsuario;
+import local.co.EasyPayroll.gestionSeguridad.menuUsuarios;
+import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
 public class gestionEmpleados {
     
     public static void gestionEmpleado(String rolActual){
        
         Scanner scanner = new Scanner(System.in);
+        boolean continuar = true;
         
-        while (true) {
-         
+        while (continuar) {
             System.out.println("-----------------------------------");
             System.out.println("|      GESTION DE EMPLEADOS       |");
             System.out.println("-----------------------------------");
@@ -30,13 +31,11 @@ public class gestionEmpleados {
             scanner.nextLine();
 
             switch (selecciondeUsuario) {
-
                 case 1:
                     limpiarPantalla.limpiarConsola();
                     nuevoEmpleado.crearNuevoEmpleado();
                     break;
                 case 2:
-
                     limpiarPantalla.limpiarConsola();
                     consultaEmpleado.consultarEmpleadoExistente();
                     break;
@@ -52,21 +51,37 @@ public class gestionEmpleados {
                     limpiarPantalla.limpiarConsola();
                     editarEmpleado.editarEmpleadoExistente(identificacion);
                     break;
-
                 case 4:
                     limpiarPantalla.limpiarConsola();
-                    consultaEmpleado.mostrarEmpleados();
+                    consultaEmpleado.consultarTodosLosEmpleados();
                     break;
                 case 9:
-                    menuPorRolUsuario.menuPrincipalUsuario(rolActual);
+                    continuar = false;
+                    limpiarPantalla.limpiarConsola();
+                    System.out.println("Saliendo de la gestión de Empleados...");
+                    simulacionPrograma.continuarPrograma();
+                    System.err.println("Retrornando al Menu Principal...");
+                    simulacionPrograma.continuarPrograma();
+                    limpiarPantalla.limpiarConsola();
                     break;
                 case 0:
+                    continuar = false;
                     limpiarPantalla.limpiarConsola();
-                    System.out.println("Cerrando sesión, Saliendo...");
+                    System.out.println("¡Operacion Cancelada!...");
+                    simulacionPrograma.continuarPrograma();
+
+                    System.out.println("Cerrando Sesion...");
+                    simulacionPrograma.continuarPrograma();
+
+                    System.out.println("Cerrando Programa...");
+                    simulacionPrograma.continuarPrograma();
+
+                    limpiarPantalla.limpiarConsola();
                     System.exit(0);
-                    return;                   
+                    break;               
                 default:
-                    System.out.println("ERROR: Opción no válida. Intente de nuevo.");
+                    scanner.close();
+                    System.out.println("ERROR: Opción no válida. Intente de nuevo."); 
             }
         }
     }

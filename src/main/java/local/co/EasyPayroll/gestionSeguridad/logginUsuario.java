@@ -9,9 +9,9 @@ import java.util.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
-import local.co.EasyPayroll.GestionUsuario.*;
-import local.co.EasyPayroll.GestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.GestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUsuario.*;
+import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
 public class logginUsuario {
    
@@ -44,7 +44,7 @@ public class logginUsuario {
                 System.out.println("===============================");
                 System.out.print("USUARIO EN SESION:\n" +usuarioValidado.getNombreEmpleado());
 
-                menuPorRolUsuario.menuPrincipalUsuario(usuarioValidado.getRol());
+                menuUsuarios.menuPrincipalUsuario(usuarioValidado.getRol());
                 return;
             } else {
                 mostrarErrorDeInicio(intento, usuarioIngresado, passwordIngresado);
@@ -139,29 +139,5 @@ public class logginUsuario {
         System.out.println("Usuario o Contraseña Incorrecta");
         System.out.println("Verifique los datos, Intento N°: " + intento);
         System.out.println("------------------------------------------------------");
-    }
-
-    /**
-     * Informa si un usuario existe para recuperar su cuenta.
-     */
-    public static void recuperarContrasena() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Ingrese su nombre de usuario: ");
-        String usuario = scanner.nextLine().trim();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] datos = linea.split(",");
-                if (datos.length >= 6 && datos[2].equals(usuario)) {
-                    System.out.println("\nUsuario encontrado: " + datos[2]);
-                    System.out.println("Por seguridad, contacte con el administrador para restablecer su contraseña.");
-                    return;
-                }
-            }
-            System.out.println("Usuario no encontrado.");
-        } catch (IOException e) {
-            System.out.println("Error al leer el archivo de usuarios: " + e.getMessage());
-        }
     }
 }

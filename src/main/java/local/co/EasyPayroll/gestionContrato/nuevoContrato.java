@@ -4,10 +4,10 @@ import java.io.*;
 import java.time.*;
 import java.util.*;
 
-import local.co.EasyPayroll.GestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.GestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.GestionUtilidades.simulacionPrograma;
 import local.co.EasyPayroll.gestionEmpleado.nuevoEmpleado;
+import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
 
 // Clase que representa los datos de un contrato de trabajo
@@ -45,7 +45,7 @@ public class nuevoContrato {
             scanner.nextLine();
 
             if (seleccion == 1) {
-                editarContrato.editarContratoGuardado(numeroDeContrato);
+                editarContrato.editarContrato(numeroDeContrato);
             } else {
                 System.out.println("Saliendo...");
             }

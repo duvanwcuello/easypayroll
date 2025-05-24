@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.GestionUtilidades.*;
 import local.co.EasyPayroll.gestionNovedades.calculoNovedades;
 import local.co.EasyPayroll.gestionParametrosGenerales.parametrosGenerales.*;
+import local.co.EasyPayroll.gestionUtilidades.*;
 
     
 public class procesarNominaMes{

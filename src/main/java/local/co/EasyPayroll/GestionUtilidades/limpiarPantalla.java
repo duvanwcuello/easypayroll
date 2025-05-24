@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.GestionUtilidades;
+package local.co.EasyPayroll.gestionUtilidades;
 
 public class limpiarPantalla {
     

@@ -5,9 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.GestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.GestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.GestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
 public class consultaContrato {
     
@@ -68,15 +68,14 @@ public class consultaContrato {
             } else {
                 System.out.println("\nOperación cancelada por el usuario.");
                 simulacionPrograma.continuarConTeclado();
-
             }
         }
            
     }
 
-    public static void mostrarContratos() {
+    public static void consultarContratosExistentes() {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()))){
 
             System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------");
             System.out.println("| \t\t\t\t\t\tCONSOLIDADO DE CONTRATOS"+"                                                                  |"); 
@@ -94,7 +93,7 @@ public class consultaContrato {
                 }
             }
             System.out.println("------------------------------------------------------------------------------------------------------------------------------------------");
-          simulacionPrograma.continuarConTeclado();
+            simulacionPrograma.continuarConTeclado();
 
         }catch (IOException e){
             System.out.println("ERROR: No fue posible leer los empleados: " + e.getMessage());

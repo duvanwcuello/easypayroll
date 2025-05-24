@@ -5,9 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.GestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.GestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.GestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
 public class consultaEmpleado {
     
@@ -99,7 +99,7 @@ public class consultaEmpleado {
            
     }
     
-    public static void mostrarEmpleados() {
+    public static void consultarTodosLosEmpleados() {
 
         try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoEmpleados()))) {
 

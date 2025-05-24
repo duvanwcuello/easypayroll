@@ -1,184 +1,227 @@
 package local.co.EasyPayroll.gestionNovedades;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.Scanner;
 
-import local.co.EasyPayroll.GestionUtilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.formatoMoneda;
+import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
 public class registroNovedades {
-    
-    private static final String ARCHIVO_EMPLEADOS = datosDeUsoGeneral.getArchivoEmpleados();
-    private static final String ARCHIVO_CONTRATOS = datosDeUsoGeneral.getArchivoEmpleados();
 
-    private static final Scanner scanner = new Scanner(System.in);
-
-    static class Novedad {
+     public static void registrarNovedadesxEmpleado() {
         
-        String identificacion;
-        String descripcion;
-        int horasExtras;
-        int diasAusencia;
+        Scanner scanner = new Scanner(System.in);
+        limpiarPantalla.limpiarConsola();
 
-        public Novedad(String identificacion, String descripcion, int horasExtras, int diasAusencia) {
+        System.out.println("----------------------------------------------------");
+        System.out.println("|        REGISTRO DE NOVEDADES POR EMPLEADO        |");
+        System.out.println("----------------------------------------------------");
 
-            this.identificacion = identificacion;
-            this.descripcion = descripcion;
-            this.horasExtras = horasExtras;
-            this.diasAusencia = diasAusencia;
+        System.out.println("\n- Ingrese la nomenclatura de las novedades de las novedades que desea consultar.");
+        System.out.print("\nNOMENCLATURA ESPERADA (1Q-MM-YYYY): ");
+
+        String novedades = null;
+        String quincenaMes = null;
+        
+        while (novedades == null) {
+            quincenaMes = scanner.nextLine().toUpperCase();
+
+            if (quincenaMes.isEmpty() || quincenaMes == null || quincenaMes.length() != 10) {
+                System.out.println("\nERROR: Formato incorrecto, por favor, intente nuevamente.");
+                simulacionPrograma.continuarConTeclado();
+                return;
+            }else{                
+                novedades = "novedades_" + quincenaMes + ".txt";
+                System.out.println("\n-------------------------------------------------------");
+                System.out.println("Documento en edición: " + novedades);
+            }
         }
 
-        @Override
-        public String toString() {
+        System.out.print("\n- Ingrese la identificación del empleado: ");
+        String idEmpleado = scanner.nextLine().trim();
 
-            return identificacion + "," + descripcion + "," + horasExtras + "," + diasAusencia;
-        }
-    }
+        boolean empleadoExiste = false;
 
-    static class Contrato {
+        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()))) {
+            String linea;
 
-        String identificacion;
-        double salario;
-
-        public Contrato(String identificacion, double salario) {
-
-            this.identificacion = identificacion;
-            this.salario = salario;
-        }
-    }
-
-    public static void registrarNovedadesPorEmpleado() {
-
-        Map<String, String> empleados = cargarEmpleados();
-
-        if (empleados.isEmpty()) {
-
-            System.out.println("No hay empleados registrados.");
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(",");
+                
+                if (datos[2].trim().equals(idEmpleado)) {
+                    empleadoExiste = true;
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("\nERROR: No se pudo leer empleados.txt: " + e.getMessage());
+            simulacionPrograma.continuarConTeclado();
             return;
         }
 
-        String mesActual = LocalDate.now().getMonth().name().toLowerCase();
-        String archivoNovedades = "novedades_" + mesActual + ".txt";
-
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoNovedades, true))) {
-
-            for (Map.Entry<String, String> entry : empleados.entrySet()) {
-
-                String identificacion = entry.getKey();
-                System.out.println("\nEmpleado: " + entry.getValue() + " (" + identificacion + ")");
-
-                System.out.print("- Ingrese la descripción de la novedad: ");
-                String descripcion = scanner.nextLine();
-
-                System.out.print("- Cantidad de horas extras trabajadas: ");
-                int horasExtras = Integer.parseInt(scanner.nextLine());
-                
-                System.out.print("Cantidad de días de ausencia: ");
-                int diasAusencia = Integer.parseInt(scanner.nextLine());
-
-                Novedad novedad = new Novedad(identificacion, descripcion, horasExtras, diasAusencia);
-                bw.write(novedad.toString());
-                bw.newLine();
-
-            }
-
-            System.out.println("SUCCES: Novedades registradas correctamente, Guardado en el archivo: " + archivoNovedades);
-
-        } catch (IOException e) {
-
-            System.out.println("ERROR: No fue posible guardar las novedades: " + e.getMessage());
+        if (!empleadoExiste) {
+            
+            System.out.println("\nERROR: El empleado con identificación " + idEmpleado + " no existe,");
+            System.out.println("INFO: Por favor, Dirijase al modulo de empleados y registrelo.");
+            simulacionPrograma.continuarConTeclado();
+            return;
         }
-    }
 
-    public static void calcularNomina() {
+        boolean novedadExiste = false;
+        String rutaArchivo = novedades;
+        File archivoNovedades = new File(rutaArchivo);
 
-        Map<String, String> empleados = cargarEmpleados();
-        Map<String, Double> salarios = cargarSalarios();
-
-        String mesActual = LocalDate.now().getMonth().name().toLowerCase();
-        String archivoNovedades = "novedades_" + mesActual + ".txt";
-
-        System.out.println("--------------------------------------------------------------------------------------------");
-        System.out.printf("%-15s %-25s %-12s %-10s %-10s %-12s\n",
-                "IDENTIFICACIÓN", "NOMBRE EMPLEADO", "SALARIO BASE", "H. EXTRAS", "AUSENCIAS", "TOTAL A PAGAR");
-        System.out.println("-------------------------------------------------------------------------------------------");
-
-        try (BufferedReader br = new BufferedReader(new FileReader(archivoNovedades))) {
-
+        // Verifica que el archivo de novedades exista antes de intentar leer o escribir
+        if (!archivoNovedades.exists()) {
+            System.out.println("\nERROR: El archivo de novedades no existe. No se puede registrar la novedad.");
+            simulacionPrograma.continuarConTeclado();
+            return;
+        }
+        try (BufferedReader br = new BufferedReader(new FileReader(archivoNovedades))){
             String linea;
 
             while ((linea = br.readLine()) != null) {
-
-                String[] partes = linea.split(",");
-                String id = partes[0];
-
-                int horasExtras = Integer.parseInt(partes[2]);
-                int ausencias = Integer.parseInt(partes[3]);
-
-                String nombre = empleados.getOrDefault(id, "Desconocido");
-                double salarioBase = salarios.getOrDefault(id, 0.0);
-
-                double valorHora = salarioBase / 240;
-                double pagoExtras = horasExtras * valorHora * 1.5;
-                double descuento = ausencias * (salarioBase / 30);
-                double totalPago = salarioBase + pagoExtras - descuento;
-
-                System.out.printf("%-15s %-25s %-12.2f %-10d %-10d %-12.2f\n",
-                        id, nombre, salarioBase, horasExtras, ausencias, totalPago);
-            }
-        } catch (IOException e) {
-
-            System.out.println("Error al leer el archivo de novedades: " + e.getMessage());
-        }
-    }
-
-    private static Map<String, String> cargarEmpleados() {
-
-        Map<String, String> empleados = new HashMap<>();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(ARCHIVO_EMPLEADOS))) {
-
-            String linea;
-
-            while ((linea = br.readLine()) != null) {
-
                 String[] datos = linea.split(",");
-                empleados.put(datos[1], datos[2] + " " + datos[4]);
+                if (datos.length > 1 && datos[1].trim().equals(idEmpleado)){
+                    novedadExiste = true;
+                    break;
+                }
             }
-
         } catch (IOException e) {
-
-            System.out.println("Error al cargar empleados: " + e.getMessage());
+            System.out.println("\nERROR: No se pudo leer el archivo: " + e.getMessage());
+            simulacionPrograma.continuarConTeclado();
+            return;
         }
+        if (novedadExiste) {
+            System.out.println("\nERROR: Ya existe un registro de novedades para el empleado " + idEmpleado + " en el archivo " + rutaArchivo);
+            simulacionPrograma.continuarConTeclado();
+            return;
+        }
+        System.out.print("\n) DV08 - Horas extra diurnas: ");
+        double hed = scanner.nextDouble();
 
-        return empleados;
+        System.out.print(") DV09 - Horas extra nocturnas: ");
+        double hen = scanner.nextDouble();
+
+        System.out.print(") DV05 - Recargos nocturnos: ");
+        double rn = scanner.nextDouble();
+
+        System.out.print(") DV10 - Horas extra dominicales: ");
+        double hedDom = scanner.nextDouble();
+
+        System.out.print(") DV11 - Horas nocturnas dominicales: ");
+        double henDom = scanner.nextDouble();
+
+        System.out.print(") DV07 - Recargos dominicales: ");
+        double recDom = scanner.nextDouble();
+        scanner.nextLine();
+
+        guardarNovedades(rutaArchivo, idEmpleado, quincenaMes, hed, hen, rn, hedDom, henDom, recDom);
+
+        System.out.println("\nSUCCES: Registro guardado correctamente para el empleado: " + idEmpleado);
+        simulacionPrograma.continuarPrograma();
     }
 
-    private static Map<String, Double> cargarSalarios() {
 
-        Map<String, Double> salarios = new HashMap<>();
+     public static void registroMasivoNovedades() {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(ARCHIVO_CONTRATOS))) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("----------------------------------------------------");
+        System.out.println("|            REGISTRO MASIVO DE NOVEDADES          |");
+        System.out.println("----------------------------------------------------");
+
+        System.out.println("\n1. CREACIÓN DE ARCHIVO DE NOVEDADES                  ");
+        System.out.print("\n- Ingrese el prefijo 1Q mas el mes y año de las novedades, Ej: 1Q-MM-YYYY: ");
+
+        String archivoNovedades = null;
+        String quincenaMes = null;
+        
+        while (quincenaMes == null) {
+            quincenaMes = scanner.nextLine().toUpperCase();
+
+            if (quincenaMes.isEmpty() || quincenaMes == null || quincenaMes.length() != 10) {
+                System.out.println("\nERROR: Formato incorrecto, por favor, intente nuevamente.");
+                simulacionPrograma.continuarConTeclado();
+                return;
+            }else{                
+                archivoNovedades = "novedades_" + quincenaMes + ".txt";
+                System.out.println("\nDocumento asignado: " + archivoNovedades);
+            }
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()))) {
 
             String linea;
+            System.out.println("\n2. REGISTRO DE LAS NOVEDADES\n");
 
             while ((linea = br.readLine()) != null) {
-
                 String[] datos = linea.split(",");
-                String id = datos[0];
-                double salario = Double.parseDouble(datos[2]);
-                salarios.put(id, salario);
 
+                if (!datos[1].equalsIgnoreCase("A")) 
+                continue;
+
+                String nombreEmpleado = datos[5] + " " + datos[7] + " " + datos[8];
+                double salarioEmpleado = Double.parseDouble(datos[17]);
+
+                System.out.println("Empleado: " + nombreEmpleado);
+                System.out.println("Salario base: " + formatoMoneda.formatear(salarioEmpleado));
+
+                System.out.print("\nDV08 - Horas extra diurnas: "); 
+                double hed = scanner.nextDouble();
+
+                System.out.print("DV09 - Horas extra nocturnas: "); 
+                double hen = scanner.nextDouble();
+
+                System.out.print("DV05 - Recargos nocturnos: "); 
+                double rn = scanner.nextDouble();
+
+                System.out.print("DV10 - Horas extra dominicales: "); 
+                double hedDom = scanner.nextDouble();
+
+                System.out.print("DV11 - Horas nocturnas dominicales: "); 
+                double henDom = scanner.nextDouble();
+
+                System.out.print("DV07 - Recargos dominicales: "); 
+                double recDom = scanner.nextDouble();
+                scanner.nextLine();
+
+                guardarNovedades(archivoNovedades, datos[4], quincenaMes, hed, hen, rn, hedDom, henDom, recDom);
+                System.out.println("\nSUCCES: registro guardado para el empleado: " + nombreEmpleado);
+                System.out.println("----------------------------------------------------\n");
             }
 
+            if (linea == null) {
+                System.out.println("\nSUCCES: Registro exitoso.");                
+                simulacionPrograma.continuarConTeclado();
+            }               
         } catch (IOException e) {
-
-            System.out.println("Error al cargar contratos: " + e.getMessage());
-
-        }
-
-        return salarios;
+            System.out.println("\nERROR: No se guardaron las novedades: " + e.getMessage());
+            simulacionPrograma.continuarConTeclado();
+        } scanner.close();  
     }
+
+
+
+     private static void guardarNovedades(String archivo, String id, String periodo, double hed, double hen, double rn,double hedDom, double henDom, double recDom) {
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
+            bw.write(LocalDate.now() + "," + id + "," + periodo + "," + hed + "," + hen + "," + rn + "," + hedDom + "," + henDom + "," + recDom);
+            bw.newLine();
+
+        } catch (IOException e){
+            System.out.println("\nERROR: No se guardaron las novedades: " + e.getMessage());
+            simulacionPrograma.continuarConTeclado();
+        }
+    }
+
+    
 }
-
-

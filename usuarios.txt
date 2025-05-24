@@ -1,8 +1,8 @@
-1,SuperAdmin,admin,admin,Administrador,2025-05-23T13:46:19.6750507
+1,SuperAdmin,admin,admin,Administrador,2025-05-24 11:47:11
 2,Anderson Pino,apino,apino123,ADMINISTRADOR,02025-05-139 20:05:03
 3,Pablo André Barreto,pbarreto,pbarreto,ADMINISTRADOR,02025-05-139 20:05:29
 4,Yuris Acevedo Morelos,yacevedo,yacevedo,ADMINISTRADOR,02025-05-139 20:05:20
 5,Maria Camila Perez,mperez,mperez23,COORDINADOR,2025-05-22 15:41:03
 6,Andrea Licona,alicona,alicona,AUXILIAR,2025-05-22 15:41:19
-7,Duvan Wilchez Cuello,dwilchez,dwilchez,ADMINISTRADOR,2025-05-22 14:56:27
+7,Duvan Wilchez Cuello,dwilchez,dwilchez,ADMINISTRADOR,2025-05-24 11:29:32
 8,rafael diaz diaz,Rdiaz,rdiaz,ADMINISTRADOR,2025-05-23T15:34:15.0713273

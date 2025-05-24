@@ -1,76 +1,71 @@
 package local.co.EasyPayroll;
 
-import local.co.EasyPayroll.GestionUsuario.gestionUsuarios;
-import local.co.EasyPayroll.GestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.GestionUtilidades.mensajesparaUsuarios;
-import local.co.EasyPayroll.gestionNomina.procesarNominaMes;
 import local.co.EasyPayroll.gestionSeguridad.logginUsuario;
-import local.co.EasyPayroll.gestionSeguridad.menuPorRolUsuario;
+import local.co.EasyPayroll.gestionSeguridad.menuUsuarios;
+import local.co.EasyPayroll.gestionSeguridad.recuperarContrasenia;
+import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.mensajesparaUsuarios;
 
 public class aplicacion {
     public static void main(String[] args) {
 
-         String rolUsuarioIngresado= "administrador" ;
-         String usuarioEnSesion = null;
-        
-        //  Produccion
-        //  ejecutandoProduccion(rolUsuarioIngresado);
+        String rolUsuarioIngresado= null;
+        String usuarioEnSesion = null;
+        //Produccion
+          ejecutarProduccion(rolUsuarioIngresado);
 
-        //  pruebas
-            pruebasModulos(rolUsuarioIngresado, usuarioEnSesion);
-
-    
+        //pruebas
+        //pruebasModulos(rolUsuarioIngresado, usuarioEnSesion);
 
     }
 
-
-        private static void ejecutandoProduccion(String rolUsuarioIngresado){
-                //Variables globales
-            
-
-            // Instanciamos la clase limpiarPantalla
-            limpiarPantalla.limpiarConsola();
-            
-            // Llamamos al metodo que muestra la bienvenida
-            mensajesparaUsuarios.mostrarBienvenida();
-            
-            // presionamos una tecla para continuar
+    private static void ejecutarProduccion(String rolUsuarioIngresado){
+        
+        // Instanciamos la clase limpiarPantalla
+        limpiarPantalla.limpiarConsola();
+        
+        // Llamamos al metodo que muestra la bienvenida
+        mensajesparaUsuarios.mostrarBienvenida();
+        
+        // presionamos una tecla para continuar
         // continuarEjecucionPrograma.continuarPrograma();
-            
-            // Instanciamos la clase limpiarPantalla
+        
+        // Instanciamos la clase limpiarPantalla
         // limpiarPantalla.limpiarConsola();
 
-            //Solicitamos Inicio de Sesion al usuario
-            logginUsuario.solicitarDatosSesionInicial();
+        //Solicitamos Inicio de Sesion al usuario
+        logginUsuario.solicitarDatosSesionInicial();
 
-            //Limpiamos la pantalla
-            limpiarPantalla.limpiarConsola();
+        //Limpiamos la pantalla
+        limpiarPantalla.limpiarConsola();
 
-            //Cargamos el menu del usuario
-            menuPorRolUsuario.menuPrincipalUsuario(rolUsuarioIngresado);
+        //Cargamos el menu del usuario
+        menuUsuarios.menuPrincipalUsuario(rolUsuarioIngresado);
 
-        }
+    }
 
-        private static void pruebasModulos(String rolUsuarioIngresado, String usuarioEnSesion){
+    private static void pruebasModulos(String rolUsuarioIngresado, String usuarioEnSesion){
 
-            //prueba gestion de nomina
-            //gestionNominas.gestionNomina();
-            
-            //GESTION CONTRATOS TODO OK
-            //gestionContratos.gestionContrato();
-
-            //GESTION EMPLEADO TODO OK
-            //gestionEmpleados.gestionEmpleado(usuarioEnSesion);
-
-            //Solicitamos Inicio de Sesion al usuario
-            //logginUsuario.solicitarDatosSesionInicial();
-                    
-            //Cargamos el menu del usuario
-            // menuUsuarios.menuPrincipalUsuario(rolUsuarioIngresado);
-            
-             menuPorRolUsuario.menuPrincipalUsuario(rolUsuarioIngresado);;
+        //prueba gestion de nomina
+        //gestionNominas.gestionNomina();
         
-        }
+        //GESTION CONTRATOS TODO OK
+        //gestionContratos.gestionContrato();
+
+        //GESTION EMPLEADO TODO OK
+        //gestionEmpleados.gestionEmpleado(usuarioEnSesion);
+
+        recuperarContrasenia.recuperarContrasena();
+
+        //Solicitamos Inicio de Sesion al usuario
+        //logginUsuario.solicitarDatosSesionInicial();
+                
+        //Cargamos el menu del usuario
+        // menuUsuarios.menuPrincipalUsuario(rolUsuarioIngresado);
+        
+        // menuUsuarios.menuPrincipalUsuario(rolUsuarioIngresado);;
+    
+    }
    
 }
 

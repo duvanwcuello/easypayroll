@@ -13,20 +13,16 @@ public class calculoCesantias {
            - Recargos por trabajo dominical y festivo.
        Para calcular las cesantias se utiliza la siguiente formula: Salario base x días laborados/360
     */
-    
-        
+            
     public static double calculoCesantias (double salarioEmpleado, int diasLaborados){
            
        double salarioMinimo = parametrosGenerales.conceptosLegales.getSalarioMinimo();
        double auxTransporte = parametrosGenerales.conceptosLegales.getAuxTransporte();
 
-       if (salarioEmpleado <= (salarioMinimo * 2)){
-           
+       if (salarioEmpleado <= (salarioMinimo * 2)){           
            double cesantiasEmpleado = (((salarioEmpleado + auxTransporte) * diasLaborados) / 360);
            return cesantiasEmpleado;
-
         }else{
-
             double cesantiasEmpleado = ((salarioEmpleado  * diasLaborados) / 360);
             return cesantiasEmpleado;
         }
@@ -41,8 +37,7 @@ public class calculoCesantias {
      * (Cesantías acumuladas x días trabajados x 0.12 )/360
      */
     
-    public static double calculoInterecesCesantias (double cesantiasEmpleado, int diasTrabajados){
-        
+    public static double calculoInterecesCesantias (double cesantiasEmpleado, int diasTrabajados){        
         double interecesCesantiasEmpleado = ((cesantiasEmpleado * diasTrabajados * 0.12 ) / 360);
         return interecesCesantiasEmpleado;
     }

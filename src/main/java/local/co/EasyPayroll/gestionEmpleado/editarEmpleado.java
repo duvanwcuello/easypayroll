@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import local.co.EasyPayroll.GestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.GestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
 public class editarEmpleado {
     
@@ -45,24 +45,24 @@ public class editarEmpleado {
                     System.out.println("\n\n-------------------------------------------------------------------------------------------------------------------------------------------------------");
 
                     System.out.println("Ingrese los nuevos datos del empleado con ID: " + identificacion + "\n");
-                    Empleado actualizado = nuevoEmpleado.solicitarDatosEmpleado(identificacion);
+                    Empleado empleadoActualizado = nuevoEmpleado.solicitarDatosEmpleado(identificacion);
 
-                    empleados.add(actualizado.getId() + "," +
-                    actualizado.getIdentificacion() + "," +
-                    actualizado.getPrimerNombre() + "," +
-                    actualizado.getSegundoNombre() + "," +
-                    actualizado.getPrimerApellido() + "," +
-                    actualizado.getSegundoApellido() + "," +
-                    actualizado.getFechaNacimiento() + "," +
-                    actualizado.getTipoSangre() + "," +
-                    actualizado.getSexo() + "," +
-                    actualizado.getEstadoCivil() + "," +
-                    actualizado.getNivelEstudio() + "," +
-                    actualizado.getCorreoElectronico() + "," +
-                    actualizado.getDireccionResidencia() + "," +
-                    actualizado.getBarrio() + "," +
-                    actualizado.getCiudad() + "," +
-                    actualizado.getDepartamento());
+                    empleados.add(empleadoActualizado.getId() + "," +
+                    empleadoActualizado.getIdentificacion() + "," +
+                    empleadoActualizado.getPrimerNombre() + "," +
+                    empleadoActualizado.getSegundoNombre() + "," +
+                    empleadoActualizado.getPrimerApellido() + "," +
+                    empleadoActualizado.getSegundoApellido() + "," +
+                    empleadoActualizado.getFechaNacimiento() + "," +
+                    empleadoActualizado.getTipoSangre() + "," +
+                    empleadoActualizado.getSexo() + "," +
+                    empleadoActualizado.getEstadoCivil() + "," +
+                    empleadoActualizado.getNivelEstudio() + "," +
+                    empleadoActualizado.getCorreoElectronico() + "," +
+                    empleadoActualizado.getDireccionResidencia() + "," +
+                    empleadoActualizado.getBarrio() + "," +
+                    empleadoActualizado.getCiudad() + "," +
+                    empleadoActualizado.getDepartamento());
 
                 } else {
 
@@ -89,16 +89,13 @@ public class editarEmpleado {
 
             simulacionPrograma.continuarConTeclado();
             return;
-
         }
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosDeUsoGeneral.getArchivoEmpleados()))) {
 
             for (String empleado : empleados) {
-
                 bw.write(empleado);
                 bw.newLine();
-
             }
 
             System.out.println("\n------------------------------------------");
@@ -108,6 +105,7 @@ public class editarEmpleado {
             simulacionPrograma.continuarPrograma();
 
         } catch (IOException e) {
+            
             
             System.out.println("\n-------------------------------------------------------");
             System.out.println("| ERROR: No se pudo guardar el empleado editado. " + e.getMessage()+ "|");
