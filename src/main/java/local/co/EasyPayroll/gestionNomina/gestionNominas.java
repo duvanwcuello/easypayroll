@@ -42,19 +42,19 @@ public class gestionNominas {
                     continuar = false;
                     limpiarPantalla.limpiarConsola();
                     System.out.println("Saliendo de la gestión de Nomina...");
-                    simulacionPrograma.continuarPrograma();
+                     simulacionPrograma.simulaEjecucion();
                     System.err.println("Retrornando al Menu Principal...");
-                    simulacionPrograma.continuarPrograma();
+                     simulacionPrograma.simulaEjecucion();
                     limpiarPantalla.limpiarConsola();
                     break;
                 case 0:
                     continuar = false;
                     limpiarPantalla.limpiarConsola();
                     System.out.println("¡Operacion Cancelada!...");
-                    simulacionPrograma.continuarPrograma();
+                     simulacionPrograma.simulaEjecucion();
 
                     System.out.println("Cerrando Sesion...");
-                    simulacionPrograma.continuarPrograma();
+                     simulacionPrograma.simulaEjecucion();
 
                     System.out.println("Cerrando Programa...");
                     simulacionPrograma.continuarPrograma();
@@ -63,7 +63,6 @@ public class gestionNominas {
                     System.exit(0);
                     break;
                 default:
-                    scanner.close();
                     System.out.println("ERROR: Opción no válida. Intente de nuevo.");                
             }
         } 

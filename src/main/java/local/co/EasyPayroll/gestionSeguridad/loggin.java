@@ -9,11 +9,13 @@ import java.util.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
-import local.co.EasyPayroll.gestionUsuario.*;
+import local.co.EasyPayroll.aplicacion;
+import local.co.EasyPayroll.gestionUsuarios.*;
 import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
 import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
-public class logginUsuario {
+public class loggin {
    
     /**
      * Método para solicitar los datos de inicio de sesión.
@@ -25,33 +27,44 @@ public class logginUsuario {
             String usuarioIngresado = validarDatosIngresados("Ingrese Usuario Asignado: ");
             
             if (usuarioIngresado == null){
-                cancelarOperacion("Usuario canceló el ingreso de usuario.");
-            }
-            
-            String passwordIngresado = validarDatosIngresados("Ingrese Contraseña: ");
-            if (passwordIngresado == null){
-                cancelarOperacion("Usuario canceló el ingreso de contraseña.");  
+                System.out.println("-------------------------------------------------------\n");
+                cancelarOperacion("DSatos Errados de usuario.");
+            } 
+                String passwordIngresado = validarDatosIngresados("Ingrese Contraseña: ");
+                if (passwordIngresado == null){
+               
+                System.out.println("--------------------------------------------");
+                cancelarOperacion("Datos Errados de contraseña."); 
             }
             
             Usuario usuarioValidado = validarCredenciales(usuarioIngresado, passwordIngresado);
             if (usuarioValidado != null){
                 actualizarUltimaSesion(usuarioIngresado);
+                
                 System.out.print("Ingresando...");
                 simulacionPrograma.simulaEjecucion();
-                
+                limpiarPantalla.limpiarConsola();
                 System.out.println("===============================");
                 System.out.println("|   BIENVENIDO A EASYPAYROLL  |"); 
                 System.out.println("===============================");
-                System.out.print("USUARIO EN SESION:\n" +usuarioValidado.getNombreEmpleado());
-
+                System.out.print("Usuario actual:\n" +usuarioValidado.getNombreEmpleado()+"\n");
                 menuUsuarios.menuPrincipalUsuario(usuarioValidado.getRol());
                 return;
             } else {
                 mostrarErrorDeInicio(intento, usuarioIngresado, passwordIngresado);
             }
         }
-        System.out.println("\n-------------------------------------------------------\n");
-        System.out.println("Ha superado el número de intentos permitidos.\n");
+        limpiarPantalla.limpiarConsola();
+        System.out.println("-------------------------------------------------------");
+        System.out.println("Ha superado el número de intentos permitidos.");
+        System.out.println("-------------------------------------------------------");
+        simulacionPrograma.continuarPrograma();
+        limpiarPantalla.limpiarConsola();
+        System.out.println("Cerrando el Programa...");        
+        simulacionPrograma.continuarPrograma();
+        limpiarPantalla.limpiarConsola();
+        System.out.println("¡¡HASTA LUEGO!!..");
+        simulacionPrograma.continuarPrograma();
         System.exit(0);
     }
 
@@ -69,7 +82,6 @@ public class logginUsuario {
             } else {
                 return entrada.trim();
             }
-            scanner.close(); 
         }
         return null;
     }
@@ -130,6 +142,8 @@ public class logginUsuario {
     private static void cancelarOperacion(String mensaje) {
         System.out.println(mensaje);
         System.out.println("Operación cancelada. ¡Hasta luego!");
+        System.out.println("Cerrando Inicio de Sesion....");
+        System.out.println("--------------------------------------------"); 
         System.exit(0);
     }
 
@@ -139,7 +153,7 @@ public class logginUsuario {
     private static void mostrarErrorDeInicio(int intento, String usuarioIngresado, String passwordIngresado) {
         System.out.println("------------------------------------------------------");
         System.out.println("Usuario o Contraseña Incorrecta");
-        System.out.println("Verifique los datos, Intento N°: " + intento);
+        System.out.println("Verifique los datos, Intento N°: " + intento+ " de " +datosDeUsoGeneral.getIntentosMaximos());
         System.out.println("------------------------------------------------------");
     }
 }

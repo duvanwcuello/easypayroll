@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.formatoMoneda;
+import local.co.EasyPayroll.gestionUtilidades.formateadorTextro;
 import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
 import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
@@ -127,8 +127,7 @@ public class registroNovedades {
         guardarNovedades(rutaArchivo, idEmpleado, quincenaMes, hed, hen, rn, hedDom, henDom, recDom);
 
         System.out.println("\nSUCCES: Registro guardado correctamente para el empleado: " + idEmpleado);
-        
-        scanner.close();
+
         simulacionPrograma.continuarPrograma();
     
     }
@@ -176,7 +175,7 @@ public class registroNovedades {
                 double salarioEmpleado = Double.parseDouble(datos[17]);
 
                 System.out.println("Empleado: " + nombreEmpleado);
-                System.out.println("Salario base: " + formatoMoneda.formatear(salarioEmpleado));
+                System.out.println("Salario base: " + formateadorTextro.formatearMoneda(salarioEmpleado));
 
                 System.out.print("\nDV08 - Horas extra diurnas: "); 
                 double hed = scanner.nextDouble();
@@ -210,7 +209,6 @@ public class registroNovedades {
             System.out.println("\nERROR: No se guardaron las novedades: " + e.getMessage());
             simulacionPrograma.continuarConTeclado();
         } 
-        scanner.close();  
     }
 
 

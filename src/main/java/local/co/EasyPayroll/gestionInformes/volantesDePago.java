@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionUtilidades.formatoMoneda;
+import local.co.EasyPayroll.gestionUtilidades.formateadorTextro;
 import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
 import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
@@ -38,13 +38,13 @@ public class volantesDePago {
                 if (d[0].equals(id)) {
                     System.out.println("\n============ VOLANTE DE PAGO ============");
                     System.out.println("|) Empleado: " + d[1]);
-                    System.out.println("|) Salario base: " + formatoMoneda.formatear(Double.parseDouble(d[2])));
-                    System.out.println("|) Auxilio transporte: " +formatoMoneda.formatear(Double.parseDouble(d[3])));
-                    System.out.println("|) Recargos: " +formatoMoneda.formatear(Double.parseDouble(d[4])));
-                    System.out.println("|) Total devengado: " + formatoMoneda.formatear(Double.parseDouble(d[5])));
-                    System.out.println("|) Salud: " + formatoMoneda.formatear(Double.parseDouble(d[6])) + " | Pensión: " + formatoMoneda.formatear(Double.parseDouble(d[7])));
+                    System.out.println("|) Salario base: " + formateadorTextro.formatearMoneda(Double.parseDouble(d[2])));
+                    System.out.println("|) Auxilio transporte: " +formateadorTextro.formatearMoneda(Double.parseDouble(d[3])));
+                    System.out.println("|) Recargos: " +formateadorTextro.formatearMoneda(Double.parseDouble(d[4])));
+                    System.out.println("|) Total devengado: " + formateadorTextro.formatearMoneda(Double.parseDouble(d[5])));
+                    System.out.println("|) Salud: " + formateadorTextro.formatearMoneda(Double.parseDouble(d[6])) + " | Pensión: " + formateadorTextro.formatearMoneda(Double.parseDouble(d[7])));
                     System.out.println("=========================================");
-                    System.out.println("NETO A PAGAR: " +formatoMoneda.formatear(Double.parseDouble(d[8])));
+                    System.out.println("NETO A PAGAR: " +formateadorTextro.formatearMoneda(Double.parseDouble(d[8])));
                     System.out.println("-----------------------------------------");
 
                     simulacionPrograma.continuarConTeclado();
@@ -55,6 +55,5 @@ public class volantesDePago {
         } catch (IOException e) {
             System.out.println("\nERROR: No fue posible leer el archivo: " + e.getMessage());
         }
-        scanner.close();
     }
 }

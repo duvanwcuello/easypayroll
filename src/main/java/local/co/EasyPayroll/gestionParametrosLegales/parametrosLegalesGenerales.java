@@ -1,6 +1,7 @@
-package local.co.EasyPayroll.gestionParametrosGenerales;
 
-public class parametrosGenerales {
+package local.co.EasyPayroll.gestionParametrosLegales;
+
+public class parametrosLegalesGenerales {
 
     public static class conceptosLegales {
 

@@ -65,7 +65,6 @@ public class editarEmpleado {
                     empleadoActualizado.getDepartamento());
 
                 } else {
-
                     empleados.add(linea);
                 }
             }
@@ -102,7 +101,7 @@ public class editarEmpleado {
             System.out.println("| INFO: Empleado editado exitosamente!    |");
             System.out.println("-------------------------------------------\n");
 
-            simulacionPrograma.continuarPrograma();
+            simulacionPrograma.simulaEjecucion();
 
         } catch (IOException e) {
             

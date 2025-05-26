@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.gestionUsuario;
+package local.co.EasyPayroll.gestionUsuarios;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -45,7 +45,7 @@ public class eliminarUsuarios {
                 | INFO: Usuario eliminado exitosamente. |
                 -----------------------------------------
                 """);
-                simulacionPrograma.continuarPrograma();
+                simulacionPrograma.simulaEjecucion();
                 limpiarPantalla.limpiarConsola();
                 consultarUsuarios.consultarTodosLosUsuarios();
                 System.out.println("");
@@ -64,6 +64,5 @@ public class eliminarUsuarios {
             -------------------------------------------------           
             """ + e.getMessage());
         }
-        scanner.close();
     }
 }

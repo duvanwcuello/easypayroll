@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import local.co.EasyPayroll.gestionNovedades.calculoNovedades;
-import local.co.EasyPayroll.gestionParametrosGenerales.parametrosGenerales.*;
+import local.co.EasyPayroll.gestionParametrosLegales.parametrosLegalesGenerales.*;
 import local.co.EasyPayroll.gestionUtilidades.*;
 
     
@@ -93,12 +93,12 @@ public static void procesarNomina(){
 
             // Mostrar Procesamiento de datos en pantalla 
             System.out.printf("\nEmpleado: %s\n", nombreEmpleado);
-            System.out.printf("Salario base: %s\n", formatoMoneda.formatear(salarioBaseEmpleado));
-            System.out.printf("Aux transporte: %s\n", formatoMoneda.formatear(aux));
-            System.out.printf("Total recargos: %s\n", formatoMoneda.formatear(extras));
-            System.out.printf("Devengado: %s\n", formatoMoneda.formatear(devengado));
-            System.out.printf("Salud: %s | Pensión: %s\n", formatoMoneda.formatear(saludEmpleado), formatoMoneda.formatear(pensionEmpleado));
-            System.out.printf("Neto a pagar: %s\n", formatoMoneda.formatear(salarioNeto));
+            System.out.printf("Salario base: %s\n", formateadorTextro.formatearMoneda(salarioBaseEmpleado));
+            System.out.printf("Aux transporte: %s\n", formateadorTextro.formatearMoneda(aux));
+            System.out.printf("Total recargos: %s\n", formateadorTextro.formatearMoneda(extras));
+            System.out.printf("Devengado: %s\n", formateadorTextro.formatearMoneda(devengado));
+            System.out.printf("Salud: %s | Pensión: %s\n", formateadorTextro.formatearMoneda(saludEmpleado), formateadorTextro.formatearMoneda(pensionEmpleado));
+            System.out.printf("Neto a pagar: %s\n", formateadorTextro.formatearMoneda(salarioNeto));
             System.out.println("----------------------------------------------------");
 
             // Guardamos planilla de Nomina procesada
@@ -110,10 +110,8 @@ public static void procesarNomina(){
         simulacionPrograma.continuarPrograma();
 
         } catch (IOException e) {
-
             System.out.println("Error al procesar nómina: " + e.getMessage());
         }
-        scanner.close();
     }
 
     public static void calcularNomina() {

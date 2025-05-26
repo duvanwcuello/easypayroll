@@ -10,8 +10,8 @@ import java.util.Scanner;
 import local.co.EasyPayroll.gestionNomina.calculoNovedades;
 import local.co.EasyPayroll.gestionNomina.empleadoNomina;
 import local.co.EasyPayroll.gestionNomina.procesarNominaMes;
-import local.co.EasyPayroll.gestionParametrosGenerales.parametrosGenerales;
-import local.co.EasyPayroll.gestionUtilidades.formatoMoneda;
+import local.co.EasyPayroll.gestionParametrosLegales.parametrosLegalesGenerales;
+import local.co.EasyPayroll.gestionUtilidades.formateadorTextro;
 import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
 import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
@@ -76,11 +76,11 @@ public class informePlanillaPagos {
             if (recDom > 0) totalNovedades += calculoNovedades.calculoRecargoDomYFest(salario, 15, recDom);
 
             // Auxilio transporte
-            double auxTransporte = salario <= (parametrosGenerales.conceptosLegales.getSalarioMinimo() * 2) ? parametrosGenerales.conceptosLegales.getAuxTransporte() : 0;
+            double auxTransporte = salario <= (parametrosLegalesGenerales.conceptosLegales.getSalarioMinimo() * 2) ? parametrosLegalesGenerales.conceptosLegales.getAuxTransporte() : 0;
 
             // Descuentos
-            double salud = salario * parametrosGenerales.conceptosLegales.getSaludEmpleado();
-            double pension = salario * parametrosGenerales.conceptosLegales.getPensionEmpleado();
+            double salud = salario * parametrosLegalesGenerales.conceptosLegales.getSaludEmpleado();
+            double pension = salario * parametrosLegalesGenerales.conceptosLegales.getPensionEmpleado();
             double totalDescuentos = salud + pension;
 
             // Total a pagar
@@ -89,13 +89,13 @@ public class informePlanillaPagos {
             System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n",
                 id,
                 emp.getNombre(),
-                formatoMoneda.formatear(salario),
-                formatoMoneda.formatear(auxTransporte),
-                formatoMoneda.formatear(totalNovedades),
-                formatoMoneda.formatear(salud),
-                formatoMoneda.formatear(pension),
-                formatoMoneda.formatear(totalDescuentos),
-                formatoMoneda.formatear(totalPagar));;
+                formateadorTextro.formatearMoneda(salario),
+                formateadorTextro.formatearMoneda(auxTransporte),
+                formateadorTextro.formatearMoneda(totalNovedades),
+                formateadorTextro.formatearMoneda(salud),
+                formateadorTextro.formatearMoneda(pension),
+                formateadorTextro.formatearMoneda(totalDescuentos),
+                formateadorTextro.formatearMoneda(totalPagar));;
         }
         
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
@@ -104,7 +104,7 @@ public class informePlanillaPagos {
     } catch (IOException e) {
 
         System.out.println("Error al leer la planilla: " + e.getMessage());
-    }scanner.close();
+    }
 }
     
 }

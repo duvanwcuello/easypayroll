@@ -9,8 +9,8 @@ import local.co.EasyPayroll.gestionContrato.gestionContratos;
 import local.co.EasyPayroll.gestionNomina.*;
 import local.co.EasyPayroll.gestionNovedades.gestionNovedades;
 import local.co.EasyPayroll.gestionNovedades.novedades;
-import local.co.EasyPayroll.gestionParametrosGenerales.gestionParametros;
-import local.co.EasyPayroll.gestionUsuario.gestionUsuarios;
+import local.co.EasyPayroll.gestionParametrosLegales.gestionParametros;
+import local.co.EasyPayroll.gestionUsuarios.gestionUsuarios;
 import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
 import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 import local.co.EasyPayroll.gestionEmpleado.*;
@@ -62,49 +62,49 @@ public class menuUsuarios {
                         limpiarPantalla.limpiarConsola();
                         simulacionPrograma.simulaEjecucion();
                         gestionUsuarios.menuGestionUsuarios(rolActual);
-                        simulacionPrograma.continuarPrograma();
+                        simulacionPrograma.simulaEjecucion();
                         limpiarPantalla.limpiarConsola();
                         break;
                     case 2:
                         limpiarPantalla.limpiarConsola();
                         simulacionPrograma.simulaEjecucion();
                         gestionEmpleados.gestionEmpleado(rolActual);
-                        simulacionPrograma.continuarPrograma();
+                        simulacionPrograma.simulaEjecucion();
                         limpiarPantalla.limpiarConsola();
                         break;
                     case 3:
                         limpiarPantalla.limpiarConsola();
                         simulacionPrograma.simulaEjecucion();
                         gestionContratos.gestionContrato(rolActual);
-                        simulacionPrograma.continuarPrograma();
+                        simulacionPrograma.simulaEjecucion();
                         limpiarPantalla.limpiarConsola();
                         break;
                     case 4:
                         limpiarPantalla.limpiarConsola();
                         simulacionPrograma.simulaEjecucion();
                         gestionNovedades.gestionNovedades(rolActual);
-                        simulacionPrograma.continuarPrograma();
+                        simulacionPrograma.simulaEjecucion();
                         limpiarPantalla.limpiarConsola();
                         break;
                     case 5:
                         limpiarPantalla.limpiarConsola();
                         simulacionPrograma.simulaEjecucion();
                         gestionNominas.gestionNomina(rolActual);
-                        simulacionPrograma.continuarPrograma();
+                        simulacionPrograma.simulaEjecucion();
                         limpiarPantalla.limpiarConsola();
                         break;
                     case 6:
                         limpiarPantalla.limpiarConsola();
                         simulacionPrograma.simulaEjecucion();
                         gestionInformes.mostrarInformes(rolActual);
-                        simulacionPrograma.continuarPrograma();
+                        simulacionPrograma.simulaEjecucion();
                         limpiarPantalla.limpiarConsola();
                         break;
                     case 7:
                         limpiarPantalla.limpiarConsola();
                         simulacionPrograma.simulaEjecucion();
                         gestionParametros.menuGestionParametros();
-                        simulacionPrograma.continuarPrograma();
+                        simulacionPrograma.simulaEjecucion();
                         limpiarPantalla.limpiarConsola();
                         break;
                     case 9:
@@ -117,9 +117,9 @@ public class menuUsuarios {
                         continuar = false;
                         limpiarPantalla.limpiarConsola();
                         System.out.println("¡Operacion Cancelada!...");
-                        simulacionPrograma.continuarPrograma();
+                        simulacionPrograma.simulaEjecucion();
                         System.out.println("Cerrando Sesion...");
-                        simulacionPrograma.continuarPrograma();
+                        simulacionPrograma.simulaEjecucion();
                         System.out.println("Cerrando Programa...");
                         simulacionPrograma.continuarPrograma();
                         limpiarPantalla.limpiarConsola();
@@ -133,7 +133,6 @@ public class menuUsuarios {
             System.out.println("¡Error! Debes ingresar un número entero.");
             menuPrincipalUsuario(rolActual);
         }
-        scanner.close();
     }
     
 
@@ -186,23 +185,23 @@ public class menuUsuarios {
                         continuar = false;
                         limpiarPantalla.limpiarConsola();
                         System.out.println("¡Operacion Cancelada!...");
-                        simulacionPrograma.continuarPrograma();
+                        simulacionPrograma.simulaEjecucion();
                         System.out.println("Cerrando Sesion...");
-                        simulacionPrograma.continuarPrograma();
+                        simulacionPrograma.simulaEjecucion();
                         System.out.println("Cerrando Programa...");
                         simulacionPrograma.continuarPrograma();
                         limpiarPantalla.limpiarConsola();
                         System.exit(0);
                         break;
                     default:
-                        System.out.println("Opción no válida. Intente de nuevo.");                   
+                        System.out.println("Opción no válida. Intente de nuevo.");
+                        simulacionPrograma.simulaEjecucion();                   
                 }   
             }
         }catch (InputMismatchException e){
             System.out.println("¡Error! Debes ingresar un número entero.");
             menuPrincipalUsuario(rolActual);
         }
-        scanner.close();
     }
 
     public static void menuUsuarioAuxiliar(String rolActual){
@@ -248,22 +247,22 @@ public class menuUsuarios {
                         continuar = false;
                         limpiarPantalla.limpiarConsola();
                         System.out.println("¡Operacion Cancelada!...");
-                        simulacionPrograma.continuarPrograma();
+                        simulacionPrograma.simulaEjecucion();
                         System.out.println("Cerrando Sesion...");
-                        simulacionPrograma.continuarPrograma();
+                        simulacionPrograma.simulaEjecucion();
                         System.out.println("Cerrando Programa...");
                         simulacionPrograma.continuarPrograma();
                         limpiarPantalla.limpiarConsola();
                         System.exit(0);
                         break;
                     default:
-                        System.out.println("Opción no válida. Intente de nuevo.");      
+                        System.out.println("Opción no válida. Intente de nuevo.");
+                        simulacionPrograma.simulaEjecucion();      
                 }
             }
         }catch (InputMismatchException e){
             System.out.println("¡Error! Debes ingresar un número entero.");
             menuPrincipalUsuario(rolActual);
         }
-        scanner.close();
     }
 }

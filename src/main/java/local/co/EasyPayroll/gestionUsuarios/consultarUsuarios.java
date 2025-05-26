@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.gestionUsuario;
+package local.co.EasyPayroll.gestionUsuarios;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
 public class consultarUsuarios {
 
@@ -14,36 +15,42 @@ public class consultarUsuarios {
      */
     public static void consultarUsuarioExistente() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("---------------------------------------");
-        System.out.println("|         CONSULTA DE USUARIOS        |");
-        System.out.println("---------------------------------------");
-        System.out.print("Ingrese el nombre de usuario a consultar: ");
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println("|                        CONSULTA DE USUARIOS                      |");
+        System.err.println("| Permite consultar un usuario existente por su nombre de usuario. |");   
+        System.out.println("--------------------------------------------------------------------");
+        System.out.print("Nombre de usuario a consultar: ");
         String usuarioBuscado = scanner.nextLine().trim();
         boolean encontrado = false;
 
         try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                String[] datos = linea.split(",");
-                if (datos.length >= 6 && datos[2].equalsIgnoreCase(usuarioBuscado)) {
-                    System.out.println("\nID: " + datos[0]);
-                    System.out.println("Empleado: " + datos[1]);
-                    System.out.println("Usuario: " + datos[2]);
-                    System.out.println("Rol: " + datos[4]);
-                    System.out.println("Último Inicio de Sesión: " + datos[5]);
-                    System.out.println("\n");
+                String[] usuarioGuardado = linea.split(",");
+                if (usuarioGuardado.length >= 6 && usuarioGuardado[2].equalsIgnoreCase(usuarioBuscado)) {
+                    System.err.println("-----------------------------------------------------------");
+                    System.err.println("|                Datos de Usuario Consultado              |");
+                    System.err.println("-----------------------------------------------------------");
+                    System.out.println("ID                       | " + usuarioGuardado[0]);
+                    System.out.println("Empleado                 | " + usuarioGuardado[1]);
+                    System.out.println("Usuario                  | " + usuarioGuardado[2]);
+                    System.out.println("Rol                      | " + usuarioGuardado[4]);
+                    System.out.println("Último Inicio de Sesión: |" + usuarioGuardado[5]);
+                    System.out.println("----------------------------------------------------------");
+                    System.out.println("");
                     encontrado = true;
+                    
+                    simulacionPrograma.continuarConTeclado();         
                     break;
                 }
             }
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
         }
-
         if (!encontrado) {
             System.out.println("Usuario no encontrado.");
+            simulacionPrograma.simulaEjecucion();
         }
-        scanner.close();
     }
 
         /**

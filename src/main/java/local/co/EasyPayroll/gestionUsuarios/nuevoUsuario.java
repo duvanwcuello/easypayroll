@@ -1,5 +1,5 @@
 
-package local.co.EasyPayroll.gestionUsuario;
+package local.co.EasyPayroll.gestionUsuarios;
 
 import java.io.*;
 import java.util.*;
@@ -36,22 +36,23 @@ public class nuevoUsuario {
             System.out.println("\t\t¡ADVERTENCIA!");
             System.out.println("El nombre de usuario ( "+usuarioNuevo.toUpperCase()+" ), ya está en uso.");
             System.out.println("---------------------------------------");
-            System.out.print("¿Desea editar el usuario existente?");
+            System.out.println("¿Desea editar el usuario existente?");
             System.err.print("(1. Sí | 2. No): ");
             int opcion = scanner.nextInt();
             
             scanner.nextLine();
+
             if (opcion == 1) {
                 limpiarPantalla.limpiarConsola();
                 editarUsuarios.editarUsuarioExistente();
             } else {
                 System.out.println("Operación cancelada.....");
                 System.out.println("Volviendo a Gestion de Usuarios...");
-                simulacionPrograma.continuarPrograma();
+                simulacionPrograma.simulaEjecucion();;
                 limpiarPantalla.limpiarConsola();
                 gestionUsuarios.menuGestionUsuarios(usuarioNuevo);
             }
-          // return;
+           return;
         }
        
         System.out.print("Ingrese contraseña: ");
@@ -74,7 +75,6 @@ public class nuevoUsuario {
         } catch (IOException e) {
             System.out.println("Error al guardar el usuario: " + e.getMessage());
         }
-        scanner.close();
     }
     
     //Cargamos el contador desde el archivo empleados

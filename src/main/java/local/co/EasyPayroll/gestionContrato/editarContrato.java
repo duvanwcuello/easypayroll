@@ -80,7 +80,7 @@ public class editarContrato {
                                         System.out.println("\n------------------------------------------------");
                                         System.out.println("| Salario registrado corectamente! " + nuevoSalario + "|");
                                         System.out.println("------------------------------------------------\n");
-                                        simulacionPrograma.continuarPrograma();                                        break;
+                                        simulacionPrograma.simulaEjecucion();                                        break;
                                     } else {
                                         System.out.print("El nuevo salario no puede ser menor al actual (" + salarioActual + "), registre nuevamente: ");
                                     }

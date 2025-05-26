@@ -61,7 +61,6 @@ public class novedades {
                     simulacionPrograma.continuarConTeclado();
             }
         }
-        scanner.close();
     }
 
    

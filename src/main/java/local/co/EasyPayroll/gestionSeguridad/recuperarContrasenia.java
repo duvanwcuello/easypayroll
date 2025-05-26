@@ -31,6 +31,5 @@ public class recuperarContrasenia {
         } catch (IOException e) {
             System.out.println("Error al leer el archivo de usuarios: " + e.getMessage());
         }
-        scanner.close();
     }
 }

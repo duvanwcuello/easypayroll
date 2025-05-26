@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.gestionUsuario;
+package local.co.EasyPayroll.gestionUsuarios;
 
 import java.util.*;
 
@@ -34,20 +34,19 @@ public class gestionUsuarios {
             switch (selecciondeUsuario) {
                 case 1:
                     limpiarPantalla.limpiarConsola();
-                    //simulacionPrograma.continuarPrograma();
+                    simulacionPrograma.simulaEjecucion();;
                     nuevoUsuario.crearNuevoUsuario();
-                    
                     break;
                 case 2:
                     limpiarPantalla.limpiarConsola();
                     consultarUsuarios.consultarUsuarioExistente();
-                    simulacionPrograma.continuarConTeclado();
+                   // simulacionPrograma.continuarConTeclado();
                     limpiarPantalla.limpiarConsola();
                     break;
                 case 3:
                     limpiarPantalla.limpiarConsola();
                     editarUsuarios.editarUsuarioExistente();
-                    simulacionPrograma.continuarConTeclado();
+                   // simulacionPrograma.continuarConTeclado();
                     break;
                 case 4:
                     limpiarPantalla.limpiarConsola();
@@ -64,22 +63,26 @@ public class gestionUsuarios {
                     continuar = false;
                     limpiarPantalla.limpiarConsola();
                     System.out.println("Saliendo de la gestión de Usuarios...");
-                    simulacionPrograma.continuarPrograma();
+                    simulacionPrograma.simulaEjecucion();
                     System.err.println("Retrornando al Menu Principal...");
-                    simulacionPrograma.continuarPrograma();
+                    simulacionPrograma.simulaEjecucion();
                     limpiarPantalla.limpiarConsola();
                     break;
                 case 0:
-                    limpiarPantalla.limpiarConsola();
-                    System.out.println("¡Operacion Cancelada!...");
-                    System.out.println("Cerrando Programa...");
-                    simulacionPrograma.continuarPrograma();
-                    limpiarPantalla.limpiarConsola();
-                    System.exit(0);
+                    continuar = false;
+                        limpiarPantalla.limpiarConsola();
+                        System.out.println("¡Operacion Cancelada!...");
+                        simulacionPrograma.simulaEjecucion();
+                        System.out.println("Cerrando Sesion...");
+                        simulacionPrograma.simulaEjecucion();
+                        System.out.println("Cerrando Programa...");
+                        simulacionPrograma.continuarPrograma();
+                        limpiarPantalla.limpiarConsola();
+                        System.exit(0);
                     break;
                 default:
-                    scanner.close();
                     System.out.println("Opción no válida. Intente de nuevo.");
+                    simulacionPrograma.simulaEjecucion();
            }
         }
     }

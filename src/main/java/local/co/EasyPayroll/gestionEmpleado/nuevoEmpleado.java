@@ -1,7 +1,9 @@
 package local.co.EasyPayroll.gestionEmpleado;
 
 import java.io.*;
+import java.text.DateFormat;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
@@ -28,12 +30,13 @@ public class nuevoEmpleado {
         identificacion = validarCampoString(identificacion, "identificación");
 
         if (existeEmpleado(identificacion)) {
+            System.out.println("\n-----------------------------------------------------------------------");
+            System.out.println("| ¡ADVERTENCIA! Empleado con Identificacion " + identificacion + " ya existe. |");
+            System.out.println("-----------------------------------------------------------------------\n");
 
-            System.out.println("\n-----------------------------------------------------------");
-            System.out.println("| ¡ADVERTENCIA! Empleado con " + identificacion + " ya existe. ");
-            System.out.println("-----------------------------------------------------------\n");
-
-            System.out.print("- ¿Desea editar al empleado? (1. SI | 2. NO): ");
+            System.out.println("¿Desea editar al empleado?");
+            System.out.println("| 1. SI | 2. NO |");
+            System.out.print("Indique Opcion: ");
             int seleccion = scanner.nextInt();
             scanner.nextLine();
 
@@ -41,6 +44,8 @@ public class nuevoEmpleado {
                 limpiarPantalla.limpiarConsola();
                 editarEmpleado.editarEmpleadoExistente(identificacion);
             } else {
+                System.out.println("Volviendo a Gestion de Empleados...");
+                simulacionPrograma.simulaEjecucion();
                 limpiarPantalla.limpiarConsola();
             }
         } else {
@@ -52,6 +57,7 @@ public class nuevoEmpleado {
     private static String validarCampoString(String valor, String etiqueta) {
 
         while (valor == null || valor.trim().isEmpty()) {
+           
             if (etiqueta.equals("ciudad")){
                 System.out.print("- Campo obligatorio, ingrese nuevamente la " + etiqueta + ": ");
             } else if (etiqueta.equals("identificación")) {
@@ -68,6 +74,7 @@ public class nuevoEmpleado {
     }
 
     private static LocalDate validarCampoFecha(LocalDate valor, String etiqueta) {
+        
         while (valor == null) {
             valor = LocalDate.parse(scanner.nextLine());
             if (valor != null) {
@@ -78,8 +85,26 @@ public class nuevoEmpleado {
         return valor;
     }
 
+    private static LocalDate leerFechaValida(String mensaje, String formato) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formato);
+        LocalDate fecha = null;
+
+        while (fecha == null) {
+            try {
+                System.out.print(mensaje);
+                String entrada = scanner.nextLine();
+                fecha = LocalDate.parse(entrada, formatter);
+            } catch (DateTimeException e) {
+                System.out.println(" Error: Formato de fecha inválido. Intente nuevamente (formato: " + formato + ").");
+            }
+        }
+
+        return fecha;
+    }
+
     @SuppressWarnings("unused")
     private static int validarCampoNumero(int valor, String etiqueta) {
+        
         while (valor == 0) {
             System.out.println("- Campo obligatorio, ingrese nuevamente el " + etiqueta + ": ");
             valor = scanner.nextInt();
@@ -99,7 +124,7 @@ public class nuevoEmpleado {
 
         System.out.print("* Segundo Nombre: ");
         String segundoNombre = scanner.nextLine().toUpperCase();
-        segundoNombre = validarCampoString(segundoNombre, "segundo Nombre");
+        //segundoNombre = validarCampoString(segundoNombre, "segundo Nombre");
 
         System.out.print("* Primer apellido: ");
         String primerApellido = scanner.nextLine().toUpperCase();
@@ -109,11 +134,9 @@ public class nuevoEmpleado {
         String segundoApellido = scanner.nextLine().toUpperCase();
         segundoApellido = validarCampoString(segundoApellido, "segundo Apellido");
 
-        System.out.print("* Fecha de nacimiento (YYYY-MM-DD): ");
-        LocalDate fechaNacimiento = LocalDate.parse(scanner.nextLine());
-        fechaNacimiento = validarCampoFecha(fechaNacimiento, "fecha de nacimiento");
+        LocalDate fechaNacimiento = leerFechaValida("* Fecha de nacimiento (yyyy-MM-dd): ", "yyyy-MM-dd");
 
-        System.out.print("* RH y Tipo de Sangre: ");
+        System.out.print("* Tipo y RH de Sangre: ");
         String tipoSangre = scanner.nextLine().toUpperCase();
         tipoSangre = validarCampoString(tipoSangre, "tipo de sangre");
 
@@ -229,7 +252,6 @@ public class nuevoEmpleado {
                     editarEmpleado.editarEmpleadoExistente(identificacion);
                 }
             }
-
         } catch (IOException e) {
             System.out.println("\n-------------------------------------------------------");
             System.out.println("| ERROR: No se pudo leer el archivo de empleados. " + e.getMessage()+ "|");
@@ -250,6 +272,5 @@ public class nuevoEmpleado {
         }else if (seleccion == 2) {
             menuUsuarios.menuPrincipalUsuario(identificacion)
         } */
-
     }
 }

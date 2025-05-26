@@ -48,19 +48,19 @@ public class gestionNovedades {
                     continuar = false;
                     limpiarPantalla.limpiarConsola();
                     System.out.println("Saliendo de la gestión de Novedades...");
-                    simulacionPrograma.continuarPrograma();
+                     simulacionPrograma.simulaEjecucion();
                     System.err.println("Retrornando al Menu Principal...");
-                    simulacionPrograma.continuarPrograma();
+                     simulacionPrograma.simulaEjecucion();
                     limpiarPantalla.limpiarConsola();
                     break;
                 case 0:
                     continuar = false;
                     limpiarPantalla.limpiarConsola();
                     System.out.println("¡Operacion Cancelada!...");
-                    simulacionPrograma.continuarPrograma();
+                     simulacionPrograma.simulaEjecucion();
 
                     System.out.println("Cerrando Sesion...");
-                    simulacionPrograma.continuarPrograma();
+                     simulacionPrograma.simulaEjecucion();
 
                     System.out.println("Cerrando Programa...");
                     simulacionPrograma.continuarPrograma();
@@ -69,7 +69,6 @@ public class gestionNovedades {
                     System.exit(0);
                     break;
                 default:
-                    scanner.close();
                     System.out.println("Opción no válida. Intente de nuevo.");                
            }
           

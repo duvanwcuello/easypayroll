@@ -1,8 +1,8 @@
-package local.co.EasyPayroll.gestionParametrosGenerales;
+package local.co.EasyPayroll.gestionParametrosLegales;
 
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionParametrosGenerales.parametrosGenerales.conceptosLegales;
+import local.co.EasyPayroll.gestionParametrosLegales.parametrosLegalesGenerales.conceptosLegales;
 import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
 import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
@@ -13,8 +13,8 @@ public class gestionParametros {
     Scanner scanner = new Scanner(System.in);
     boolean continuar = true;
 
-        while (continuar) {
 
+        while (continuar) {
             System.out.println("-----------------------------------------------------");
             System.out.println("|       GESTIÓN DE PARÁMETROS GENERALES             |");
             System.out.println("-----------------------------------------------------");
@@ -35,20 +35,12 @@ public class gestionParametros {
 
             switch (opcion){
                 case 1:
-                    System.out.println("Salario mínimo actual: " + conceptosLegales.getSalarioMinimo());
-                    System.out.println("Salario integral actual: " + conceptosLegales.getSalarioIntegral());
-                    System.out.println("Auxilio de transporte: " + conceptosLegales.getAuxTransporte());
-                    System.out.println("Salud - Empleado: " + conceptosLegales.getSaludEmpleado());
-                    System.out.println("Salud - Empleador: " + conceptosLegales.getSaludEmpleador());
-                    System.out.println("Pensión - Empleado: " + conceptosLegales.getPensionEmpleado());
-                    System.out.println("Pensión - Empleador: " + conceptosLegales.getPensionEmpleador());
-                    System.out.println("Periodicidad nómina (días): " + conceptosLegales.getPeriodicidadNomina());
-                    break;
+                    limpiarPantalla.limpiarConsola();
+                    visualizarParametrosLegales.parametosLegalesActuales();
+                    break;                    
                 case 2:
-                    System.out.print("Nuevo salario mínimo: ");
-                    double nuevoSalarioMinimo = scanner.nextDouble();
-                    conceptosLegales.setSalarioMinimo(nuevoSalarioMinimo);
-                    System.out.println("Salario mínimo actualizado.");
+                    limpiarPantalla.limpiarConsola();
+                    editarParametrosLegales.actualizarSalarioMinimo();
                     break;
                 case 3:
                     System.out.print("Nuevo salario integral: ");
@@ -95,19 +87,19 @@ public class gestionParametros {
                     continuar = false;
                     limpiarPantalla.limpiarConsola();
                     System.out.println("Saliendo de la gestión de Empleados...");
-                    simulacionPrograma.continuarPrograma();
+                     simulacionPrograma.simulaEjecucion();
                     System.err.println("Retrornando al Menu Principal...");
-                    simulacionPrograma.continuarPrograma();
+                     simulacionPrograma.simulaEjecucion();
                     limpiarPantalla.limpiarConsola();
                     break;
                 case 0:
                     continuar = false;
                     limpiarPantalla.limpiarConsola();
                     System.out.println("¡Operacion Cancelada!...");
-                    simulacionPrograma.continuarPrograma();
+                    simulacionPrograma.simulaEjecucion();
 
                     System.out.println("Cerrando Sesion...");
-                    simulacionPrograma.continuarPrograma();
+                     simulacionPrograma.simulaEjecucion();
 
                     System.out.println("Cerrando Programa...");
                     simulacionPrograma.continuarPrograma();
@@ -116,8 +108,6 @@ public class gestionParametros {
                     System.exit(0);
                     break;
                 default:
-
-                    scanner.close();
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
         }

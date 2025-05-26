@@ -1,6 +1,6 @@
 package local.co.EasyPayroll;
 
-import local.co.EasyPayroll.gestionSeguridad.logginUsuario;
+import local.co.EasyPayroll.gestionSeguridad.loggin;
 import local.co.EasyPayroll.gestionSeguridad.menuUsuarios;
 import local.co.EasyPayroll.gestionSeguridad.recuperarContrasenia;
 import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
@@ -34,10 +34,10 @@ public class aplicacion {
         // limpiarPantalla.limpiarConsola();
 
         //Solicitamos Inicio de Sesion al usuario
-        logginUsuario.solicitarDatosSesionInicial();
+        loggin.solicitarDatosSesionInicial();
 
         //Limpiamos la pantalla
-        limpiarPantalla.limpiarConsola();
+       // limpiarPantalla.limpiarConsola();
 
         //Cargamos el menu del usuario
         menuUsuarios.menuPrincipalUsuario(rolUsuarioIngresado);

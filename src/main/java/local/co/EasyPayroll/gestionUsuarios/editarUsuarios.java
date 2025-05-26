@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.gestionUsuario;
+package local.co.EasyPayroll.gestionUsuarios;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,8 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionSeguridad.menuUsuarios;
 import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
 
 public class editarUsuarios {
 
@@ -23,9 +24,9 @@ public class editarUsuarios {
     public static void editarUsuarioExistente() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("-----------------------------------");
-        System.out.println("\tEDITANDO USUARIOS");
+        System.out.println("|       EDITANDO USUARIOS         |");
         System.out.println("-----------------------------------");
-        System.out.print("Ingrese Usuario a Editar:");
+        System.out.print("Ingrese Usuario a Editar: ");
         String usuarioIngresado = scanner.nextLine();
         
         List<String> usuariosActualizados = new ArrayList<>();
@@ -39,7 +40,7 @@ public class editarUsuarios {
                     System.out.print("Nueva contraseña: ");
                     datos[3] = scanner.nextLine().trim();
                     System.out.print("Nuevo rol: ");
-                    datos[4] = scanner.nextLine().trim();
+                    datos[4] = scanner.nextLine().trim().toUpperCase();
                     datos[5] = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
                     linea = String.join(",", datos);
                     encontrado = true;
@@ -57,15 +58,20 @@ public class editarUsuarios {
                     bw.write(u);
                     bw.newLine();
                 }
-                System.out.println("Usuario actualizado correctamente.");
-                menuUsuarios.menuPrincipalUsuario(usuarioIngresado);
+                limpiarPantalla.limpiarConsola();
+                System.out.println("--------------------------------------");
+                System.out.println("|         GUARDADO EXITOSO           |");
+                System.out.println("| Usuario actualizado correctamente. |");
+                System.out.println("--------------------------------------");
+                simulacionPrograma.simulaEjecucion();
+                limpiarPantalla.limpiarConsola();
+               // menuUsuarios.menuPrincipalUsuario(usuarioIngresado);
             } catch (IOException e) {
                 System.out.println("Error al guardar cambios: " + e.getMessage());
             }
         } else {
             System.out.println("Usuario no encontrado.");
         }
-        scanner.close();
     }
     
 }

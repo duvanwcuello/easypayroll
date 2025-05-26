@@ -81,7 +81,7 @@ public class nuevoContrato {
                 guardarContrato(contrato);
                 contadorIdContrato++;
                 System.out.println("\nSUCCES: Contrato creado correctamente. \n");
-                simulacionPrograma.continuarPrograma();
+                simulacionPrograma.simulaEjecucion();
 
             } else {
                 

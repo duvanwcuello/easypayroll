@@ -59,7 +59,7 @@ public class informesNovedades {
         } catch (IOException e) {
             System.out.println("\nERROR: No se puede leer el archivo: " + e.getMessage());
             simulacionPrograma.continuarConTeclado();
-        }scanner.close();
+        }
     }
 
 }
