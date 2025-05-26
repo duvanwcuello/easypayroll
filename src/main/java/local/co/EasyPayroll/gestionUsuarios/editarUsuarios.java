@@ -22,42 +22,113 @@ public class editarUsuarios {
      * También actualiza la fecha del último inicio de sesión.
      */
     public static void editarUsuarioExistente() {
+       
+        limpiarPantalla.limpiarConsola();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("-----------------------------------");
-        System.out.println("|       EDITANDO USUARIOS         |");
-        System.out.println("-----------------------------------");
+        
+        System.out.println("|---------------------------------------------|");
+        System.out.println("| BIENVENIDO AL MODULO DE EDICION DE USUARIOS |");
+        System.out.println("|---------------------------------------------|");
+        System.out.println("| En este modulo podrá realizar:              |");
+        System.out.println("| - Contraseñas.                              |");
+        System.out.println("| - Rol de Usuario.                           |");
+        System.out.println("|---------------------------------------------|\n");
+
         System.out.print("Ingrese Usuario a Editar: ");
         String usuarioIngresado = scanner.nextLine();
         
         List<String> usuariosActualizados = new ArrayList<>();
         boolean encontrado = false;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios())  )) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
+
                 if (datos.length >= 6 && datos[2].equalsIgnoreCase(usuarioIngresado)) {
-                    System.out.print("Nueva contraseña: ");
-                    datos[3] = scanner.nextLine().trim();
-                    System.out.print("Nuevo rol: ");
-                    datos[4] = scanner.nextLine().trim().toUpperCase();
-                    datos[5] = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-                    linea = String.join(",", datos);
-                    encontrado = true;
+
+                    System.out.println("\n|---------------------------------------------|");
+                    System.err.println("|        Datos Registrados Actualmente        |");
+                    System.out.println("|---------------------------------------------|");
+                    System.out.println("Nombre Usuario:  | " + datos[1]);
+                    System.out.println("Usuario Asignado | " + datos[2]);
+                    System.out.println("Contraseña       | " + datos[3]);
+                    System.out.println("Rol actual:      | " + datos[4]);
+                    System.out.println("Última sesión:   | " + datos[5]);
+                    System.out.println("-----------------------------------------------\n");
+
+                    System.out.print("¿Desea continar la edicion? (S/N): ");
+                    String confirmarEdicion = scanner.nextLine().trim().toUpperCase();
+
+                        if (!confirmarEdicion.equals("S")) {      
+                            simulacionPrograma.continuarPrograma();
+                            System.out.println("Cancelando Edicion de Usuario... No se realizaron cambios.");
+                            simulacionPrograma.simulaEjecucion();
+                            
+                            System.out.println("Retormando al Menu de Gestion de Usuarios...");
+                            simulacionPrograma.continuarPrograma();
+                            limpiarPantalla.limpiarConsola();
+                            return; 
+                        } else{
+                            System.err.println("\n");
+                            System.out.println("REGISTRE NUEVOS DATOS.");
+                            System.out.print("Nueva contraseña: ");
+                            String nuevaContrasena = scanner.nextLine().trim();
+                            
+                            while (nuevaContrasena.isEmpty()) {
+                                System.out.print("La contraseña no puede estar vacía. Inténtelo de nuevo: ");
+                                nuevaContrasena = scanner.nextLine().trim();
+                            }
+                            datos[3] = nuevaContrasena;
+
+                            System.out.print("¿Desea Mondificar Rol? (S/N): ");
+                            String confirmarRol = scanner.nextLine().trim().toUpperCase();
+                                
+                            if (confirmarRol.equals("S")) {
+                                System.out.print("Nuevo rol (Administrador, Auxiliar, Coordinador): ");
+                                String nuevoRol = scanner.nextLine().trim().toUpperCase();
+                                while (nuevoRol.isEmpty()) {
+                                    System.out.print("El rol no puede estar vacío. Inténtelo de nuevo: ");
+                                    nuevoRol = scanner.nextLine().trim().toUpperCase();
+                                }
+                                datos[4] = nuevoRol; 
+                            }                       
+                        }
+                    
+                    System.out.print("\n¿Desea guardar los cambios? (S/N): ");
+                    String confirmar = scanner.nextLine().trim().toUpperCase();
+                            
+                    if (!confirmar.equals("S")) {
+                        simulacionPrograma.continuarPrograma();
+                        simulacionPrograma.continuarPrograma();
+                        System.out.println("Operación cancelada. No se realizaron cambios.");
+                        simulacionPrograma.simulaEjecucion();
+                       
+                       //gestionUsuarios.menuGestionUsuarios(usuarioIngresado);
+                        return;
+                    }else{
+                        // Actualizar fecha de última modificación
+                        datos[5] = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+                        // Reemplazamos la línea original con los nuevos datos
+                        linea = String.join(",", datos);    
+                        encontrado = true;    
+                    }
                 }
+                // Se agrega la línea modificada o no modificado
                 usuariosActualizados.add(linea);
             }
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
-           // return;
+            return;
         }
 
         if (encontrado) {
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosDeUsoGeneral.getArchivoUsuarios()))) {
                 for (String u : usuariosActualizados) {
-                    bw.write(u);
-                    bw.newLine();
+                        bw.write(u);
+                        bw.newLine();
                 }
+
                 limpiarPantalla.limpiarConsola();
                 System.out.println("--------------------------------------");
                 System.out.println("|         GUARDADO EXITOSO           |");
@@ -65,13 +136,22 @@ public class editarUsuarios {
                 System.out.println("--------------------------------------");
                 simulacionPrograma.simulaEjecucion();
                 limpiarPantalla.limpiarConsola();
-               // menuUsuarios.menuPrincipalUsuario(usuarioIngresado);
+
+                 // menuUsuarios.menuPrincipalUsuario(usuarioIngresado);
             } catch (IOException e) {
                 System.out.println("Error al guardar cambios: " + e.getMessage());
-            }
-        } else {
-            System.out.println("Usuario no encontrado.");
+                }
+        }else {
+            System.out.println("\n---------------------------");
+            System.out.println("     ¡¡ADVERTENCIA!!");
+            System.out.println("---------------------------");
+            System.out.println("Usuario no encontrado...");
+            simulacionPrograma.continuarPrograma();
+            System.out.println("Intente Nuevamente...");
+            simulacionPrograma.simulaEjecucion();
+            editarUsuarioExistente();
         }
-    }
-    
+        
+    }    
 }
+

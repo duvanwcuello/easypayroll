@@ -54,27 +54,60 @@ public class nuevoUsuario {
             }
            return;
         }
-       
-        System.out.print("Ingrese contraseña: ");
-        String contrasena = scanner.nextLine().trim();
-
+    
         System.out.print("Ingrese nombre completo del Nuevo Usuario: ");
         String nombreEmpleado = scanner.nextLine().trim();
 
-        System.out.print("Ingrese rol a asignar \n(Administrador, Auxiliar, Coordinador): ");
-        String rol = scanner.nextLine().trim().toUpperCase();
+        System.out.print("Ingrese contraseña: ");
+        String contrasena = scanner.nextLine().trim();
 
-        String fechaRegistro = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        String rol= null;
+        boolean continuar = true;
+       
+            while (continuar) {
+                try { 
+                    System.out.println(" ");
+                    System.out.println("---------------------");
+                    System.out.println("Roles Disponibles.");
+                    System.out.println("* 1. Administrador.\n* 2. Auxiliar.\n* 3. Coordinador");
+                    System.out.println("---------------------");
+                    System.out.print("Seleccione Rol: ");
+                    int seleccionRol = scanner.nextInt();
+                
+                    switch (seleccionRol) {
+                        case 1:
+                            rol = "ADMINISTRADOR";
+                            break;
+                        case 2:
+                            rol = "AUXILIAR";
+                            break;
+                        case 3:
+                            rol = "COORDINADOR";
+                            break;
+                        default:
+                            System.out.println("Opción no válida. Intente de nuevo.");
+                            continue;
+                    }
+                    String fechaRegistro = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosDeUsoGeneral.getArchivoUsuarios(), true))) {
-            bw.write(contadorIdUsuario + "," + nombreEmpleado + "," + usuarioNuevo + "," + contrasena + "," + rol + "," + fechaRegistro);
-            bw.newLine();
-            System.out.println("Usuario Guardado Exitosamente.");
-            contadorIdUsuario++;
-            limpiarPantalla.limpiarConsola();
-        } catch (IOException e) {
-            System.out.println("Error al guardar el usuario: " + e.getMessage());
-        }
+                    try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosDeUsoGeneral.getArchivoUsuarios(), true))) {
+                        bw.write(contadorIdUsuario + "," + nombreEmpleado + "," + usuarioNuevo + "," + contrasena + "," + rol + "," + fechaRegistro);
+                        bw.newLine();
+                        System.out.println("GUARDANDO USUARIO...");
+                        simulacionPrograma.continuarPrograma();
+                        limpiarPantalla.limpiarConsola();
+                        System.out.println("USUARIO GUARDADO EXITOSAMENTE...");
+                        contadorIdUsuario++;
+                        simulacionPrograma.continuarPrograma();
+                        limpiarPantalla.limpiarConsola();
+                        continuar = false;
+                    } catch (IOException e) {
+                        System.out.println("Error al guardar el usuario: " + e.getMessage());
+                    }
+                } catch (InputMismatchException e){
+                    System.out.println("Intente nuevamente.");
+                }
+            }
     }
     
     //Cargamos el contador desde el archivo empleados

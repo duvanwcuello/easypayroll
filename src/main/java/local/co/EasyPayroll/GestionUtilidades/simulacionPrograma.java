@@ -16,7 +16,7 @@ public class simulacionPrograma {
 
     public  static void continuarConTeclado(){
         Scanner scanner = new Scanner (System.in);
-        System.out.print("Presione ENTER para continuar... ");
+        System.out.print("Presione ENTER para Retornar... ");
         scanner.nextLine();
     }
 

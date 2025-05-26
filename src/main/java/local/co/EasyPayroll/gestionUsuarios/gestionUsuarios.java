@@ -50,7 +50,7 @@ public class gestionUsuarios {
                     break;
                 case 4:
                     limpiarPantalla.limpiarConsola();
-                    editarUsuarios.editarUsuarioExistente();
+                    eliminarUsuarios.eliminarUsuarioGuardado();;
                     break;
                 case 5:
                     limpiarPantalla.limpiarConsola();

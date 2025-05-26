@@ -2,7 +2,8 @@ package local.co.EasyPayroll;
 
 import local.co.EasyPayroll.gestionSeguridad.loggin;
 import local.co.EasyPayroll.gestionSeguridad.menuUsuarios;
-import local.co.EasyPayroll.gestionSeguridad.recuperarContrasenia;
+import local.co.EasyPayroll.gestionSeguridad.gestiondeContrasenias;
+import local.co.EasyPayroll.gestionUsuarios.editarUsuarios;
 import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
 import local.co.EasyPayroll.gestionUtilidades.mensajesparaUsuarios;
 
@@ -10,9 +11,9 @@ public class aplicacion {
     public static void main(String[] args) {
 
         String rolUsuarioIngresado= null;
-       // String usuarioEnSesion = null;
+        String usuarioEnSesion = null;
         //Produccion
-          ejecutarProduccion(rolUsuarioIngresado);
+        ejecutarProduccion(rolUsuarioIngresado);
 
         //pruebas
         //pruebasModulos(rolUsuarioIngresado, usuarioEnSesion);
@@ -44,24 +45,25 @@ public class aplicacion {
 
     }
 
-    @SuppressWarnings("unused")
     private static void pruebasModulos(String rolUsuarioIngresado, String usuarioEnSesion){
 
         //prueba gestion de nomina
         //gestionNominas.gestionNomina();
         
-        //GESTION CONTRATOS 
+        // GESTION CONTRATOS 
         //gestionContratos.gestionContrato();
 
-        //GESTION EMPLEADO 
-        //gestionEmpleados.gestionEmpleado(usuarioEnSesion);
+        // GESTION EMPLEADO 
+        // gestionEmpleados.gestionEmpleado(usuarioEnSesion);
 
-        recuperarContrasenia.recuperarContrasena();
+        // editarUsuarios.editarUsuarioExistente();
 
-        //Solicitamos Inicio de Sesion al usuario
-        //logginUsuario.solicitarDatosSesionInicial();
+        // gestiondeContrasenias.cambiarContraseñiaUsuario();
+
+        // Solicitamos Inicio de Sesion al usuario
+        // logginUsuario.solicitarDatosSesionInicial();
                 
-        //Cargamos el menu del usuario
+        // Cargamos el menu del usuario
         // menuUsuarios.menuPrincipalUsuario(rolUsuarioIngresado);
         
         // menuUsuarios.menuPrincipalUsuario(rolUsuarioIngresado);;

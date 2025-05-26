@@ -39,19 +39,20 @@ public class menuUsuarios {
         try{
             while(continuar){
                 System.out.println("");
-                System.out.println("-------------------------------");
-                System.out.println("|        MENU PRINCIPAL       |");
-                System.out.println("-------------------------------");
-                System.out.println("| 1. Gestionar Usuarios       |");
-                System.out.println("| 2. Gestionar Empleados      |");
-                System.out.println("| 3. Gestionar Contratos      |");
-                System.out.println("| 4. Gestionar Novedades      |");
-                System.out.println("| 5. Gestionar Nomina         |");
-                System.out.println("| 6. Gestionar Informes.      |");    
-                System.out.println("| 7. Parametros Generales     |");
-                System.out.println("| 9. Cerar Sesion             |");
-                System.out.println("| 0. Salir                    |");
-                System.out.println("-------------------------------");
+                System.out.println("|------------------------------|");
+                System.out.println("|        MENU PRINCIPAL        |");
+                System.out.println("|------------------------------|");
+                System.out.println("| 1. Gestionar Usuarios.       |");
+                System.out.println("| 2. Gestionar Empleados.      |");
+                System.out.println("| 3. Gestionar Contratos.      |");
+                System.out.println("| 4. Gestionar Novedades.      |");
+                System.out.println("| 5. Gestionar Nomina.         |");
+                System.out.println("| 6. Gestionar Informes.       |");    
+                System.out.println("| 7. Parametros Generales.     |");
+                System.out.println("| 8. Cambiar Contraseña.       |");
+                System.out.println("| 9. Cerar Sesion.             |");
+                System.out.println("| 0. Salir.                    |");
+                System.out.println("|------------------------------|");
                 
                 System.out.print("Seleccione una opción: ");
                 int selecciondeUsuario = scanner.nextInt();
@@ -107,6 +108,14 @@ public class menuUsuarios {
                         simulacionPrograma.simulaEjecucion();
                         limpiarPantalla.limpiarConsola();
                         break;
+                    case 8:
+                        limpiarPantalla.limpiarConsola();
+                        simulacionPrograma.simulaEjecucion();
+                        gestiondeContrasenias.cambiarContraseñiaUsuario();
+                        simulacionPrograma.simulaEjecucion();
+                        limpiarPantalla.limpiarConsola();
+
+                        break;
                     case 9:
                         continuar = false;
                         System.out.println("Cerrando Sesion...");
@@ -144,17 +153,18 @@ public class menuUsuarios {
         try{
             while(continuar){
                 System.out.println("");
-                System.out.println("-------------------------------");
+                System.out.println("|-----------------------------|");
                 System.out.println("|        MENU PRINCIPAL       |");
-                System.out.println("-------------------------------");
+                System.out.println("|-----------------------------|");
                 System.out.println("| 1. Gestionar Empleados      |");
                 System.out.println("| 2. Gestionar Contratos      |");
                 System.out.println("| 3. Gestionar Novedades      |");
                 System.out.println("| 4. Gestionar Nomina         |");
                 System.out.println("| 5. Gestion de Informes      |");
+                System.out.println("| 8. Cambiar Contraseña.      |");
                 System.out.println("| 9. Cerar Sesion             |");
                 System.out.println("| 0. Salir                    |");
-                System.out.println("-------------------------------");
+                System.out.println("|-----------------------------|");
 
                 System.out.print("Seleccione una opción: ");
                 int selecciondeUsuario = scanner.nextInt();
@@ -162,20 +172,47 @@ public class menuUsuarios {
         
                 switch (selecciondeUsuario){
                     case 1:
+                        limpiarPantalla.limpiarConsola();
+                        simulacionPrograma.simulaEjecucion();
                         gestionEmpleados.gestionEmpleado(rolActual);
+                        simulacionPrograma.simulaEjecucion();
+                        limpiarPantalla.limpiarConsola();
                         break;
                     case 2:
+                        limpiarPantalla.limpiarConsola();
+                        simulacionPrograma.simulaEjecucion();
                         gestionContratos.gestionContrato(rolActual);
+                        simulacionPrograma.simulaEjecucion();
+                        limpiarPantalla.limpiarConsola();
                         break;
                     case 3:
+                        limpiarPantalla.limpiarConsola();
+                        simulacionPrograma.simulaEjecucion();
                         novedades.menuNovedades(rolActual);
+                        simulacionPrograma.simulaEjecucion();
+                        limpiarPantalla.limpiarConsola();
                         break;
                     case 4:
+                        limpiarPantalla.limpiarConsola();
+                        simulacionPrograma.simulaEjecucion();
                         gestionNominas.gestionNomina(rolActual);;
+                        simulacionPrograma.simulaEjecucion();
+                        limpiarPantalla.limpiarConsola();
                         break;
                     case 5:
-                    gestionInformes.mostrarInformes(rolActual);;
-                    break;
+                        limpiarPantalla.limpiarConsola();
+                        simulacionPrograma.simulaEjecucion();
+                        gestionInformes.mostrarInformes(rolActual);
+                        simulacionPrograma.simulaEjecucion();
+                        limpiarPantalla.limpiarConsola();
+                        break;
+                    case 8:
+                        limpiarPantalla.limpiarConsola();
+                        simulacionPrograma.simulaEjecucion();
+                        gestiondeContrasenias.cambiarContraseñiaUsuario();
+                        simulacionPrograma.simulaEjecucion();
+                        limpiarPantalla.limpiarConsola();
+                        break;
                     case 9:
                         System.out.println("Cerrando Sesion...");
                         simulacionPrograma.simulaEjecucion();
@@ -200,7 +237,7 @@ public class menuUsuarios {
             }
         }catch (InputMismatchException e){
             System.out.println("¡Error! Debes ingresar un número entero.");
-            menuPrincipalUsuario(rolActual);
+           // menuPrincipalUsuario(rolActual);
         }
     }
 
@@ -210,16 +247,17 @@ public class menuUsuarios {
         try{
             while(continuar){
                 System.out.println("");
-                System.out.println("-------------------------------");
+                System.out.println("|-----------------------------|");
                 System.out.println("|        MENU PRINCIPAL       |");
-                System.out.println("-------------------------------");
+                System.out.println("|-----------------------------|");
                 System.out.println("| 1. Gestionar Empleados      |");
                 System.out.println("| 2. Gestionar Contratos      |");
                 System.out.println("| 3. Gestionar Novedades      |");
                 System.out.println("| 4. Gestionar Informes       |");
+                System.out.println("| 8. Cambiar Contraseña.      |");
                 System.out.println("| 9. Cerar Sesion             |");
                 System.out.println("| 0. Salir                    |");
-                System.out.println("-----------------------------\n");
+                System.out.println("|-----------------------------|\n");
 
                 System.out.print("Seleccione una opción: ");
                 int selecciondeUsuario = scanner.nextInt();
@@ -228,16 +266,29 @@ public class menuUsuarios {
                 switch (selecciondeUsuario) {
                     case 1:
                         gestionEmpleados.gestionEmpleado(rolActual);
+                        simulacionPrograma.simulaEjecucion();
+                        limpiarPantalla.limpiarConsola();
                         break;
                     case 2:
-                        gestionContratos.gestionContrato(rolActual);;
+                        gestionContratos.gestionContrato(rolActual);
+                        simulacionPrograma.simulaEjecucion();
+                        limpiarPantalla.limpiarConsola();
                         break;
                     case 3:
-                        novedades.menuNovedades(rolActual);;
+                        novedades.menuNovedades(rolActual);
+                        simulacionPrograma.simulaEjecucion();
+                        limpiarPantalla.limpiarConsola();
                         break;
                     case 4:
-                        gestionInformes.mostrarInformes(rolActual);;
-                        break;               
+                        gestionInformes.mostrarInformes(rolActual);
+                        simulacionPrograma.simulaEjecucion();
+                        limpiarPantalla.limpiarConsola();
+                        break;            
+                    case 8:
+                        gestiondeContrasenias.cambiarContraseñiaUsuario();
+                        simulacionPrograma.simulaEjecucion();
+                        limpiarPantalla.limpiarConsola();
+                        break;   
                     case 9:
                         System.out.println("Cerrando Sesion...");
                         simulacionPrograma.simulaEjecucion();
