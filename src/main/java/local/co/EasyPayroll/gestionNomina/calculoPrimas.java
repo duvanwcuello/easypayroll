@@ -1,5 +1,5 @@
-package local.co.EasyPayroll.gestionNomina;
-import local.co.EasyPayroll.gestionParametrosLegales.ParametrosLegalesGenerales;
+package local.co.EasyPayroll.GestionNomina;
+import local.co.EasyPayroll.GestionParametrosLegales.ParametrosLegalesGenerales;
 
 public class CalculoPrimas {
     

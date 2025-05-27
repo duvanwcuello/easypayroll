@@ -1,12 +1,12 @@
-package local.co.EasyPayroll.gestionUsuarios;
+package local.co.EasyPayroll.GestionUsuarios;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
+import local.co.EasyPayroll.GestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.GestionUtilidades.SimulacionPrograma;
 
 public class ConsultarUsuarios {
 

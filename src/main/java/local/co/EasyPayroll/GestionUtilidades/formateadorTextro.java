@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.gestionUtilidades;
+package local.co.EasyPayroll.GestionUtilidades;
 
 import java.text.NumberFormat;
 import java.util.Locale;

@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.gestionNomina;
+package local.co.EasyPayroll.GestionNomina;
 
 public class EmpleadoNomina {
 

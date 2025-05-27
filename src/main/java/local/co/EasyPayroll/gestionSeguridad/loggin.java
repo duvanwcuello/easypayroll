@@ -1,5 +1,5 @@
 
-package local.co.EasyPayroll.gestionSeguridad;
+package local.co.EasyPayroll.GestionSeguridad;
 
 import java.io.*;
 import java.util.*;
@@ -7,10 +7,10 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 import local.co.EasyPayroll.Aplicacion;
-import local.co.EasyPayroll.gestionUsuarios.*;
-import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
+import local.co.EasyPayroll.GestionUsuarios.*;
+import local.co.EasyPayroll.GestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.GestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.GestionUtilidades.SimulacionPrograma;
 
 public class Loggin {
    

@@ -4,10 +4,10 @@ import java.io.*;
 import java.time.*;
 import java.util.*;
 
-import local.co.EasyPayroll.gestionEmpleado.NuevoEmpleado;
-import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
+import local.co.EasyPayroll.GestionEmpleado.NuevoEmpleado;
+import local.co.EasyPayroll.GestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.GestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.GestionUtilidades.SimulacionPrograma;
 
 
 // Clase que representa los datos de un contrato de trabajo

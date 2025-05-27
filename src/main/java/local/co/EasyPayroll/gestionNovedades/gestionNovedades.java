@@ -6,9 +6,9 @@ package local.co.EasyPayroll.GestionNovedades;
 
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionInformes.InformesNovedades;
-import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
+import local.co.EasyPayroll.GestionInformes.InformesNovedades;
+import local.co.EasyPayroll.GestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.GestionUtilidades.SimulacionPrograma;
 
 public class GestionNovedades {
     

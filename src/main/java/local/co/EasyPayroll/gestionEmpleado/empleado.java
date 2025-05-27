@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.gestionEmpleado;
+package local.co.EasyPayroll.GestionEmpleado;
 
 import java.time.*;
 

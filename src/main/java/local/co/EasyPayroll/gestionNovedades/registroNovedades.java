@@ -9,10 +9,10 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.FormateadorTextro;
-import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
+import local.co.EasyPayroll.GestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.GestionUtilidades.FormateadorTextro;
+import local.co.EasyPayroll.GestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.GestionUtilidades.SimulacionPrograma;
 
 public class RegistroNovedades {
 

@@ -1,12 +1,12 @@
-package local.co.EasyPayroll.gestionParametrosLegales;
+package local.co.EasyPayroll.GestionParametrosLegales;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionParametrosLegales.ParametrosLegalesGenerales.conceptosLegales;
-import local.co.EasyPayroll.gestionUtilidades.FormateadorTextro;
-import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
+import local.co.EasyPayroll.GestionParametrosLegales.ParametrosLegalesGenerales.conceptosLegales;
+import local.co.EasyPayroll.GestionUtilidades.FormateadorTextro;
+import local.co.EasyPayroll.GestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.GestionUtilidades.SimulacionPrograma;
 
 public class EditarParametrosLegales {
 

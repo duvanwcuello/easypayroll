@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.gestionEmpleado;
+package local.co.EasyPayroll.GestionEmpleado;
 
 import java.io.*;
 import java.text.DateFormat;
@@ -6,9 +6,9 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
+import local.co.EasyPayroll.GestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.GestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.GestionUtilidades.SimulacionPrograma;
 
 public class NuevoEmpleado {
 

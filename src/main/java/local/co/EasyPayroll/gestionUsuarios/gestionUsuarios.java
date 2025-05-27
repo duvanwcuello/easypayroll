@@ -1,8 +1,8 @@
-package local.co.EasyPayroll.gestionUsuarios;
+package local.co.EasyPayroll.GestionUsuarios;
 
 import java.util.*;
 
-import local.co.EasyPayroll.gestionUtilidades.*;
+import local.co.EasyPayroll.GestionUtilidades.*;
 
 public class GestionUsuarios {
     /**

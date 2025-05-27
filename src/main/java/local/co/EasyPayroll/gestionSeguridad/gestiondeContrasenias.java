@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.gestionSeguridad;
+package local.co.EasyPayroll.GestionSeguridad;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
-import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
+import local.co.EasyPayroll.GestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.GestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.GestionUtilidades.SimulacionPrograma;
 
 public class GestiondeContrasenias {
     

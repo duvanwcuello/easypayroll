@@ -1,10 +1,10 @@
 
-package local.co.EasyPayroll.gestionUsuarios;
+package local.co.EasyPayroll.GestionUsuarios;
 
 import java.io.*;
 import java.util.*;
 
-import local.co.EasyPayroll.gestionUtilidades.*;
+import local.co.EasyPayroll.GestionUtilidades.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

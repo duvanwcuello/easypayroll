@@ -1,5 +1,5 @@
 
-package local.co.EasyPayroll.gestionParametrosLegales;
+package local.co.EasyPayroll.GestionParametrosLegales;
 
 public class ParametrosLegalesGenerales {
 

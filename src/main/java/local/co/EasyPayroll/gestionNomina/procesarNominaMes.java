@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.gestionNomina;
+package local.co.EasyPayroll.GestionNomina;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import local.co.EasyPayroll.GestionNovedades.CalculoNovedades;
-import local.co.EasyPayroll.gestionParametrosLegales.ParametrosLegalesGenerales.*;
-import local.co.EasyPayroll.gestionUtilidades.*;
+import local.co.EasyPayroll.GestionParametrosLegales.ParametrosLegalesGenerales.*;
+import local.co.EasyPayroll.GestionUtilidades.*;
 
     
 public class ProcesarNominaMes{

@@ -1,6 +1,6 @@
-package local.co.EasyPayroll.gestionNomina;
+package local.co.EasyPayroll.GestionNomina;
 
-import local.co.EasyPayroll.gestionParametrosLegales.ParametrosLegalesGenerales;
+import local.co.EasyPayroll.GestionParametrosLegales.ParametrosLegalesGenerales;
 
 public class CalculoCesantias {
     

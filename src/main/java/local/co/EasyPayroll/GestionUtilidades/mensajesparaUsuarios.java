@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.gestionUtilidades;
+package local.co.EasyPayroll.GestionUtilidades;
 
 public class MensajesparaUsuarios {
 

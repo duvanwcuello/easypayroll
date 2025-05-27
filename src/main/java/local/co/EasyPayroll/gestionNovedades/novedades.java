@@ -4,9 +4,9 @@ package local.co.EasyPayroll.GestionNovedades;
 
 import java.util.*;
 
-import local.co.EasyPayroll.gestionSeguridad.MenuUsuarios;
-import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
+import local.co.EasyPayroll.GestionSeguridad.MenuUsuarios;
+import local.co.EasyPayroll.GestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.GestionUtilidades.SimulacionPrograma;
 
 
 public class Novedades {

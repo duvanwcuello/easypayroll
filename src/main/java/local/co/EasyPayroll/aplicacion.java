@@ -1,11 +1,11 @@
 package local.co.EasyPayroll;
 
-import local.co.EasyPayroll.gestionSeguridad.Loggin;
-import local.co.EasyPayroll.gestionSeguridad.MenuUsuarios;
-import local.co.EasyPayroll.gestionSeguridad.GestiondeContrasenias;
-import local.co.EasyPayroll.gestionUsuarios.EditarUsuarios;
-import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.MensajesparaUsuarios;
+import local.co.EasyPayroll.GestionSeguridad.GestiondeContrasenias;
+import local.co.EasyPayroll.GestionSeguridad.Loggin;
+import local.co.EasyPayroll.GestionSeguridad.MenuUsuarios;
+import local.co.EasyPayroll.GestionUsuarios.EditarUsuarios;
+import local.co.EasyPayroll.GestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.GestionUtilidades.MensajesparaUsuarios;
 
 public class Aplicacion {
     public static void main(String[] args) {

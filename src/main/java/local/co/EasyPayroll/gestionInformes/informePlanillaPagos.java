@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.gestionInformes;
+package local.co.EasyPayroll.GestionInformes;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionNomina.CalculoNovedades;
-import local.co.EasyPayroll.gestionNomina.EmpleadoNomina;
-import local.co.EasyPayroll.gestionNomina.ProcesarNominaMes;
-import local.co.EasyPayroll.gestionParametrosLegales.ParametrosLegalesGenerales;
-import local.co.EasyPayroll.gestionUtilidades.FormateadorTextro;
-import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
+import local.co.EasyPayroll.GestionNomina.CalculoNovedades;
+import local.co.EasyPayroll.GestionNomina.EmpleadoNomina;
+import local.co.EasyPayroll.GestionNomina.ProcesarNominaMes;
+import local.co.EasyPayroll.GestionParametrosLegales.ParametrosLegalesGenerales;
+import local.co.EasyPayroll.GestionUtilidades.FormateadorTextro;
+import local.co.EasyPayroll.GestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.GestionUtilidades.SimulacionPrograma;
 
 public class InformePlanillaPagos {
 

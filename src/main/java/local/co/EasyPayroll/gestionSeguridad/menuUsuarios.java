@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.gestionSeguridad;
+package local.co.EasyPayroll.GestionSeguridad;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -6,15 +6,15 @@ import java.util.Scanner;
 
 import local.co.EasyPayroll.Aplicacion;
 import local.co.EasyPayroll.GestionContrato.GestionContratos;
+import local.co.EasyPayroll.GestionEmpleado.*;
+import local.co.EasyPayroll.GestionInformes.GestionInformes;
+import local.co.EasyPayroll.GestionNomina.*;
 import local.co.EasyPayroll.GestionNovedades.GestionNovedades;
 import local.co.EasyPayroll.GestionNovedades.Novedades;
-import local.co.EasyPayroll.gestionNomina.*;
-import local.co.EasyPayroll.gestionParametrosLegales.GestionParametros;
-import local.co.EasyPayroll.gestionUsuarios.GestionUsuarios;
-import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
-import local.co.EasyPayroll.gestionEmpleado.*;
-import local.co.EasyPayroll.gestionInformes.GestionInformes;
+import local.co.EasyPayroll.GestionParametrosLegales.GestionParametros;
+import local.co.EasyPayroll.GestionUsuarios.GestionUsuarios;
+import local.co.EasyPayroll.GestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.GestionUtilidades.SimulacionPrograma;
 
 public class MenuUsuarios {
     
