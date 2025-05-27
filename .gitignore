@@ -134,3 +134,7 @@ secrets/
 # Application specific
 logs/
 log/
+
+
+# Archivos de novedades
+novedades*.txt
