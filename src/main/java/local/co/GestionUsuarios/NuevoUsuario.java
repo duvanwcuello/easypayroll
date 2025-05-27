@@ -5,6 +5,7 @@ import java.io.*;
 import java.util.*;
 
 import local.co.GestionUtilidades.*;
+import local.co.GestionUtilidades.DatosDeUsoGeneral;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,7 +21,8 @@ public class NuevoUsuario {
     public static void crearNuevoUsuario() {
 
         //leemos el ultimo Id del archivo
-        cargarContadorId();
+        int nuevoId = obtenerPrimerIdDisponible();
+    
 
         Scanner scanner = new Scanner(System.in);
 
@@ -126,6 +128,31 @@ public class NuevoUsuario {
         } catch (IOException e) {         
             System.out.println("No se pudo cargar el ID desde archivo: " + e.getMessage());
         }
+    }
+
+    //recorremos el archivo y ubicamos el id faltante 
+    private static int obtenerPrimerIdDisponible() {
+        Set<Integer> idsExistentes = new TreeSet<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoUsuarios()))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(",");
+                if (datos.length >= 1) {
+                    try {
+                        int id = Integer.parseInt(datos[0]);
+                        idsExistentes.add(id);
+                    } catch (NumberFormatException ignored) {}
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer usuarios: " + e.getMessage());
+        }
+
+        int id = 1;
+        while (idsExistentes.contains(id)) {
+            id++;
+        }
+        return id;
     }
 
     /**

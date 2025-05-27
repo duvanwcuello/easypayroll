@@ -2,6 +2,7 @@ package local.co;
 
 import local.co.GestionSeguridad.Loggin;
 import local.co.GestionSeguridad.MenuUsuarios;
+import local.co.GestionUsuarios.NuevoUsuario;
 import local.co.GestionUtilidades.LimpiarPantalla;
 import local.co.GestionUtilidades.MensajesparaUsuarios;
 
@@ -10,8 +11,9 @@ public class Aplicacion {
 
         String rolUsuarioIngresado= null;
         String usuarioEnSesion = null;
+        
         //Produccion
-        ejecutarProduccion(rolUsuarioIngresado);
+         ejecutarProduccion(rolUsuarioIngresado);
 
         //pruebas
         //pruebasModulos(rolUsuarioIngresado, usuarioEnSesion);
@@ -55,6 +57,7 @@ public class Aplicacion {
         // gestionEmpleados.gestionEmpleado(usuarioEnSesion);
 
         // editarUsuarios.editarUsuarioExistente();
+        // NuevoUsuario.obtenerPrimerIdDisponible();
 
         // gestiondeContrasenias.cambiarContraseñiaUsuario();
 
