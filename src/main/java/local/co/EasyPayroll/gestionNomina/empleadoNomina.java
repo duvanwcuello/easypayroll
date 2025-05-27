@@ -1,6 +1,6 @@
 package local.co.EasyPayroll.gestionNomina;
 
-public class empleadoNomina {
+public class EmpleadoNomina {
 
     private String identificacion;
     private String nombre;
@@ -19,7 +19,7 @@ public class empleadoNomina {
         this.salarioBase = salarioBase;
     }
 
-    public empleadoNomina(String identificacion, String nombre, double salarioBase) {
+    public EmpleadoNomina(String identificacion, String nombre, double salarioBase) {
         
         this.identificacion = identificacion;
         this.nombre = nombre;

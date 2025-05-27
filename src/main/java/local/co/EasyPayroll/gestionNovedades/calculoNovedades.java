@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package local.co.EasyPayroll.gestionNovedades;
+package local.co.EasyPayroll.GestionNovedades;
 
-public class calculoNovedades {
+public class CalculoNovedades {
     
     //calculamos el valor de la hora Ordinaria del Empleado
     public static double calculoValorHoraEmpleado(double salarioEmpleado){

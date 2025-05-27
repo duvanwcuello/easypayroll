@@ -5,10 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class consultarUsuarios {
+public class ConsultarUsuarios {
 
     /**
      * Consulta un usuario existente por su nombre de usuario y muestra sus datos.
@@ -23,7 +23,7 @@ public class consultarUsuarios {
         String usuarioBuscado = scanner.nextLine().trim();
         boolean encontrado = false;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoUsuarios()))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] usuarioGuardado = linea.split(",");
@@ -40,7 +40,7 @@ public class consultarUsuarios {
                     System.out.println("");
                     encontrado = true;
                     
-                    simulacionPrograma.continuarConTeclado();         
+                    SimulacionPrograma.continuarConTeclado();         
                     break;
                 }
             }
@@ -49,7 +49,7 @@ public class consultarUsuarios {
         }
         if (!encontrado) {
             System.out.println("Usuario no encontrado.");
-            simulacionPrograma.simulaEjecucion();
+            SimulacionPrograma.simulaEjecucion();
         }
     }
 
@@ -62,7 +62,7 @@ public class consultarUsuarios {
         System.out.printf("%-3s %-25s %-10s %-10s %-15s %-25s%n", "ID", "Nombre Empleado", "Usuario", "Contraseña", "Rol", "Último Login");
         System.out.println("-----------------------------------------------------------------------------------------------------");
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoUsuarios()))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");

@@ -4,19 +4,19 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
-import local.co.EasyPayroll.aplicacion;
-import local.co.EasyPayroll.gestionContrato.gestionContratos;
+import local.co.EasyPayroll.Aplicacion;
+import local.co.EasyPayroll.GestionContrato.GestionContratos;
+import local.co.EasyPayroll.GestionNovedades.GestionNovedades;
+import local.co.EasyPayroll.GestionNovedades.Novedades;
 import local.co.EasyPayroll.gestionNomina.*;
-import local.co.EasyPayroll.gestionNovedades.gestionNovedades;
-import local.co.EasyPayroll.gestionNovedades.novedades;
-import local.co.EasyPayroll.gestionParametrosLegales.gestionParametros;
-import local.co.EasyPayroll.gestionUsuarios.gestionUsuarios;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionParametrosLegales.GestionParametros;
+import local.co.EasyPayroll.gestionUsuarios.GestionUsuarios;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 import local.co.EasyPayroll.gestionEmpleado.*;
-import local.co.EasyPayroll.gestionInformes.gestionInformes;
+import local.co.EasyPayroll.gestionInformes.GestionInformes;
 
-public class menuUsuarios {
+public class MenuUsuarios {
     
     public static void menuPrincipalUsuario(String rolUsuarioIngresado) {
     
@@ -60,78 +60,78 @@ public class menuUsuarios {
                             
                 switch (selecciondeUsuario){
                     case 1:
-                        limpiarPantalla.limpiarConsola();
-                        simulacionPrograma.simulaEjecucion();
-                        gestionUsuarios.menuGestionUsuarios(rolActual);
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.simulaEjecucion();
+                        GestionUsuarios.menuGestionUsuarios(rolActual);
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;
                     case 2:
-                        limpiarPantalla.limpiarConsola();
-                        simulacionPrograma.simulaEjecucion();
-                        gestionEmpleados.gestionEmpleado(rolActual);
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.simulaEjecucion();
+                        GestionEmpleados.gestionEmpleado(rolActual);
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;
                     case 3:
-                        limpiarPantalla.limpiarConsola();
-                        simulacionPrograma.simulaEjecucion();
-                        gestionContratos.gestionContrato(rolActual);
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.simulaEjecucion();
+                        GestionContratos.gestionContrato(rolActual);
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;
                     case 4:
-                        limpiarPantalla.limpiarConsola();
-                        simulacionPrograma.simulaEjecucion();
-                        gestionNovedades.gestionNovedades(rolActual);
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.simulaEjecucion();
+                        GestionNovedades.gestionNovedades(rolActual);
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;
                     case 5:
-                        limpiarPantalla.limpiarConsola();
-                        simulacionPrograma.simulaEjecucion();
-                        gestionNominas.gestionNomina(rolActual);
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.simulaEjecucion();
+                        GestionNominas.gestionNomina(rolActual);
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;
                     case 6:
-                        limpiarPantalla.limpiarConsola();
-                        simulacionPrograma.simulaEjecucion();
-                        gestionInformes.mostrarInformes(rolActual);
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.simulaEjecucion();
+                        GestionInformes.mostrarInformes(rolActual);
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;
                     case 7:
-                        limpiarPantalla.limpiarConsola();
-                        simulacionPrograma.simulaEjecucion();
-                        gestionParametros.menuGestionParametros();
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.simulaEjecucion();
+                        GestionParametros.menuGestionParametros();
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;
                     case 8:
-                        limpiarPantalla.limpiarConsola();
-                        simulacionPrograma.simulaEjecucion();
-                        gestiondeContrasenias.cambiarContraseñiaUsuario();
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.simulaEjecucion();
+                        GestiondeContrasenias.cambiarContraseñiaUsuario();
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
 
                         break;
                     case 9:
                         continuar = false;
                         System.out.println("Cerrando Sesion...");
-                        simulacionPrograma.simulaEjecucion();
-                        aplicacion.main(null);
+                        SimulacionPrograma.simulaEjecucion();
+                        Aplicacion.main(null);
                         break;
                     case 0:
                         continuar = false;
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
                         System.out.println("¡Operacion Cancelada!...");
-                        simulacionPrograma.simulaEjecucion();
+                        SimulacionPrograma.simulaEjecucion();
                         System.out.println("Cerrando Sesion...");
-                        simulacionPrograma.simulaEjecucion();
+                        SimulacionPrograma.simulaEjecucion();
                         System.out.println("Cerrando Programa...");
-                        simulacionPrograma.continuarPrograma();
-                        limpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.continuarPrograma();
+                        LimpiarPantalla.limpiarConsola();
                         System.exit(0);
                         break;
                     default:
@@ -172,67 +172,67 @@ public class menuUsuarios {
         
                 switch (selecciondeUsuario){
                     case 1:
-                        limpiarPantalla.limpiarConsola();
-                        simulacionPrograma.simulaEjecucion();
-                        gestionEmpleados.gestionEmpleado(rolActual);
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.simulaEjecucion();
+                        GestionEmpleados.gestionEmpleado(rolActual);
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;
                     case 2:
-                        limpiarPantalla.limpiarConsola();
-                        simulacionPrograma.simulaEjecucion();
-                        gestionContratos.gestionContrato(rolActual);
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.simulaEjecucion();
+                        GestionContratos.gestionContrato(rolActual);
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;
                     case 3:
-                        limpiarPantalla.limpiarConsola();
-                        simulacionPrograma.simulaEjecucion();
-                        novedades.menuNovedades(rolActual);
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.simulaEjecucion();
+                        Novedades.menuNovedades(rolActual);
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;
                     case 4:
-                        limpiarPantalla.limpiarConsola();
-                        simulacionPrograma.simulaEjecucion();
-                        gestionNominas.gestionNomina(rolActual);;
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.simulaEjecucion();
+                        GestionNominas.gestionNomina(rolActual);;
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;
                     case 5:
-                        limpiarPantalla.limpiarConsola();
-                        simulacionPrograma.simulaEjecucion();
-                        gestionInformes.mostrarInformes(rolActual);
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.simulaEjecucion();
+                        GestionInformes.mostrarInformes(rolActual);
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;
                     case 8:
-                        limpiarPantalla.limpiarConsola();
-                        simulacionPrograma.simulaEjecucion();
-                        gestiondeContrasenias.cambiarContraseñiaUsuario();
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.simulaEjecucion();
+                        GestiondeContrasenias.cambiarContraseñiaUsuario();
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;
                     case 9:
                         System.out.println("Cerrando Sesion...");
-                        simulacionPrograma.simulaEjecucion();
-                        aplicacion.main(null);
+                        SimulacionPrograma.simulaEjecucion();
+                        Aplicacion.main(null);
                         break;
                     case 0:
                         continuar = false;
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
                         System.out.println("¡Operacion Cancelada!...");
-                        simulacionPrograma.simulaEjecucion();
+                        SimulacionPrograma.simulaEjecucion();
                         System.out.println("Cerrando Sesion...");
-                        simulacionPrograma.simulaEjecucion();
+                        SimulacionPrograma.simulaEjecucion();
                         System.out.println("Cerrando Programa...");
-                        simulacionPrograma.continuarPrograma();
-                        limpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.continuarPrograma();
+                        LimpiarPantalla.limpiarConsola();
                         System.exit(0);
                         break;
                     default:
                         System.out.println("Opción no válida. Intente de nuevo.");
-                        simulacionPrograma.simulaEjecucion();                   
+                        SimulacionPrograma.simulaEjecucion();                   
                 }   
             }
         }catch (InputMismatchException e){
@@ -265,50 +265,50 @@ public class menuUsuarios {
         
                 switch (selecciondeUsuario) {
                     case 1:
-                        gestionEmpleados.gestionEmpleado(rolActual);
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        GestionEmpleados.gestionEmpleado(rolActual);
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;
                     case 2:
-                        gestionContratos.gestionContrato(rolActual);
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        GestionContratos.gestionContrato(rolActual);
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;
                     case 3:
-                        novedades.menuNovedades(rolActual);
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        Novedades.menuNovedades(rolActual);
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;
                     case 4:
-                        gestionInformes.mostrarInformes(rolActual);
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        GestionInformes.mostrarInformes(rolActual);
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;            
                     case 8:
-                        gestiondeContrasenias.cambiarContraseñiaUsuario();
-                        simulacionPrograma.simulaEjecucion();
-                        limpiarPantalla.limpiarConsola();
+                        GestiondeContrasenias.cambiarContraseñiaUsuario();
+                        SimulacionPrograma.simulaEjecucion();
+                        LimpiarPantalla.limpiarConsola();
                         break;   
                     case 9:
                         System.out.println("Cerrando Sesion...");
-                        simulacionPrograma.simulaEjecucion();
-                        aplicacion.main(null);
+                        SimulacionPrograma.simulaEjecucion();
+                        Aplicacion.main(null);
                         break;
                     case 0:
                         continuar = false;
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
                         System.out.println("¡Operacion Cancelada!...");
-                        simulacionPrograma.simulaEjecucion();
+                        SimulacionPrograma.simulaEjecucion();
                         System.out.println("Cerrando Sesion...");
-                        simulacionPrograma.simulaEjecucion();
+                        SimulacionPrograma.simulaEjecucion();
                         System.out.println("Cerrando Programa...");
-                        simulacionPrograma.continuarPrograma();
-                        limpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.continuarPrograma();
+                        LimpiarPantalla.limpiarConsola();
                         System.exit(0);
                         break;
                     default:
                         System.out.println("Opción no válida. Intente de nuevo.");
-                        simulacionPrograma.simulaEjecucion();      
+                        SimulacionPrograma.simulaEjecucion();      
                 }
             }
         }catch (InputMismatchException e){

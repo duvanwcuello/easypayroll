@@ -2,10 +2,10 @@ package local.co.EasyPayroll.gestionInformes;
 
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class gestionInformes {
+public class GestionInformes {
 
     public static void mostrarInformes(String rolActual) {
             
@@ -13,7 +13,7 @@ public class gestionInformes {
         boolean continuar = true;
 
         while (continuar) {
-            limpiarPantalla.limpiarConsola();
+            LimpiarPantalla.limpiarConsola();
 
             System.out.println("-----------------------------------");
             System.out.println("|    MOSTRAR INFORMES DE NOMINA   |");
@@ -29,33 +29,33 @@ public class gestionInformes {
 
             switch(seleccion){
                 case 1:
-                    informePlanillaPagos.mostrarPlanilla();
+                    InformePlanillaPagos.mostrarPlanilla();
                     break;
                 case 2:                  
-                    volantesDePago.mostrarVolanteEmpleado();
+                    VolantesDePago.mostrarVolanteEmpleado();
                     break;
                 case 9:
                     continuar = false;
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.out.println("Saliendo de la gestión de Informes...");
-                     simulacionPrograma.simulaEjecucion();
+                     SimulacionPrograma.simulaEjecucion();
                     System.err.println("Retrornando al Menu Principal...");
-                     simulacionPrograma.simulaEjecucion();
-                    limpiarPantalla.limpiarConsola();
+                     SimulacionPrograma.simulaEjecucion();
+                    LimpiarPantalla.limpiarConsola();
                     break;
                 case 0:
                     continuar = false;
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.out.println("¡Operacion Cancelada!...");
-                     simulacionPrograma.simulaEjecucion();
+                     SimulacionPrograma.simulaEjecucion();
 
                     System.out.println("Cerrando Sesion...");
-                     simulacionPrograma.simulaEjecucion();  
+                     SimulacionPrograma.simulaEjecucion();  
 
                     System.out.println("Cerrando Programa...");
-                    simulacionPrograma.continuarPrograma();
+                    SimulacionPrograma.continuarPrograma();
 
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.exit(0);
                     break;
                 default:

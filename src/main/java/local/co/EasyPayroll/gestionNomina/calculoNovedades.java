@@ -9,7 +9,7 @@ package local.co.EasyPayroll.gestionNomina;
  * https://www.gerencie.com/horas-extras-y-recargos-nocturnos-dominicales-y-festivos.html
  * @author duvan Wilchez Cuello
  */
-public class calculoNovedades {
+public class CalculoNovedades {
     
     //calculamos el valor de la hora Ordinaria del Empleado
     public static double calculoValorHoraEmpleado(double salarioEmpleado){

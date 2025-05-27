@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package local.co.EasyPayroll.gestionSeguridad;
 
 import java.io.*;
@@ -9,13 +6,13 @@ import java.util.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
-import local.co.EasyPayroll.aplicacion;
+import local.co.EasyPayroll.Aplicacion;
 import local.co.EasyPayroll.gestionUsuarios.*;
-import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class loggin {
+public class Loggin {
    
     /**
      * Método para solicitar los datos de inicio de sesión.
@@ -23,7 +20,7 @@ public class loggin {
      */
     public static void solicitarDatosSesionInicial(){
 
-        for (int intento = 1; intento <= datosDeUsoGeneral.getIntentosMaximos(); intento++){
+        for (int intento = 1; intento <= DatosDeUsoGeneral.getIntentosMaximos(); intento++){
             String usuarioIngresado = validarDatosIngresados("Ingrese Usuario Asignado: ");
             
             if (usuarioIngresado == null){
@@ -42,29 +39,29 @@ public class loggin {
                 actualizarUltimaSesion(usuarioIngresado);
                 
                 System.out.print("Ingresando...");
-                simulacionPrograma.simulaEjecucion();
-                limpiarPantalla.limpiarConsola();
+                SimulacionPrograma.simulaEjecucion();
+                LimpiarPantalla.limpiarConsola();
                 System.out.println("===============================");
                 System.out.println("|   BIENVENIDO A EASYPAYROLL  |"); 
                 System.out.println("===============================");
                 System.out.print("Usuario actual:\n" +usuarioValidado.getNombreEmpleado()+"\n");
-                menuUsuarios.menuPrincipalUsuario(usuarioValidado.getRol());
+                MenuUsuarios.menuPrincipalUsuario(usuarioValidado.getRol());
                 return;
             } else {
                 mostrarErrorDeInicio(intento, usuarioIngresado, passwordIngresado);
             }
         }
-        limpiarPantalla.limpiarConsola();
+        LimpiarPantalla.limpiarConsola();
         System.out.println("-------------------------------------------------------");
         System.out.println("Ha superado el número de intentos permitidos.");
         System.out.println("-------------------------------------------------------");
-        simulacionPrograma.continuarPrograma();
-        limpiarPantalla.limpiarConsola();
+        SimulacionPrograma.continuarPrograma();
+        LimpiarPantalla.limpiarConsola();
         System.out.println("Cerrando el Programa...");        
-        simulacionPrograma.continuarPrograma();
-        limpiarPantalla.limpiarConsola();
+        SimulacionPrograma.continuarPrograma();
+        LimpiarPantalla.limpiarConsola();
         System.out.println("¡¡HASTA LUEGO!!..");
-        simulacionPrograma.continuarPrograma();
+        SimulacionPrograma.continuarPrograma();
         System.exit(0);
     }
 
@@ -74,11 +71,11 @@ public class loggin {
     private static String validarDatosIngresados(String mensaje) {
         Scanner scanner = new Scanner(System.in);
         
-        for (int intentos = 1; intentos <= datosDeUsoGeneral.getIntentosMaximos(); intentos++) {
+        for (int intentos = 1; intentos <= DatosDeUsoGeneral.getIntentosMaximos(); intentos++) {
             System.out.print(mensaje);
             String entrada = scanner.nextLine();
             if (entrada == null || entrada.trim().isEmpty()) {
-                System.out.println("El campo no puede estar en blanco. Intento " + intentos + " de " + datosDeUsoGeneral.getIntentosMaximos());
+                System.out.println("El campo no puede estar en blanco. Intento " + intentos + " de " + DatosDeUsoGeneral.getIntentosMaximos());
             } else {
                 return entrada.trim();
             }
@@ -90,7 +87,7 @@ public class loggin {
      * Busca en el archivo usuarios.txt si existe una combinación válida de usuario y contraseña.
      */
     private static Usuario validarCredenciales(String usuarioIngresado, String passwordIngresado) {
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoUsuarios()))) {
             String linea;
             
             while ((linea = br.readLine()) != null) {
@@ -112,7 +109,7 @@ public class loggin {
         List<String> lineasActualizadas = new ArrayList<>();
         String fechaActual = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoUsuarios()))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
@@ -126,7 +123,7 @@ public class loggin {
             System.out.println("Error al leer para actualizar última sesión: " + e.getMessage());
         }
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosDeUsoGeneral.getArchivoUsuarios()))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(DatosDeUsoGeneral.getArchivoUsuarios()))) {
             for (String linea : lineasActualizadas) {
                 bw.write(linea);
                 bw.newLine();
@@ -153,7 +150,7 @@ public class loggin {
     private static void mostrarErrorDeInicio(int intento, String usuarioIngresado, String passwordIngresado) {
         System.out.println("------------------------------------------------------");
         System.out.println("Usuario o Contraseña Incorrecta");
-        System.out.println("Verifique los datos, Intento N°: " + intento+ " de " +datosDeUsoGeneral.getIntentosMaximos());
+        System.out.println("Verifique los datos, Intento N°: " + intento+ " de " +DatosDeUsoGeneral.getIntentosMaximos());
         System.out.println("------------------------------------------------------");
     }
 }

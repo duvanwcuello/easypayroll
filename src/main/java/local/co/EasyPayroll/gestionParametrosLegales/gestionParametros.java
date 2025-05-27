@@ -2,11 +2,11 @@ package local.co.EasyPayroll.gestionParametrosLegales;
 
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionParametrosLegales.parametrosLegalesGenerales.conceptosLegales;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionParametrosLegales.ParametrosLegalesGenerales.conceptosLegales;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class gestionParametros {
+public class GestionParametros {
     
     public static void menuGestionParametros(){
 
@@ -35,12 +35,12 @@ public class gestionParametros {
 
             switch (opcion){
                 case 1:
-                    limpiarPantalla.limpiarConsola();
-                    visualizarParametrosLegales.parametosLegalesActuales();
+                    LimpiarPantalla.limpiarConsola();
+                    VisualizarParametrosLegales.parametosLegalesActuales();
                     break;                    
                 case 2:
-                    limpiarPantalla.limpiarConsola();
-                    editarParametrosLegales.actualizarSalarioMinimo();
+                    LimpiarPantalla.limpiarConsola();
+                    EditarParametrosLegales.actualizarSalarioMinimo();
                     break;
                 case 3:
                     System.out.print("Nuevo salario integral: ");
@@ -85,26 +85,26 @@ public class gestionParametros {
                     break;
                 case 9:
                     continuar = false;
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.out.println("Saliendo de la gestión de Empleados...");
-                     simulacionPrograma.simulaEjecucion();
+                     SimulacionPrograma.simulaEjecucion();
                     System.err.println("Retrornando al Menu Principal...");
-                     simulacionPrograma.simulaEjecucion();
-                    limpiarPantalla.limpiarConsola();
+                     SimulacionPrograma.simulaEjecucion();
+                    LimpiarPantalla.limpiarConsola();
                     break;
                 case 0:
                     continuar = false;
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.out.println("¡Operacion Cancelada!...");
-                    simulacionPrograma.simulaEjecucion();
+                    SimulacionPrograma.simulaEjecucion();
 
                     System.out.println("Cerrando Sesion...");
-                     simulacionPrograma.simulaEjecucion();
+                     SimulacionPrograma.simulaEjecucion();
 
                     System.out.println("Cerrando Programa...");
-                    simulacionPrograma.continuarPrograma();
+                    SimulacionPrograma.continuarPrograma();
 
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.exit(0);
                     break;
                 default:

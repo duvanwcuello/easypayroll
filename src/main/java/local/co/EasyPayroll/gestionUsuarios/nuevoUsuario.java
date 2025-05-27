@@ -9,7 +9,7 @@ import local.co.EasyPayroll.gestionUtilidades.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class nuevoUsuario {
+public class NuevoUsuario {
 
     private static int contadorIdUsuario = 1;
 
@@ -43,14 +43,14 @@ public class nuevoUsuario {
             scanner.nextLine();
 
             if (opcion == 1) {
-                limpiarPantalla.limpiarConsola();
-                editarUsuarios.editarUsuarioExistente();
+                LimpiarPantalla.limpiarConsola();
+                EditarUsuarios.editarUsuarioExistente();
             } else {
                 System.out.println("Operación cancelada.....");
                 System.out.println("Volviendo a Gestion de Usuarios...");
-                simulacionPrograma.simulaEjecucion();;
-                limpiarPantalla.limpiarConsola();
-                gestionUsuarios.menuGestionUsuarios(usuarioNuevo);
+                SimulacionPrograma.simulaEjecucion();;
+                LimpiarPantalla.limpiarConsola();
+                GestionUsuarios.menuGestionUsuarios(usuarioNuevo);
             }
            return;
         }
@@ -90,16 +90,16 @@ public class nuevoUsuario {
                     }
                     String fechaRegistro = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
-                    try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosDeUsoGeneral.getArchivoUsuarios(), true))) {
+                    try (BufferedWriter bw = new BufferedWriter(new FileWriter(DatosDeUsoGeneral.getArchivoUsuarios(), true))) {
                         bw.write(contadorIdUsuario + "," + nombreEmpleado + "," + usuarioNuevo + "," + contrasena + "," + rol + "," + fechaRegistro);
                         bw.newLine();
                         System.out.println("GUARDANDO USUARIO...");
-                        simulacionPrograma.continuarPrograma();
-                        limpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.continuarPrograma();
+                        LimpiarPantalla.limpiarConsola();
                         System.out.println("USUARIO GUARDADO EXITOSAMENTE...");
                         contadorIdUsuario++;
-                        simulacionPrograma.continuarPrograma();
-                        limpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.continuarPrograma();
+                        LimpiarPantalla.limpiarConsola();
                         continuar = false;
                     } catch (IOException e) {
                         System.out.println("Error al guardar el usuario: " + e.getMessage());
@@ -113,7 +113,7 @@ public class nuevoUsuario {
     //Cargamos el contador desde el archivo empleados
     private static void cargarContadorId() {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoUsuarios()))) {
             String linea;
             int maxId = 0;
 
@@ -134,7 +134,7 @@ public class nuevoUsuario {
      * @return true si el usuario ya está registrado, false en caso contrario
      */
     private static boolean usuarioYaExiste(String nombreUsuario) {
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoUsuarios()))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");

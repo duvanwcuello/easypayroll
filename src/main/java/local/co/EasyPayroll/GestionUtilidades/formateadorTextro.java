@@ -3,7 +3,7 @@ package local.co.EasyPayroll.gestionUtilidades;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class formateadorTextro {
+public class FormateadorTextro {
 
   public static String formatearMoneda(double cantidad) {
     

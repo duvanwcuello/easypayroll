@@ -1,13 +1,13 @@
 package local.co.EasyPayroll;
 
-import local.co.EasyPayroll.gestionSeguridad.loggin;
-import local.co.EasyPayroll.gestionSeguridad.menuUsuarios;
-import local.co.EasyPayroll.gestionSeguridad.gestiondeContrasenias;
-import local.co.EasyPayroll.gestionUsuarios.editarUsuarios;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.mensajesparaUsuarios;
+import local.co.EasyPayroll.gestionSeguridad.Loggin;
+import local.co.EasyPayroll.gestionSeguridad.MenuUsuarios;
+import local.co.EasyPayroll.gestionSeguridad.GestiondeContrasenias;
+import local.co.EasyPayroll.gestionUsuarios.EditarUsuarios;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.MensajesparaUsuarios;
 
-public class aplicacion {
+public class Aplicacion {
     public static void main(String[] args) {
 
         String rolUsuarioIngresado= null;
@@ -23,10 +23,10 @@ public class aplicacion {
     private static void ejecutarProduccion(String rolUsuarioIngresado){
         
         // Instanciamos la clase limpiarPantalla
-        limpiarPantalla.limpiarConsola();
+        LimpiarPantalla.limpiarConsola();
         
         // Llamamos al metodo que muestra la bienvenida
-        mensajesparaUsuarios.mostrarBienvenida();
+        MensajesparaUsuarios.mostrarBienvenida();
         
         // presionamos una tecla para continuar
         // continuarEjecucionPrograma.continuarPrograma();
@@ -35,13 +35,13 @@ public class aplicacion {
         // limpiarPantalla.limpiarConsola();
 
         //Solicitamos Inicio de Sesion al usuario
-        loggin.solicitarDatosSesionInicial();
+        Loggin.solicitarDatosSesionInicial();
 
         //Limpiamos la pantalla
        // limpiarPantalla.limpiarConsola();
 
         //Cargamos el menu del usuario
-        menuUsuarios.menuPrincipalUsuario(rolUsuarioIngresado);
+        MenuUsuarios.menuPrincipalUsuario(rolUsuarioIngresado);
 
     }
 

@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionSeguridad.gestiondeContrasenias;
-import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionSeguridad.GestiondeContrasenias;
+import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class eliminarUsuarios {
+public class EliminarUsuarios {
     
      public static void eliminarUsuarioGuardado() {
 
@@ -31,7 +31,7 @@ public class eliminarUsuarios {
         List<String> usuariosActualizados = new ArrayList<>();
         boolean encontrado = false;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoUsuarios()))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
@@ -61,13 +61,13 @@ public class eliminarUsuarios {
         if (!confirmacionEliminar.equals("S")) {
 
            
-            simulacionPrograma.continuarPrograma();
-            simulacionPrograma.continuarPrograma();
+            SimulacionPrograma.continuarPrograma();
+            SimulacionPrograma.continuarPrograma();
             System.out.println("Operación cancelada. No se realizaron cambios.");
-            simulacionPrograma.simulaEjecucion();
+            SimulacionPrograma.simulaEjecucion();
             return;
         }else{
-            limpiarPantalla.limpiarConsola();
+            LimpiarPantalla.limpiarConsola();
 
            /** implementar seguridad para la eliminacion
             * gestiondeContrasenias.validarUsuarioActual();
@@ -80,7 +80,7 @@ public class eliminarUsuarios {
 
     private static void buscarUsuarioEliminara(String usuarioBuscado){
         try {
-            List<String> lineas = Files.readAllLines(Paths.get(datosDeUsoGeneral.getArchivoUsuarios()));
+            List<String> lineas = Files.readAllLines(Paths.get(DatosDeUsoGeneral.getArchivoUsuarios()));
             boolean usuarioEncontrado = false;
             List<String> lineasActualizadas = new ArrayList<>();
 
@@ -94,26 +94,26 @@ public class eliminarUsuarios {
             }
 
             if (usuarioEncontrado) {
-                Files.write(Paths.get(datosDeUsoGeneral.getArchivoUsuarios()),lineasActualizadas);
-                limpiarPantalla.limpiarConsola();
+                Files.write(Paths.get(DatosDeUsoGeneral.getArchivoUsuarios()),lineasActualizadas);
+                LimpiarPantalla.limpiarConsola();
                 System.out.println("""
                 |---------------------------------------|
                 | INFO: Usuario eliminado exitosamente. |
                 |---------------------------------------|""");
-                simulacionPrograma.continuarPrograma();
-                limpiarPantalla.limpiarConsola();
-                consultarUsuarios.consultarTodosLosUsuarios();
+                SimulacionPrograma.continuarPrograma();
+                LimpiarPantalla.limpiarConsola();
+                ConsultarUsuarios.consultarTodosLosUsuarios();
                 System.out.println("");
-                simulacionPrograma.continuarConTeclado();
-                limpiarPantalla.limpiarConsola();
+                SimulacionPrograma.continuarConTeclado();
+                LimpiarPantalla.limpiarConsola();
             } else {
                 System.out.println("""
                 --------------------------------------
                 | ERROR: Usuario no encontrado.       |
                 --------------------------------------
                 """);
-                simulacionPrograma.continuarConTeclado();
-                limpiarPantalla.limpiarConsola();
+                SimulacionPrograma.continuarConTeclado();
+                LimpiarPantalla.limpiarConsola();
             }
         } catch (IOException e) {
             System.out.println("""
@@ -121,8 +121,8 @@ public class eliminarUsuarios {
             | ERROR: No se pudo eliminar el usuario.        |
             -------------------------------------------------           
             """ + e.getMessage());
-             simulacionPrograma.continuarConTeclado();
-             limpiarPantalla.limpiarConsola();
+             SimulacionPrograma.continuarConTeclado();
+             LimpiarPantalla.limpiarConsola();
         }
     }
     

@@ -1,8 +1,8 @@
 package local.co.EasyPayroll.gestionNomina;
 
-import local.co.EasyPayroll.gestionParametrosLegales.parametrosLegalesGenerales;
+import local.co.EasyPayroll.gestionParametrosLegales.ParametrosLegalesGenerales;
 
-public class calculoCesantias {
+public class CalculoCesantias {
     
     /* En la base de liquidación se incluyen todos los conceptos que constituyen salario, como por ejemplo:
            - Salario
@@ -16,8 +16,8 @@ public class calculoCesantias {
             
     public static double calculoCesantias (double salarioEmpleado, int diasLaborados){
            
-       double salarioMinimo = parametrosLegalesGenerales.conceptosLegales.getSalarioMinimo();
-       double auxTransporte = parametrosLegalesGenerales.conceptosLegales.getAuxTransporte();
+       double salarioMinimo = ParametrosLegalesGenerales.conceptosLegales.getSalarioMinimo();
+       double auxTransporte = ParametrosLegalesGenerales.conceptosLegales.getAuxTransporte();
 
        if (salarioEmpleado <= (salarioMinimo * 2)){           
            double cesantiasEmpleado = (((salarioEmpleado + auxTransporte) * diasLaborados) / 360);

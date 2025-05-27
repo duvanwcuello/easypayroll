@@ -1,13 +1,13 @@
 package local.co.EasyPayroll.gestionNomina;
-import local.co.EasyPayroll.gestionParametrosLegales.parametrosLegalesGenerales;
+import local.co.EasyPayroll.gestionParametrosLegales.ParametrosLegalesGenerales;
 
-public class calculoParafiscales {
+public class CalculoParafiscales {
     // Porcentajes de aportes parafiscales
     private static final double ICBF = 0.03; // 3%
     private static final double SENA = 0.02; // 2%
     private static final double CAJA_COMPENSACION = 0.04; // 4%
 
-    double salarioMinimo = parametrosLegalesGenerales.conceptosLegales.getSalarioMinimo();
+    double salarioMinimo = ParametrosLegalesGenerales.conceptosLegales.getSalarioMinimo();
 
     public static double TotalParafiscales(double salarioMinimo) {
         double total = salarioMinimo * (ICBF + SENA + CAJA_COMPENSACION);

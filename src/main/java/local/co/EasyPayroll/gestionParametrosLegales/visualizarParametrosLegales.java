@@ -1,11 +1,11 @@
 package local.co.EasyPayroll.gestionParametrosLegales;
 
-import local.co.EasyPayroll.gestionParametrosLegales.parametrosLegalesGenerales.conceptosLegales;
-import local.co.EasyPayroll.gestionUtilidades.formateadorTextro;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionParametrosLegales.ParametrosLegalesGenerales.conceptosLegales;
+import local.co.EasyPayroll.gestionUtilidades.FormateadorTextro;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class visualizarParametrosLegales {
+public class VisualizarParametrosLegales {
 
     /**
      * permite mostrar los conceptos legales que estan parametrizados en el sistema
@@ -31,24 +31,24 @@ public class visualizarParametrosLegales {
                            " anualmente por el area encargada                           ");
         System.out.println("--------------------------------------------------------------");
 
-        System.out.println("| Salario mínimo actual:  \t| " + formateadorTextro.formatearMoneda(conceptosLegales.getSalarioMinimo())+"\t\t     |");
+        System.out.println("| Salario mínimo actual:  \t| " + FormateadorTextro.formatearMoneda(conceptosLegales.getSalarioMinimo())+"\t\t     |");
         System.out.println("|------------------------------------------------------------|");
-        System.out.println("| Salario integral actual: \t| " + formateadorTextro.formatearMoneda(conceptosLegales.getSalarioIntegral())+"\t     |");
+        System.out.println("| Salario integral actual: \t| " + FormateadorTextro.formatearMoneda(conceptosLegales.getSalarioIntegral())+"\t     |");
         System.out.println("|------------------------------------------------------------|");
-        System.out.println("| Auxilio de transporte: \t| " + formateadorTextro.formatearMoneda(conceptosLegales.getAuxTransporte())+"\t\t     |");
+        System.out.println("| Auxilio de transporte: \t| " + FormateadorTextro.formatearMoneda(conceptosLegales.getAuxTransporte())+"\t\t     |");
         System.out.println("|------------------------------------------------------------|");
-        System.out.println("| Salud - Empleado: \t\t| " + formateadorTextro.formatoPorcentaje(porcentajeSaludEmpleado)+"\t\t\t     |");
+        System.out.println("| Salud - Empleado: \t\t| " + FormateadorTextro.formatoPorcentaje(porcentajeSaludEmpleado)+"\t\t\t     |");
         System.out.println("|------------------------------------------------------------|");
-        System.out.println("| Salud - Empleador: \t\t| " + formateadorTextro.formatoPorcentaje(porcentajePensionEmpleador)+"\t\t\t     |");
+        System.out.println("| Salud - Empleador: \t\t| " + FormateadorTextro.formatoPorcentaje(porcentajePensionEmpleador)+"\t\t\t     |");
         System.out.println("|------------------------------------------------------------|");
-        System.out.println("| Pensión - Empleado: \t\t| " + formateadorTextro.formatoPorcentaje(porcentajePensionEmpleado)+"\t\t\t     |");
+        System.out.println("| Pensión - Empleado: \t\t| " + FormateadorTextro.formatoPorcentaje(porcentajePensionEmpleado)+"\t\t\t     |");
         System.out.println("|------------------------------------------------------------|");
-        System.out.println("| Pensión - Empleador: \t\t| " + formateadorTextro.formatoPorcentaje(porcentajePensionEmpleador)+"\t\t\t     |");
+        System.out.println("| Pensión - Empleador: \t\t| " + FormateadorTextro.formatoPorcentaje(porcentajePensionEmpleador)+"\t\t\t     |");
         System.out.println("|------------------------------------------------------------|");
         System.out.println("| Periodicidad nómina (días): \t| " + conceptosLegales.getPeriodicidadNomina()+"\t\t\t     |");
         System.out.println("|------------------------------------------------------------|\n");
-        simulacionPrograma.continuarConTeclado();
-        limpiarPantalla.limpiarConsola();
+        SimulacionPrograma.continuarConTeclado();
+        LimpiarPantalla.limpiarConsola();
     }
     
 }

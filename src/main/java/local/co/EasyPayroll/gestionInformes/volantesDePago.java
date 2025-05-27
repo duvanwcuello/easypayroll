@@ -5,17 +5,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionUtilidades.formateadorTextro;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.FormateadorTextro;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class volantesDePago {
+public class VolantesDePago {
     
     
     public static void mostrarVolanteEmpleado() {
 
         Scanner scanner = new Scanner (System.in);
-        limpiarPantalla.limpiarConsola();
+        LimpiarPantalla.limpiarConsola();
 
         System.out.println("\n------------------------------------------");
         System.out.println("|         GENERAR VOLANTE DE PAGO         |");
@@ -38,16 +38,16 @@ public class volantesDePago {
                 if (d[0].equals(id)) {
                     System.out.println("\n============ VOLANTE DE PAGO ============");
                     System.out.println("|) Empleado: " + d[1]);
-                    System.out.println("|) Salario base: " + formateadorTextro.formatearMoneda(Double.parseDouble(d[2])));
-                    System.out.println("|) Auxilio transporte: " +formateadorTextro.formatearMoneda(Double.parseDouble(d[3])));
-                    System.out.println("|) Recargos: " +formateadorTextro.formatearMoneda(Double.parseDouble(d[4])));
-                    System.out.println("|) Total devengado: " + formateadorTextro.formatearMoneda(Double.parseDouble(d[5])));
-                    System.out.println("|) Salud: " + formateadorTextro.formatearMoneda(Double.parseDouble(d[6])) + " | Pensión: " + formateadorTextro.formatearMoneda(Double.parseDouble(d[7])));
+                    System.out.println("|) Salario base: " + FormateadorTextro.formatearMoneda(Double.parseDouble(d[2])));
+                    System.out.println("|) Auxilio transporte: " +FormateadorTextro.formatearMoneda(Double.parseDouble(d[3])));
+                    System.out.println("|) Recargos: " +FormateadorTextro.formatearMoneda(Double.parseDouble(d[4])));
+                    System.out.println("|) Total devengado: " + FormateadorTextro.formatearMoneda(Double.parseDouble(d[5])));
+                    System.out.println("|) Salud: " + FormateadorTextro.formatearMoneda(Double.parseDouble(d[6])) + " | Pensión: " + FormateadorTextro.formatearMoneda(Double.parseDouble(d[7])));
                     System.out.println("=========================================");
-                    System.out.println("NETO A PAGAR: " +formateadorTextro.formatearMoneda(Double.parseDouble(d[8])));
+                    System.out.println("NETO A PAGAR: " +FormateadorTextro.formatearMoneda(Double.parseDouble(d[8])));
                     System.out.println("-----------------------------------------");
 
-                    simulacionPrograma.continuarConTeclado();
+                    SimulacionPrograma.continuarConTeclado();
                     return;
                 }
             }

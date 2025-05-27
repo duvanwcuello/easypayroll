@@ -7,21 +7,21 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionNomina.calculoNovedades;
-import local.co.EasyPayroll.gestionNomina.empleadoNomina;
-import local.co.EasyPayroll.gestionNomina.procesarNominaMes;
-import local.co.EasyPayroll.gestionParametrosLegales.parametrosLegalesGenerales;
-import local.co.EasyPayroll.gestionUtilidades.formateadorTextro;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionNomina.CalculoNovedades;
+import local.co.EasyPayroll.gestionNomina.EmpleadoNomina;
+import local.co.EasyPayroll.gestionNomina.ProcesarNominaMes;
+import local.co.EasyPayroll.gestionParametrosLegales.ParametrosLegalesGenerales;
+import local.co.EasyPayroll.gestionUtilidades.FormateadorTextro;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class informePlanillaPagos {
+public class InformePlanillaPagos {
 
     public static void mostrarPlanilla() {
 
     Scanner scanner = new Scanner(System.in);
 
-    limpiarPantalla.limpiarConsola();
+    LimpiarPantalla.limpiarConsola();
     
     System.out.println("\n------------------------------------------");
     System.out.println("|         GENERAR PLANILLA DE PAGO       |");
@@ -32,7 +32,7 @@ public class informePlanillaPagos {
 
     String archivoNovedades = "novedades_" + planillaMes.toLowerCase() + ".txt";
 
-    List<empleadoNomina> empleados = procesarNominaMes.cargarEmpleadosDesdeArchivo();
+    List<EmpleadoNomina> empleados = ProcesarNominaMes.cargarEmpleadosDesdeArchivo();
 
     System.out.println("\nPLANILLA DE PAGO DE NÓMINA - " + planillaMes.toUpperCase());
     System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
@@ -58,29 +58,29 @@ public class informePlanillaPagos {
             double henDom = Double.parseDouble(datos[7]);
             double recDom = Double.parseDouble(datos[8]);
 
-            Optional<empleadoNomina> empOpt = empleados.stream().filter(e -> e.getIdentificacion().equals(id)).findFirst();
+            Optional<EmpleadoNomina> empOpt = empleados.stream().filter(e -> e.getIdentificacion().equals(id)).findFirst();
             
             if (empOpt.isEmpty()) continue;
 
-            empleadoNomina emp = empOpt.get();
+            EmpleadoNomina emp = empOpt.get();
             double salario = emp.getSalarioBase();
 
             // Calcular novedades
             double totalNovedades = 0;
 
-            if (hed > 0) totalNovedades += calculoNovedades.calculoHorasExtrasDiurnas(salario, hed);
-            if (hen > 0) totalNovedades += calculoNovedades.calculoHorasExtrasNocturnas(salario, hen);
-            if (rn > 0) totalNovedades += calculoNovedades.calculoRecargoNocturno(salario, rn);
-            if (hedDom > 0) totalNovedades += calculoNovedades.calculoHorasExtrasDiurnasDomYFest(salario, 15, hedDom);
-            if (henDom > 0) totalNovedades += calculoNovedades.calculoHorasExtrasNocturnasDomYFest(salario, 15, henDom);
-            if (recDom > 0) totalNovedades += calculoNovedades.calculoRecargoDomYFest(salario, 15, recDom);
+            if (hed > 0) totalNovedades += CalculoNovedades.calculoHorasExtrasDiurnas(salario, hed);
+            if (hen > 0) totalNovedades += CalculoNovedades.calculoHorasExtrasNocturnas(salario, hen);
+            if (rn > 0) totalNovedades += CalculoNovedades.calculoRecargoNocturno(salario, rn);
+            if (hedDom > 0) totalNovedades += CalculoNovedades.calculoHorasExtrasDiurnasDomYFest(salario, 15, hedDom);
+            if (henDom > 0) totalNovedades += CalculoNovedades.calculoHorasExtrasNocturnasDomYFest(salario, 15, henDom);
+            if (recDom > 0) totalNovedades += CalculoNovedades.calculoRecargoDomYFest(salario, 15, recDom);
 
             // Auxilio transporte
-            double auxTransporte = salario <= (parametrosLegalesGenerales.conceptosLegales.getSalarioMinimo() * 2) ? parametrosLegalesGenerales.conceptosLegales.getAuxTransporte() : 0;
+            double auxTransporte = salario <= (ParametrosLegalesGenerales.conceptosLegales.getSalarioMinimo() * 2) ? ParametrosLegalesGenerales.conceptosLegales.getAuxTransporte() : 0;
 
             // Descuentos
-            double salud = salario * parametrosLegalesGenerales.conceptosLegales.getSaludEmpleado();
-            double pension = salario * parametrosLegalesGenerales.conceptosLegales.getPensionEmpleado();
+            double salud = salario * ParametrosLegalesGenerales.conceptosLegales.getSaludEmpleado();
+            double pension = salario * ParametrosLegalesGenerales.conceptosLegales.getPensionEmpleado();
             double totalDescuentos = salud + pension;
 
             // Total a pagar
@@ -89,17 +89,17 @@ public class informePlanillaPagos {
             System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n",
                 id,
                 emp.getNombre(),
-                formateadorTextro.formatearMoneda(salario),
-                formateadorTextro.formatearMoneda(auxTransporte),
-                formateadorTextro.formatearMoneda(totalNovedades),
-                formateadorTextro.formatearMoneda(salud),
-                formateadorTextro.formatearMoneda(pension),
-                formateadorTextro.formatearMoneda(totalDescuentos),
-                formateadorTextro.formatearMoneda(totalPagar));;
+                FormateadorTextro.formatearMoneda(salario),
+                FormateadorTextro.formatearMoneda(auxTransporte),
+                FormateadorTextro.formatearMoneda(totalNovedades),
+                FormateadorTextro.formatearMoneda(salud),
+                FormateadorTextro.formatearMoneda(pension),
+                FormateadorTextro.formatearMoneda(totalDescuentos),
+                FormateadorTextro.formatearMoneda(totalPagar));;
         }
         
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
-        simulacionPrograma.continuarConTeclado();
+        SimulacionPrograma.continuarConTeclado();
 
     } catch (IOException e) {
 

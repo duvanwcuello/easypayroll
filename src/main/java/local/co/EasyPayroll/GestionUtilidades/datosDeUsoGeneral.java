@@ -3,7 +3,7 @@ package local.co.EasyPayroll.gestionUtilidades;
 
 import java.io.*;
 
-public class datosDeUsoGeneral {
+public class DatosDeUsoGeneral {
 
     private static final String ARCHIVO_EMPLEADOS = "empleados.txt";
     private static final String ARCHIVO_USUARIOS = "usuarios.txt";

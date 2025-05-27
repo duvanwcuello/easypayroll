@@ -4,7 +4,7 @@ import java.util.*;
 
 import local.co.EasyPayroll.gestionUtilidades.*;
 
-public class gestionUsuarios {
+public class GestionUsuarios {
     /**
      * Muestra un menú interactivo para gestionar usuarios.
      * Permite crear, consultar, editar, mostrar usuarios o salir del sistema.
@@ -33,56 +33,56 @@ public class gestionUsuarios {
 
             switch (selecciondeUsuario) {
                 case 1:
-                    limpiarPantalla.limpiarConsola();
-                    simulacionPrograma.simulaEjecucion();;
-                    nuevoUsuario.crearNuevoUsuario();
+                    LimpiarPantalla.limpiarConsola();
+                    SimulacionPrograma.simulaEjecucion();;
+                    NuevoUsuario.crearNuevoUsuario();
                     break;
                 case 2:
-                    limpiarPantalla.limpiarConsola();
-                    consultarUsuarios.consultarUsuarioExistente();
+                    LimpiarPantalla.limpiarConsola();
+                    ConsultarUsuarios.consultarUsuarioExistente();
                    // simulacionPrograma.continuarConTeclado();
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     break;
                 case 3:
-                    limpiarPantalla.limpiarConsola();
-                    editarUsuarios.editarUsuarioExistente();
+                    LimpiarPantalla.limpiarConsola();
+                    EditarUsuarios.editarUsuarioExistente();
                    // simulacionPrograma.continuarConTeclado();
                     break;
                 case 4:
-                    limpiarPantalla.limpiarConsola();
-                    eliminarUsuarios.eliminarUsuarioGuardado();;
+                    LimpiarPantalla.limpiarConsola();
+                    EliminarUsuarios.eliminarUsuarioGuardado();;
                     break;
                 case 5:
-                    limpiarPantalla.limpiarConsola();
-                    consultarUsuarios.consultarTodosLosUsuarios();
-                    simulacionPrograma.continuarConTeclado();
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
+                    ConsultarUsuarios.consultarTodosLosUsuarios();
+                    SimulacionPrograma.continuarConTeclado();
+                    LimpiarPantalla.limpiarConsola();
                     menuGestionUsuarios(rolActual);
                     return;
                 case 9:
                     continuar = false;
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.out.println("Saliendo de la gestión de Usuarios...");
-                    simulacionPrograma.simulaEjecucion();
+                    SimulacionPrograma.simulaEjecucion();
                     System.err.println("Retrornando al Menu Principal...");
-                    simulacionPrograma.simulaEjecucion();
-                    limpiarPantalla.limpiarConsola();
+                    SimulacionPrograma.simulaEjecucion();
+                    LimpiarPantalla.limpiarConsola();
                     break;
                 case 0:
                     continuar = false;
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
                         System.out.println("¡Operacion Cancelada!...");
-                        simulacionPrograma.simulaEjecucion();
+                        SimulacionPrograma.simulaEjecucion();
                         System.out.println("Cerrando Sesion...");
-                        simulacionPrograma.simulaEjecucion();
+                        SimulacionPrograma.simulaEjecucion();
                         System.out.println("Cerrando Programa...");
-                        simulacionPrograma.continuarPrograma();
-                        limpiarPantalla.limpiarConsola();
+                        SimulacionPrograma.continuarPrograma();
+                        LimpiarPantalla.limpiarConsola();
                         System.exit(0);
                     break;
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
-                    simulacionPrograma.simulaEjecucion();
+                    SimulacionPrograma.simulaEjecucion();
            }
         }
     }

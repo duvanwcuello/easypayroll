@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.gestionContrato;
+package local.co.EasyPayroll.GestionContrato;
 import java.time.*;
 
 class Contrato {

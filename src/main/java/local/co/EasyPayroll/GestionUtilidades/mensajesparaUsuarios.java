@@ -1,6 +1,6 @@
 package local.co.EasyPayroll.gestionUtilidades;
 
-public class mensajesparaUsuarios {
+public class MensajesparaUsuarios {
 
      public static void mostrarBienvenida() {
 

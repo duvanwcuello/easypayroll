@@ -2,7 +2,9 @@ package local.co.EasyPayroll.gestionUtilidades;
 
 import java.util.Scanner;
 
-public class simulacionPrograma {
+public class SimulacionPrograma {
+
+    
 
     //para usar en el loggin y salida del programa
     public static void continuarPrograma(){
@@ -25,7 +27,7 @@ public class simulacionPrograma {
              try {
                 // Pausar por 500 milisegundos (0.30 segundos)
                 Thread.sleep(500); 
-                limpiarPantalla.limpiarConsola(); 
+                LimpiarPantalla.limpiarConsola(); 
             } catch (InterruptedException e) {
                 System.out.println("------ Interrumpida.");
             }

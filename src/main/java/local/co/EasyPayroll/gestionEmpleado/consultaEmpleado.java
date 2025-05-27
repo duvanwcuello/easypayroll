@@ -5,17 +5,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class consultaEmpleado {
+public class ConsultaEmpleado {
     
     public static void consultarEmpleadoExistente() {
        
         Scanner scanner = new Scanner(System.in);
 
-        limpiarPantalla.limpiarConsola();
+        LimpiarPantalla.limpiarConsola();
 
         System.out.println("-----------------------------------------------------");
         System.out.println("|                 CONSULTAR EMPLEADO                |");
@@ -26,7 +26,7 @@ public class consultaEmpleado {
         String identificacionEmpleado = scanner.nextLine();
         boolean empleadoEncontrado = false;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoEmpleados()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoEmpleados()))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");          
@@ -50,8 +50,8 @@ public class consultaEmpleado {
                     System.out.println("---------------------------------------------------------------");
 
                     empleadoEncontrado = true;
-                    simulacionPrograma.continuarConTeclado();
-                    limpiarPantalla.limpiarConsola();
+                    SimulacionPrograma.continuarConTeclado();
+                    LimpiarPantalla.limpiarConsola();
                     break;
                 }
             } 
@@ -61,7 +61,7 @@ public class consultaEmpleado {
         
         // Si el empleado no fue encontrado, se ofrece al usuario la opción de crear uno nuevo
         if (!empleadoEncontrado) {
-            limpiarPantalla.limpiarConsola();
+            LimpiarPantalla.limpiarConsola();
 
             System.out.println("---------------------------------");
             System.out.println("| ERROR: Empleado no encontrado |");
@@ -72,16 +72,16 @@ public class consultaEmpleado {
             scanner.nextLine();
 
             if (opcion == 1) {
-                nuevoEmpleado.crearNuevoEmpleado();
+                NuevoEmpleado.crearNuevoEmpleado();
             } else {
-                limpiarPantalla.limpiarConsola();
+                LimpiarPantalla.limpiarConsola();
             }
         }    
     }
     
     public static void consultarTodosLosEmpleados() {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoEmpleados()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoEmpleados()))) {
 
             System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------");
             System.out.println("                                                 MAESTRO DE EMPLEADOS");
@@ -99,14 +99,14 @@ public class consultaEmpleado {
                 }
             }
             System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------");
-            simulacionPrograma.continuarConTeclado();
-            limpiarPantalla.limpiarConsola();
+            SimulacionPrograma.continuarConTeclado();
+            LimpiarPantalla.limpiarConsola();
         } catch (IOException e) {
             System.out.println("\n-------------------------------------------------------");
             System.out.println("| ERROR: No se pudo leer el archivo de empleados. " + e.getMessage()+ "|");
             System.out.println("-------------------------------------------------------\n");
-            simulacionPrograma.continuarConTeclado();
-            limpiarPantalla.limpiarConsola();
+            SimulacionPrograma.continuarConTeclado();
+            LimpiarPantalla.limpiarConsola();
         }
     }
 }

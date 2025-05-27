@@ -3,12 +3,12 @@ package local.co.EasyPayroll.gestionParametrosLegales;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionParametrosLegales.parametrosLegalesGenerales.conceptosLegales;
-import local.co.EasyPayroll.gestionUtilidades.formateadorTextro;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionParametrosLegales.ParametrosLegalesGenerales.conceptosLegales;
+import local.co.EasyPayroll.gestionUtilidades.FormateadorTextro;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class editarParametrosLegales {
+public class EditarParametrosLegales {
 
     
     public static void actualizarSalarioMinimo(){
@@ -20,7 +20,7 @@ public class editarParametrosLegales {
         System.out.println("---------------------------");
         System.out.println("");
         System.out.println("Este parametro es un requisito legal y Afecta   \n- Salarios Actuales\n- Calculo Novedades.\n- Generacion de Nominaa.\n        ");
-        System.out.println("El Salario Minimo Actual es: "+ formateadorTextro.formatearMoneda(conceptosLegales.getSalarioMinimo()));
+        System.out.println("El Salario Minimo Actual es: "+ FormateadorTextro.formatearMoneda(conceptosLegales.getSalarioMinimo()));
         
         boolean continuar = true;
         while (continuar) {
@@ -32,13 +32,13 @@ public class editarParametrosLegales {
 
                     if (salarioMinimoActual == nuevoSalarioMinimo) {
                         System.out.println("El salario Minino no sufrio Actualizacion\n");
-                        simulacionPrograma.continuarConTeclado();
-                        limpiarPantalla.limpiarConsola();                          
+                        SimulacionPrograma.continuarConTeclado();
+                        LimpiarPantalla.limpiarConsola();                          
                     }else if (salarioMinimoActual > nuevoSalarioMinimo){
                         System.out.println("EL salario Minimo Ingresado No puede ser Inferior al actual");
                         System.out.println("");
                         System.out.println("INTENTE DE NUEVO.");
-                        simulacionPrograma.continuarPrograma();
+                        SimulacionPrograma.continuarPrograma();
                         actualizarSalarioMinimo();
                     }else if(salarioMinimoActual < nuevoSalarioMinimo ){
                         conceptosLegales.setSalarioMinimo(nuevoSalarioMinimo);
@@ -48,8 +48,8 @@ public class editarParametrosLegales {
             }catch(InputMismatchException e){
                 System.err.println("Tipo de Datos No Validos.");
                 System.err.println("Ingrese Valores Enteros.");
-                simulacionPrograma.continuarConTeclado();
-                limpiarPantalla.limpiarConsola();
+                SimulacionPrograma.continuarConTeclado();
+                LimpiarPantalla.limpiarConsola();
                 actualizarSalarioMinimo();
             }
         }

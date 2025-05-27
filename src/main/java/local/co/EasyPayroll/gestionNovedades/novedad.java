@@ -1,6 +1,6 @@
-package local.co.EasyPayroll.gestionNovedades;
+package local.co.EasyPayroll.GestionNovedades;
 
-class novedad {
+class Novedad {
     
 
         String identificacion;
@@ -8,7 +8,7 @@ class novedad {
         int horasExtras;
         int diasAusencia;
 
-        public novedad(String identificacion, String descripcion, int horasExtras, int diasAusencia) {
+        public Novedad(String identificacion, String descripcion, int horasExtras, int diasAusencia) {
             this.identificacion = identificacion;
             this.descripcion = descripcion;
             this.horasExtras = horasExtras;

@@ -1,20 +1,20 @@
-package local.co.EasyPayroll.gestionContrato;
+package local.co.EasyPayroll.GestionContrato;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class consultaContrato {
+public class ConsultaContrato {
     
     public static void consultarContratoExistente() {
        
         Scanner scanner = new Scanner(System.in);
-        limpiarPantalla.limpiarConsola();
+        LimpiarPantalla.limpiarConsola();
 
         System.out.println("--------------------------------------------------");
         System.out.println("|           CONSULTA DE CONTRATOS                |");
@@ -25,7 +25,7 @@ public class consultaContrato {
         String identificacionEmpleado = scanner.nextLine();
         boolean contratoEncontrado = false;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoContratos()))) {
             String linea;
 
             while ((linea = br.readLine()) != null) {
@@ -46,7 +46,7 @@ public class consultaContrato {
                     System.out.println("--------------------------------------------------------------------\n");
                     
                     contratoEncontrado = true;
-                    simulacionPrograma.continuarConTeclado();
+                    SimulacionPrograma.continuarConTeclado();
                     break;
                 }
                 
@@ -64,11 +64,11 @@ public class consultaContrato {
             scanner.nextLine();
 
             if (opcion == 1) {
-                nuevoContrato.crearNuevoContrato();
+                NuevoContrato.crearNuevoContrato();
             } else {
                 System.out.println("\nOperación cancelada por el usuario.");
                 
-                simulacionPrograma.continuarConTeclado();
+                SimulacionPrograma.continuarConTeclado();
             }
         }
            
@@ -76,7 +76,7 @@ public class consultaContrato {
 
     public static void consultarContratosExistentes() {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()))){
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoContratos()))){
 
             System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------");
             System.out.println("| \t\t\t\t\t\tCONSOLIDADO DE CONTRATOS"+"                                                                  |"); 
@@ -94,7 +94,7 @@ public class consultaContrato {
                 }
             }
             System.out.println("------------------------------------------------------------------------------------------------------------------------------------------");
-            simulacionPrograma.continuarConTeclado();
+            SimulacionPrograma.continuarConTeclado();
 
         }catch (IOException e){
             System.out.println("ERROR: No fue posible leer los empleados: " + e.getMessage());

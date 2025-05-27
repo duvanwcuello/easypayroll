@@ -1,6 +1,6 @@
 package local.co.EasyPayroll.gestionUtilidades;
 
-public class limpiarPantalla {
+public class LimpiarPantalla {
     
     public static void limpiarConsola() {
         try {

@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
-public class formatoFecha {
+public class FormatoFecha {
     
     public static LocalDate solicitarFechaNacimiento() {
 

@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package local.co.EasyPayroll.gestionNovedades;
+package local.co.EasyPayroll.GestionNovedades;
 
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionInformes.informesNovedades;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionInformes.InformesNovedades;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class gestionNovedades {
+public class GestionNovedades {
     
     public static void gestionNovedades(String rolActual){
                  
@@ -18,7 +18,7 @@ public class gestionNovedades {
         boolean continuar = true;
                 
         while(continuar){
-            limpiarPantalla.limpiarConsola();
+            LimpiarPantalla.limpiarConsola();
             System.out.println("");
             System.out.println("----------------------------------------");
             System.out.println("|        GESTION DE NOVEDADES.         |");
@@ -36,36 +36,36 @@ public class gestionNovedades {
             
             switch (selecciondeUsuario) {
                case 1:
-                   registroNovedades.registrarNovedadesxEmpleado();;
+                   RegistroNovedades.registrarNovedadesxEmpleado();;
                    break;
                case 2:
-                    registroNovedades.registroMasivoNovedades();
+                    RegistroNovedades.registroMasivoNovedades();
                     break;
                 case 3:
-                    informesNovedades.consolidadoNovedades();
+                    InformesNovedades.consolidadoNovedades();
                     break;
                 case 9:
                     continuar = false;
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.out.println("Saliendo de la gestión de Novedades...");
-                     simulacionPrograma.simulaEjecucion();
+                     SimulacionPrograma.simulaEjecucion();
                     System.err.println("Retrornando al Menu Principal...");
-                     simulacionPrograma.simulaEjecucion();
-                    limpiarPantalla.limpiarConsola();
+                     SimulacionPrograma.simulaEjecucion();
+                    LimpiarPantalla.limpiarConsola();
                     break;
                 case 0:
                     continuar = false;
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.out.println("¡Operacion Cancelada!...");
-                     simulacionPrograma.simulaEjecucion();
+                     SimulacionPrograma.simulaEjecucion();
 
                     System.out.println("Cerrando Sesion...");
-                     simulacionPrograma.simulaEjecucion();
+                     SimulacionPrograma.simulaEjecucion();
 
                     System.out.println("Cerrando Programa...");
-                    simulacionPrograma.continuarPrograma();
+                    SimulacionPrograma.continuarPrograma();
 
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.exit(0);
                     break;
                 default:

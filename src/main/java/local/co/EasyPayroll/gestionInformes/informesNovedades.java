@@ -6,16 +6,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class informesNovedades {
+public class InformesNovedades {
     
 
      public static void consolidadoNovedades() {
 
         Scanner scanner = new Scanner(System.in);
-        limpiarPantalla.limpiarConsola();
+        LimpiarPantalla.limpiarConsola();
 
         System.out.println("----------------------------------------------------");
         System.out.println("|               CONSULTA DE NOVEDADES              |");
@@ -30,7 +30,7 @@ public class informesNovedades {
 
         if (!archivo.exists()) {
             System.out.println("\nERROR: El archivo no existe en la ruta especificada o Operación cancelada.");
-            simulacionPrograma.continuarConTeclado();
+            SimulacionPrograma.continuarConTeclado();
             //return;
         }
 
@@ -54,11 +54,11 @@ public class informesNovedades {
             }
 
             System.out.println("-------------------------------------------------------------------------------------------------------");
-            simulacionPrograma.continuarConTeclado();
+            SimulacionPrograma.continuarConTeclado();
 
         } catch (IOException e) {
             System.out.println("\nERROR: No se puede leer el archivo: " + e.getMessage());
-            simulacionPrograma.continuarConTeclado();
+            SimulacionPrograma.continuarConTeclado();
         }
     }
 

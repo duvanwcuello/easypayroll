@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Scanner;
 
 
-import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class gestiondeContrasenias {
+public class GestiondeContrasenias {
     
       /**
      * Informa si un usuario existe para recuperar su cuenta.
@@ -24,7 +24,7 @@ public class gestiondeContrasenias {
         System.out.print("Ingrese su nombre de usuario: ");
         String usuario = scanner.nextLine().trim();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoUsuarios()))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
@@ -46,7 +46,7 @@ public class gestiondeContrasenias {
 
     public static void cambiarContraseñiaUsuario(){
         
-        limpiarPantalla.limpiarConsola();
+        LimpiarPantalla.limpiarConsola();
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("|----------------------------------------------------------|");
@@ -64,7 +64,7 @@ public class gestiondeContrasenias {
 
         List<String> usuariosGuardados = new ArrayList<>();
         boolean encontrado = false;
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))){
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoUsuarios()))){
             String linea;
             while((linea =br.readLine())!=null){
                 String [] datos =linea.split(",");
@@ -82,18 +82,18 @@ public class gestiondeContrasenias {
         }
 
         if(encontrado){
-            try(BufferedWriter bw = new BufferedWriter(new FileWriter(datosDeUsoGeneral.getArchivoUsuarios()))){
+            try(BufferedWriter bw = new BufferedWriter(new FileWriter(DatosDeUsoGeneral.getArchivoUsuarios()))){
                 for (String u : usuariosGuardados){
                     bw.write(u);
                     bw.newLine();
                 }
-                limpiarPantalla.limpiarConsola();
+                LimpiarPantalla.limpiarConsola();
                 System.out.println("|--------------------------------------|");
                 System.out.println("|            GUARDADO EXITOSO          |");
                 System.out.println("| Contraseña Actualizada Correctalente |");
                 System.out.println("|--------------------------------------|");
-                simulacionPrograma.simulaEjecucion();
-                limpiarPantalla.limpiarConsola();
+                SimulacionPrograma.simulaEjecucion();
+                LimpiarPantalla.limpiarConsola();
                 
             }catch(IOException e){
                 System.out.println("Error al guardar cambios: " + e.getMessage());
@@ -119,7 +119,7 @@ public class gestiondeContrasenias {
         System.out.print("Contraseña: ");
         String passwordIngresado = scanner.nextLine().trim();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios()))){
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoUsuarios()))){
             String linea;
             while((linea =br.readLine())!=null){
                 String [] datos =linea.split(",");

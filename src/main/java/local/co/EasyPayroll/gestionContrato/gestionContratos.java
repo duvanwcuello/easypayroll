@@ -1,11 +1,11 @@
-package local.co.EasyPayroll.gestionContrato;
+package local.co.EasyPayroll.GestionContrato;
 
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class gestionContratos {
+public class GestionContratos {
 
     public static void gestionContrato(String rolActual) {
 
@@ -13,7 +13,7 @@ public class gestionContratos {
         boolean continuar = true;
         
         while (continuar) {
-            limpiarPantalla.limpiarConsola();
+            LimpiarPantalla.limpiarConsola();
             System.out.println("\n---------------------------------");
             System.out.println("|      GESTION DE CONTRATOS     |");
             System.out.println("---------------------------------");
@@ -31,48 +31,48 @@ public class gestionContratos {
 
             switch (selecciondeUsuario) {
                 case 1:
-                    limpiarPantalla.limpiarConsola();
-                    nuevoContrato.crearNuevoContrato();
+                    LimpiarPantalla.limpiarConsola();
+                    NuevoContrato.crearNuevoContrato();
                     break;
                 case 2:
-                    limpiarPantalla.limpiarConsola();
-                    consultaContrato.consultarContratoExistente();
+                    LimpiarPantalla.limpiarConsola();
+                    ConsultaContrato.consultarContratoExistente();
                     break;
                 case 3:
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.out.println("-------------------------------------------");
                     System.out.println("|           EDICIÓN DE CONTRATOS          |");
                     System.out.println("-------------------------------------------\n");
                     System.out.print("- Ingrese el Numero de contrato a editar: ");
                     String numeroContratoEditar = scanner.nextLine();
-                    editarContrato.editarContrato(numeroContratoEditar);
+                    EditarContrato.editarContrato(numeroContratoEditar);
                     break;
                 case 4:
-                    limpiarPantalla.limpiarConsola();
-                    consultaContrato.consultarContratosExistentes();
+                    LimpiarPantalla.limpiarConsola();
+                    ConsultaContrato.consultarContratosExistentes();
                     break;
                 case 9:
                     continuar = false;
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.out.println("Saliendo de la gestión de Contratos...");
-                    simulacionPrograma.simulaEjecucion();
+                    SimulacionPrograma.simulaEjecucion();
                     System.err.println("Retrornando al Menu Principal...");
-                    simulacionPrograma.simulaEjecucion();
-                    limpiarPantalla.limpiarConsola();
+                    SimulacionPrograma.simulaEjecucion();
+                    LimpiarPantalla.limpiarConsola();
                     break;
                 case 0:
                     continuar = false;
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.out.println("¡Operacion Cancelada!...");
-                    simulacionPrograma.simulaEjecucion();
+                    SimulacionPrograma.simulaEjecucion();
 
                     System.out.println("Cerrando Sesion...");
-                    simulacionPrograma.simulaEjecucion();   ;
+                    SimulacionPrograma.simulaEjecucion();   ;
 
                     System.out.println("Cerrando Programa...");
-                    simulacionPrograma.continuarPrograma();
+                    SimulacionPrograma.continuarPrograma();
 
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.exit(0);
                     break;
                 default:

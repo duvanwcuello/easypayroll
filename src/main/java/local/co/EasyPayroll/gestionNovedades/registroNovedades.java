@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.gestionNovedades;
+package local.co.EasyPayroll.GestionNovedades;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,17 +9,17 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.formateadorTextro;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.FormateadorTextro;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class registroNovedades {
+public class RegistroNovedades {
 
      public static void registrarNovedadesxEmpleado() {
         
         Scanner scanner = new Scanner(System.in);
-        limpiarPantalla.limpiarConsola();
+        LimpiarPantalla.limpiarConsola();
 
         System.out.println("----------------------------------------------------");
         System.out.println("|        REGISTRO DE NOVEDADES POR EMPLEADO        |");
@@ -36,7 +36,7 @@ public class registroNovedades {
 
             if (quincenaMes.isEmpty() || quincenaMes == null || quincenaMes.length() != 10) {
                 System.out.println("\nERROR: Formato incorrecto, por favor, intente nuevamente.");
-                simulacionPrograma.continuarConTeclado();
+                SimulacionPrograma.continuarConTeclado();
                 return;
             }else{                
                 novedades = "novedades_" + quincenaMes + ".txt";
@@ -50,7 +50,7 @@ public class registroNovedades {
 
         boolean empleadoExiste = false;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoContratos()))) {
             String linea;
 
             while ((linea = br.readLine()) != null) {
@@ -63,7 +63,7 @@ public class registroNovedades {
             }
         } catch (IOException e) {
             System.out.println("\nERROR: No se pudo leer empleados.txt: " + e.getMessage());
-            simulacionPrograma.continuarConTeclado();
+            SimulacionPrograma.continuarConTeclado();
             return;
         }
         
@@ -71,7 +71,7 @@ public class registroNovedades {
             
             System.out.println("\nERROR: El empleado con identificación " + idEmpleado + " no existe,");
             System.out.println("INFO: Por favor, Dirijase al modulo de empleados y registrelo.");
-            simulacionPrograma.continuarConTeclado();
+            SimulacionPrograma.continuarConTeclado();
             return;
         }
 
@@ -82,7 +82,7 @@ public class registroNovedades {
         // Verifica que el archivo de novedades exista antes de intentar leer o escribir
         if (!archivoNovedades.exists()) {
             System.out.println("\nERROR: El archivo de novedades no existe. No se puede registrar la novedad.");
-            simulacionPrograma.continuarConTeclado();
+            SimulacionPrograma.continuarConTeclado();
             return;
         }
         try (BufferedReader br = new BufferedReader(new FileReader(archivoNovedades))){
@@ -97,12 +97,12 @@ public class registroNovedades {
             }
         } catch (IOException e) {
             System.out.println("\nERROR: No se pudo leer el archivo: " + e.getMessage());
-            simulacionPrograma.continuarConTeclado();
+            SimulacionPrograma.continuarConTeclado();
             return;
         }
         if (novedadExiste) {
             System.out.println("\nERROR: Ya existe un registro de novedades para el empleado " + idEmpleado + " en el archivo " + rutaArchivo);
-            simulacionPrograma.continuarConTeclado();
+            SimulacionPrograma.continuarConTeclado();
             return;
         }
         System.out.print("\n) DV08 - Horas extra diurnas: ");
@@ -128,7 +128,7 @@ public class registroNovedades {
 
         System.out.println("\nSUCCES: Registro guardado correctamente para el empleado: " + idEmpleado);
 
-        simulacionPrograma.continuarPrograma();
+        SimulacionPrograma.continuarPrograma();
     
     }
 
@@ -152,7 +152,7 @@ public class registroNovedades {
 
             if (quincenaMes.isEmpty() || quincenaMes == null || quincenaMes.length() != 10) {
                 System.out.println("\nERROR: Formato incorrecto, por favor, intente nuevamente.");
-                simulacionPrograma.continuarConTeclado();
+                SimulacionPrograma.continuarConTeclado();
                 return;
             }else{                
                 archivoNovedades = "novedades_" + quincenaMes + ".txt";
@@ -160,7 +160,7 @@ public class registroNovedades {
             }
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoContratos()))) {
 
             String linea;
             System.out.println("\n2. REGISTRO DE LAS NOVEDADES\n");
@@ -175,7 +175,7 @@ public class registroNovedades {
                 double salarioEmpleado = Double.parseDouble(datos[17]);
 
                 System.out.println("Empleado: " + nombreEmpleado);
-                System.out.println("Salario base: " + formateadorTextro.formatearMoneda(salarioEmpleado));
+                System.out.println("Salario base: " + FormateadorTextro.formatearMoneda(salarioEmpleado));
 
                 System.out.print("\nDV08 - Horas extra diurnas: "); 
                 double hed = scanner.nextDouble();
@@ -203,11 +203,11 @@ public class registroNovedades {
 
             if (linea == null) {
                 System.out.println("\nSUCCES: Registro exitoso.");                
-                simulacionPrograma.continuarConTeclado();
+                SimulacionPrograma.continuarConTeclado();
             }               
         } catch (IOException e) {
             System.out.println("\nERROR: No se guardaron las novedades: " + e.getMessage());
-            simulacionPrograma.continuarConTeclado();
+            SimulacionPrograma.continuarConTeclado();
         } 
     }
 
@@ -221,7 +221,7 @@ public class registroNovedades {
 
         } catch (IOException e){
             System.out.println("\nERROR: No se guardaron las novedades: " + e.getMessage());
-            simulacionPrograma.continuarConTeclado();
+            SimulacionPrograma.continuarConTeclado();
         }
     }
 

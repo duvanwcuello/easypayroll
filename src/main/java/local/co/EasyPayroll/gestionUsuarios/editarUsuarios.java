@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class editarUsuarios {
+public class EditarUsuarios {
 
     /**
      * Permite editar la contraseña y el rol de un usuario existente.
@@ -23,7 +23,7 @@ public class editarUsuarios {
      */
     public static void editarUsuarioExistente() {
        
-        limpiarPantalla.limpiarConsola();
+        LimpiarPantalla.limpiarConsola();
         Scanner scanner = new Scanner(System.in);
         
         System.out.println("|---------------------------------------------|");
@@ -40,7 +40,7 @@ public class editarUsuarios {
         List<String> usuariosActualizados = new ArrayList<>();
         boolean encontrado = false;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoUsuarios())  )) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoUsuarios())  )) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
@@ -61,13 +61,13 @@ public class editarUsuarios {
                     String confirmarEdicion = scanner.nextLine().trim().toUpperCase();
 
                         if (!confirmarEdicion.equals("S")) {      
-                            simulacionPrograma.continuarPrograma();
+                            SimulacionPrograma.continuarPrograma();
                             System.out.println("Cancelando Edicion de Usuario... No se realizaron cambios.");
-                            simulacionPrograma.simulaEjecucion();
+                            SimulacionPrograma.simulaEjecucion();
                             
                             System.out.println("Retormando al Menu de Gestion de Usuarios...");
-                            simulacionPrograma.continuarPrograma();
-                            limpiarPantalla.limpiarConsola();
+                            SimulacionPrograma.continuarPrograma();
+                            LimpiarPantalla.limpiarConsola();
                             return; 
                         } else{
                             System.err.println("\n");
@@ -99,10 +99,10 @@ public class editarUsuarios {
                     String confirmar = scanner.nextLine().trim().toUpperCase();
                             
                     if (!confirmar.equals("S")) {
-                        simulacionPrograma.continuarPrograma();
-                        simulacionPrograma.continuarPrograma();
+                        SimulacionPrograma.continuarPrograma();
+                        SimulacionPrograma.continuarPrograma();
                         System.out.println("Operación cancelada. No se realizaron cambios.");
-                        simulacionPrograma.simulaEjecucion();
+                        SimulacionPrograma.simulaEjecucion();
                        
                        //gestionUsuarios.menuGestionUsuarios(usuarioIngresado);
                         return;
@@ -123,19 +123,19 @@ public class editarUsuarios {
         }
 
         if (encontrado) {
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosDeUsoGeneral.getArchivoUsuarios()))) {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(DatosDeUsoGeneral.getArchivoUsuarios()))) {
                 for (String u : usuariosActualizados) {
                         bw.write(u);
                         bw.newLine();
                 }
 
-                limpiarPantalla.limpiarConsola();
+                LimpiarPantalla.limpiarConsola();
                 System.out.println("--------------------------------------");
                 System.out.println("|         GUARDADO EXITOSO           |");
                 System.out.println("| Usuario actualizado correctamente. |");
                 System.out.println("--------------------------------------");
-                simulacionPrograma.simulaEjecucion();
-                limpiarPantalla.limpiarConsola();
+                SimulacionPrograma.simulaEjecucion();
+                LimpiarPantalla.limpiarConsola();
 
                  // menuUsuarios.menuPrincipalUsuario(usuarioIngresado);
             } catch (IOException e) {
@@ -146,9 +146,9 @@ public class editarUsuarios {
             System.out.println("     ¡¡ADVERTENCIA!!");
             System.out.println("---------------------------");
             System.out.println("Usuario no encontrado...");
-            simulacionPrograma.continuarPrograma();
+            SimulacionPrograma.continuarPrograma();
             System.out.println("Intente Nuevamente...");
-            simulacionPrograma.simulaEjecucion();
+            SimulacionPrograma.simulaEjecucion();
             editarUsuarioExistente();
         }
         

@@ -8,17 +8,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class editarEmpleado {
+public class EditarEmpleado {
     
     public static void editarEmpleadoExistente(String identificacion) {
 
         List<String> empleados = new ArrayList<>();
         boolean encontrado = false;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoEmpleados()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoEmpleados()))) {
 
             System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------");
             System.out.println("EDICIÓN DEL MAESTRO DE EMPLEADOS");
@@ -45,7 +45,7 @@ public class editarEmpleado {
                     System.out.println("\n\n-------------------------------------------------------------------------------------------------------------------------------------------------------");
 
                     System.out.println("Ingrese los nuevos datos del empleado con ID: " + identificacion + "\n");
-                    Empleado empleadoActualizado = nuevoEmpleado.solicitarDatosEmpleado(identificacion);
+                    Empleado empleadoActualizado = NuevoEmpleado.solicitarDatosEmpleado(identificacion);
 
                     empleados.add(empleadoActualizado.getId() + "," +
                     empleadoActualizado.getIdentificacion() + "," +
@@ -75,7 +75,7 @@ public class editarEmpleado {
             System.out.println("| ERROR: No se pudo leer el archivo de empleados. " + e.getMessage()+ "|");
             System.out.println("-------------------------------------------------------\n");
 
-            simulacionPrograma.continuarConTeclado();
+            SimulacionPrograma.continuarConTeclado();
             return;
 
         }
@@ -86,11 +86,11 @@ public class editarEmpleado {
             System.out.println("| ERROR: Empleado no encontrado.     |");
             System.out.println("--------------------------------------\n");
 
-            simulacionPrograma.continuarConTeclado();
+            SimulacionPrograma.continuarConTeclado();
             return;
         }
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosDeUsoGeneral.getArchivoEmpleados()))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(DatosDeUsoGeneral.getArchivoEmpleados()))) {
 
             for (String empleado : empleados) {
                 bw.write(empleado);
@@ -101,7 +101,7 @@ public class editarEmpleado {
             System.out.println("| INFO: Empleado editado exitosamente!    |");
             System.out.println("-------------------------------------------\n");
 
-            simulacionPrograma.simulaEjecucion();
+            SimulacionPrograma.simulaEjecucion();
 
         } catch (IOException e) {
             
@@ -110,7 +110,7 @@ public class editarEmpleado {
             System.out.println("| ERROR: No se pudo guardar el empleado editado. " + e.getMessage()+ "|");
             System.out.println("-------------------------------------------------------\n");
 
-            simulacionPrograma.continuarConTeclado();
+            SimulacionPrograma.continuarConTeclado();
         }
     }
 }

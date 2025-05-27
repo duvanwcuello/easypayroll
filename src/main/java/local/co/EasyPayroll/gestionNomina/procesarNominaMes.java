@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionNovedades.calculoNovedades;
-import local.co.EasyPayroll.gestionParametrosLegales.parametrosLegalesGenerales.*;
+import local.co.EasyPayroll.GestionNovedades.CalculoNovedades;
+import local.co.EasyPayroll.gestionParametrosLegales.ParametrosLegalesGenerales.*;
 import local.co.EasyPayroll.gestionUtilidades.*;
 
     
-public class procesarNominaMes{
+public class ProcesarNominaMes{
 
 public static void procesarNomina(){
 
@@ -34,12 +34,12 @@ public static void procesarNomina(){
     if (mes.isEmpty() || mes.length() < 10) {
 
         System.out.println("\nERROR: El nombre del archivo es invalido o esta vacío.");
-        simulacionPrograma.continuarConTeclado();
+        SimulacionPrograma.continuarConTeclado();
         procesarNomina();
         //return;
     }
     
-    try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()));
+    try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoContratos()));
 
         BufferedWriter bw = new BufferedWriter(new FileWriter(archivoPlanilla))){
         String linea;
@@ -77,12 +77,12 @@ public static void procesarNomina(){
                 }
             }
 
-            double extras = calculoNovedades.calculoHorasExtrasDiurnas(salarioBaseEmpleado, hed)
-                        + calculoNovedades.calculoHorasExtrasNocturnas(salarioBaseEmpleado, hen)
-                        + calculoNovedades.calculoRecargoNocturno(salarioBaseEmpleado, rn)
-                        + calculoNovedades.calculoHorasExtrasDiurnasDomYFest(salarioBaseEmpleado, conceptosLegales.getPeriodicidadNomina(), hedDom)
-                        + calculoNovedades.calculoHorasExtrasNocturnasDomYFest(salarioBaseEmpleado, conceptosLegales.getPeriodicidadNomina(), henDom)
-                        + calculoNovedades.calculoRecargoDomYFest(salarioBaseEmpleado, conceptosLegales.getPeriodicidadNomina(), recDom);
+            double extras = CalculoNovedades.calculoHorasExtrasDiurnas(salarioBaseEmpleado, hed)
+                        + CalculoNovedades.calculoHorasExtrasNocturnas(salarioBaseEmpleado, hen)
+                        + CalculoNovedades.calculoRecargoNocturno(salarioBaseEmpleado, rn)
+                        + CalculoNovedades.calculoHorasExtrasDiurnasDomYFest(salarioBaseEmpleado, conceptosLegales.getPeriodicidadNomina(), hedDom)
+                        + CalculoNovedades.calculoHorasExtrasNocturnasDomYFest(salarioBaseEmpleado, conceptosLegales.getPeriodicidadNomina(), henDom)
+                        + CalculoNovedades.calculoRecargoDomYFest(salarioBaseEmpleado, conceptosLegales.getPeriodicidadNomina(), recDom);
 
             double salarioPeriodo = (salarioBaseEmpleado / 30) * conceptosLegales.getPeriodicidadNomina();
             double devengado = salarioPeriodo + aux + extras;
@@ -93,12 +93,12 @@ public static void procesarNomina(){
 
             // Mostrar Procesamiento de datos en pantalla 
             System.out.printf("\nEmpleado: %s\n", nombreEmpleado);
-            System.out.printf("Salario base: %s\n", formateadorTextro.formatearMoneda(salarioBaseEmpleado));
-            System.out.printf("Aux transporte: %s\n", formateadorTextro.formatearMoneda(aux));
-            System.out.printf("Total recargos: %s\n", formateadorTextro.formatearMoneda(extras));
-            System.out.printf("Devengado: %s\n", formateadorTextro.formatearMoneda(devengado));
-            System.out.printf("Salud: %s | Pensión: %s\n", formateadorTextro.formatearMoneda(saludEmpleado), formateadorTextro.formatearMoneda(pensionEmpleado));
-            System.out.printf("Neto a pagar: %s\n", formateadorTextro.formatearMoneda(salarioNeto));
+            System.out.printf("Salario base: %s\n", FormateadorTextro.formatearMoneda(salarioBaseEmpleado));
+            System.out.printf("Aux transporte: %s\n", FormateadorTextro.formatearMoneda(aux));
+            System.out.printf("Total recargos: %s\n", FormateadorTextro.formatearMoneda(extras));
+            System.out.printf("Devengado: %s\n", FormateadorTextro.formatearMoneda(devengado));
+            System.out.printf("Salud: %s | Pensión: %s\n", FormateadorTextro.formatearMoneda(saludEmpleado), FormateadorTextro.formatearMoneda(pensionEmpleado));
+            System.out.printf("Neto a pagar: %s\n", FormateadorTextro.formatearMoneda(salarioNeto));
             System.out.println("----------------------------------------------------");
 
             // Guardamos planilla de Nomina procesada
@@ -107,7 +107,7 @@ public static void procesarNomina(){
         }
 
         System.out.println("Procesamiento exitoso. Planilla generada: " + archivoPlanilla);
-        simulacionPrograma.continuarPrograma();
+        SimulacionPrograma.continuarPrograma();
 
         } catch (IOException e) {
             System.out.println("Error al procesar nómina: " + e.getMessage());
@@ -116,7 +116,7 @@ public static void procesarNomina(){
 
     public static void calcularNomina() {
 
-        List<empleadoNomina> empleados = cargarEmpleadosDesdeArchivo();
+        List<EmpleadoNomina> empleados = cargarEmpleadosDesdeArchivo();
 
         String mesActual = LocalDate.now().getMonth().name().toLowerCase();
         String archivoNovedades = "novedades_" + mesActual + ".txt";
@@ -134,7 +134,7 @@ public static void procesarNomina(){
                 int ausencias = Integer.parseInt(partes[3]);
 
                 // Buscar al empleado en la lista
-                empleadoNomina emp = empleados.stream()
+                EmpleadoNomina emp = empleados.stream()
                         .filter(e -> e.getIdentificacion().equals(id))
                         .findFirst()
                         .orElse(null);
@@ -157,11 +157,11 @@ public static void procesarNomina(){
         }
     }
 
-    public static List<empleadoNomina> cargarEmpleadosDesdeArchivo() {
+    public static List<EmpleadoNomina> cargarEmpleadosDesdeArchivo() {
         
-        List<empleadoNomina> empleados = new ArrayList<>();
+        List<EmpleadoNomina> empleados = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoContratos()))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
@@ -171,7 +171,7 @@ public static void procesarNomina(){
                     String id = datos[4]; // identificación del empleado
                     String nombre = datos[5] + " " + datos[7]; // Primer nombre + primer apellido
                     double salario = Double.parseDouble(datos[17]); // salario
-                    empleados.add(new empleadoNomina(id, nombre, salario));
+                    empleados.add(new EmpleadoNomina(id, nombre, salario));
                 }
             }
         } catch (IOException e) {

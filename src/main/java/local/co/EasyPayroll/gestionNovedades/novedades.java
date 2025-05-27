@@ -1,21 +1,21 @@
 
-package local.co.EasyPayroll.gestionNovedades;
+package local.co.EasyPayroll.GestionNovedades;
 
 
 import java.util.*;
 
-import local.co.EasyPayroll.gestionSeguridad.menuUsuarios;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionSeguridad.MenuUsuarios;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
 
-public class novedades {
+public class Novedades {
 
     public static void menuNovedades(String rolActual) {
         
         Scanner scanner = new Scanner(System.in);
         boolean continuar = true;
-        limpiarPantalla.limpiarConsola();
+        LimpiarPantalla.limpiarConsola();
 
         while (continuar) {
 
@@ -37,19 +37,19 @@ public class novedades {
 
             switch (opcionNovedades) {
                 case 1:
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                    // consolidadoNovedades();
                     break;
                 case 2:
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     //registroMasivoNovedades();
                     break;
                 case 3:
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                    // registrarNovedadesxEmpleado();
                     break;
                 case 4:                    
-                    menuUsuarios.menuPrincipalUsuario(rolActual);
+                    MenuUsuarios.menuPrincipalUsuario(rolActual);
                     break;
                 case 0:
                     continuar = false;
@@ -58,7 +58,7 @@ public class novedades {
                     System.exit(0);
                 default:
                     System.out.println("Opción no válida, por favor, seleccione una opción válida.");
-                    simulacionPrograma.continuarConTeclado();
+                    SimulacionPrograma.continuarConTeclado();
             }
         }
     }

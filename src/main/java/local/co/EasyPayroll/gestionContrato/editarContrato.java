@@ -1,4 +1,4 @@
-package local.co.EasyPayroll.gestionContrato;
+package local.co.EasyPayroll.GestionContrato;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class editarContrato {
+public class EditarContrato {
 
     // Permite editar un contrato existente por su número
     public static void editarContrato(String numeroDeContrato) {
@@ -23,19 +23,19 @@ public class editarContrato {
         List<String> listaContratos = new ArrayList<>();
         boolean contratoExistente = false;
 
-        try(BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()))) {
+        try(BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoContratos()))) {
             String linea;
             
             while((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
                 
                 if(datos[2].equals(numeroDeContrato)) {
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.out.println("CONTRATO EN EDICIÓN: " + numeroDeContrato);
                     boolean continuar = true;
                     
                     while(continuar) {
-                        limpiarPantalla.limpiarConsola();
+                        LimpiarPantalla.limpiarConsola();
                         System.out.println("\n---------------------------------------------------------");
                         System.out.println("SELECCIONE LA INFORMACION QUE DESEA MODIFICAR     ");
                         System.out.println("---------------------------------------------------------  ");
@@ -80,7 +80,7 @@ public class editarContrato {
                                         System.out.println("\n------------------------------------------------");
                                         System.out.println("| Salario registrado corectamente! " + nuevoSalario + "|");
                                         System.out.println("------------------------------------------------\n");
-                                        simulacionPrograma.simulaEjecucion();                                        break;
+                                        SimulacionPrograma.simulaEjecucion();                                        break;
                                     } else {
                                         System.out.print("El nuevo salario no puede ser menor al actual (" + salarioActual + "), registre nuevamente: ");
                                     }
@@ -112,7 +112,7 @@ public class editarContrato {
             
         }
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosDeUsoGeneral.getArchivoContratos()))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(DatosDeUsoGeneral.getArchivoContratos()))) {
             for (String linea : listaContratos) {
                 bw.write(linea);
                 bw.newLine();

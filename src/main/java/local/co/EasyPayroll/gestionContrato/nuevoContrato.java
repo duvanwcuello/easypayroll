@@ -1,19 +1,19 @@
-package local.co.EasyPayroll.gestionContrato;
+package local.co.EasyPayroll.GestionContrato;
 
 import java.io.*;
 import java.time.*;
 import java.util.*;
 
-import local.co.EasyPayroll.gestionEmpleado.nuevoEmpleado;
-import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionEmpleado.NuevoEmpleado;
+import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
 
 // Clase que representa los datos de un contrato de trabajo
 
 
-public class nuevoContrato {
+public class NuevoContrato {
 
     private static Scanner scanner = new Scanner(System.in);
     private static int contadorIdContrato = 1;
@@ -21,7 +21,7 @@ public class nuevoContrato {
     // Crea un nuevo contrato verificando condiciones iniciales
     public static void crearNuevoContrato(){
          
-        limpiarPantalla.limpiarConsola();
+        LimpiarPantalla.limpiarConsola();
         cargarContadorId();
         
         System.out.println("--------------------------------------------------");
@@ -45,7 +45,7 @@ public class nuevoContrato {
             scanner.nextLine();
 
             if (seleccion == 1) {
-                editarContrato.editarContrato(numeroDeContrato);
+                EditarContrato.editarContrato(numeroDeContrato);
             } else {
                 System.out.println("Saliendo...");
             }
@@ -63,14 +63,14 @@ public class nuevoContrato {
 
                 if(resp == 2){
                     System.out.println("\nOperación cancelada por el usuario.");
-                    simulacionPrograma.continuarConTeclado();
+                    SimulacionPrograma.continuarConTeclado();
                     return;                    
                 }else if(resp == 1){
-                    nuevoEmpleado.crearNuevoEmpleado();
+                    NuevoEmpleado.crearNuevoEmpleado();
                 }
             } else if (validaEstadoContrato(identificacionEmpleado)) {
                 System.out.println("INFO: Este empleado ya tiene un contrato ACTIVO.");
-                simulacionPrograma.continuarConTeclado();
+                SimulacionPrograma.continuarConTeclado();
                 return;
             }
 
@@ -81,12 +81,12 @@ public class nuevoContrato {
                 guardarContrato(contrato);
                 contadorIdContrato++;
                 System.out.println("\nSUCCES: Contrato creado correctamente. \n");
-                simulacionPrograma.simulaEjecucion();
+                SimulacionPrograma.simulaEjecucion();
 
             } else {
                 
                 System.out.println("ERROR: Empleado no encontrado, No se pudo crear el contrato.  \n");
-                simulacionPrograma.continuarConTeclado();
+                SimulacionPrograma.continuarConTeclado();
 
             }
         }
@@ -95,7 +95,7 @@ public class nuevoContrato {
     // Carga el ultimo ID para seguir la secuencia de creación de contratos
     private static void cargarContadorId() {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoContratos()))) {
             String linea;
             int maxId = 0;
 
@@ -113,7 +113,7 @@ public class nuevoContrato {
     // Verifica si un empleado ya está registrado en el sistema
     private static boolean empleadoExiste(String identificacion) {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoEmpleados()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoEmpleados()))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
@@ -130,7 +130,7 @@ public class nuevoContrato {
     // Verifica si un empleado ya tiene un contrato activo
     private static boolean validaEstadoContrato(String identificacion) {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoContratos()))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
@@ -147,7 +147,7 @@ public class nuevoContrato {
     // Verifica si un número de contrato ya existe
     private static boolean validarExistenciaContrato(String numeroDeContrato) {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoContratos()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoContratos()))) {
 
             String linea;
             while ((linea = br.readLine()) != null) {
@@ -164,7 +164,7 @@ public class nuevoContrato {
 
     // Solicita datos faltantes del contrato y construye el objeto `Contrato`
     public static Contrato solicitarDatosContrato(String numeroContrato, String identificacion) {
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoEmpleados()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoEmpleados()))) {
             String linea;
 
             while ((linea = br.readLine()) != null) {
@@ -227,7 +227,7 @@ public class nuevoContrato {
     // Guarda el contrato en el archivo de texto
     private static void guardarContrato(Contrato contrato) {
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosDeUsoGeneral.getArchivoContratos(), true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(DatosDeUsoGeneral.getArchivoContratos(), true))) {
             bw.write(contrato.toString());
             bw.newLine();
 

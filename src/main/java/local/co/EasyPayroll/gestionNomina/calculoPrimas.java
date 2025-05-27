@@ -1,13 +1,13 @@
 package local.co.EasyPayroll.gestionNomina;
-import local.co.EasyPayroll.gestionParametrosLegales.parametrosLegalesGenerales;
+import local.co.EasyPayroll.gestionParametrosLegales.ParametrosLegalesGenerales;
 
-public class calculoPrimas {
+public class CalculoPrimas {
     
     // funcion para calcular Primas.
     public static double calculoPrimas(double salarioEmpleado, int diasLaborados){
            
-       double salarioMinimo = parametrosLegalesGenerales.conceptosLegales.getSalarioMinimo();
-       double auxTransporte = parametrosLegalesGenerales.conceptosLegales.getAuxTransporte();
+       double salarioMinimo = ParametrosLegalesGenerales.conceptosLegales.getSalarioMinimo();
+       double auxTransporte = ParametrosLegalesGenerales.conceptosLegales.getAuxTransporte();
 
        if (salarioEmpleado <= (salarioMinimo * 2)){       
            double primaEmpleado = (((salarioEmpleado + auxTransporte) * diasLaborados) / 360);

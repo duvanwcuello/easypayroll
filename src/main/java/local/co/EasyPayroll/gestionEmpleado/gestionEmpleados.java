@@ -2,10 +2,10 @@ package local.co.EasyPayroll.gestionEmpleado;
 
 import java.util.Scanner;
 
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class gestionEmpleados {
+public class GestionEmpleados {
     
     public static void gestionEmpleado(String rolActual){
        
@@ -31,15 +31,15 @@ public class gestionEmpleados {
 
             switch (selecciondeUsuario) {
                 case 1:
-                    limpiarPantalla.limpiarConsola();
-                    nuevoEmpleado.crearNuevoEmpleado();
+                    LimpiarPantalla.limpiarConsola();
+                    NuevoEmpleado.crearNuevoEmpleado();
                     break;
                 case 2:
-                    limpiarPantalla.limpiarConsola();
-                    consultaEmpleado.consultarEmpleadoExistente();
+                    LimpiarPantalla.limpiarConsola();
+                    ConsultaEmpleado.consultarEmpleadoExistente();
                     break;
                 case 3:
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.out.println("------------------------------------");
                     System.out.println("|        EDICIÓN DE EMPLEADOS      |");
                     System.out.println("------------------------------------\n");
@@ -47,40 +47,40 @@ public class gestionEmpleados {
                     System.out.print("- Ingrese la identificación del empleado a editar: ");
                     String identificacion = scanner.nextLine();
                     
-                    limpiarPantalla.limpiarConsola();
-                    editarEmpleado.editarEmpleadoExistente(identificacion);
+                    LimpiarPantalla.limpiarConsola();
+                    EditarEmpleado.editarEmpleadoExistente(identificacion);
                     break;
                 case 4:
-                    limpiarPantalla.limpiarConsola();
-                    consultaEmpleado.consultarTodosLosEmpleados();
+                    LimpiarPantalla.limpiarConsola();
+                    ConsultaEmpleado.consultarTodosLosEmpleados();
                     break;
                 case 9:
                     continuar = false;
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.out.println("Saliendo de la gestión de Empleados...");
-                    simulacionPrograma.simulaEjecucion();
+                    SimulacionPrograma.simulaEjecucion();
                     System.err.println("Retrornando al Menu Principal...");
-                    simulacionPrograma.simulaEjecucion();
-                    limpiarPantalla.limpiarConsola();
+                    SimulacionPrograma.simulaEjecucion();
+                    LimpiarPantalla.limpiarConsola();
                     break;
                 case 0:
                     continuar = false;
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.out.println("¡Operacion Cancelada!...");
-                    simulacionPrograma.simulaEjecucion();
+                    SimulacionPrograma.simulaEjecucion();
 
                     System.out.println("Cerrando Sesion...");
-                     simulacionPrograma.simulaEjecucion();
+                     SimulacionPrograma.simulaEjecucion();
 
                     System.out.println("Cerrando Programa...");
-                    simulacionPrograma.continuarPrograma();
+                    SimulacionPrograma.continuarPrograma();
 
-                    limpiarPantalla.limpiarConsola();
+                    LimpiarPantalla.limpiarConsola();
                     System.exit(0);
                     break;               
                 default:
                     System.out.println("ERROR: Opción no válida. Intente de nuevo."); 
-                    simulacionPrograma.simulaEjecucion();
+                    SimulacionPrograma.simulaEjecucion();
             }
         }
     }

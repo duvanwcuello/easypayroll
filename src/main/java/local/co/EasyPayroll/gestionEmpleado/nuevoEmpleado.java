@@ -6,11 +6,11 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-import local.co.EasyPayroll.gestionUtilidades.datosDeUsoGeneral;
-import local.co.EasyPayroll.gestionUtilidades.limpiarPantalla;
-import local.co.EasyPayroll.gestionUtilidades.simulacionPrograma;
+import local.co.EasyPayroll.gestionUtilidades.DatosDeUsoGeneral;
+import local.co.EasyPayroll.gestionUtilidades.LimpiarPantalla;
+import local.co.EasyPayroll.gestionUtilidades.SimulacionPrograma;
 
-public class nuevoEmpleado {
+public class NuevoEmpleado {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static int contadorId = 1;
@@ -18,7 +18,7 @@ public class nuevoEmpleado {
 
     public static void crearNuevoEmpleado() {
 
-        limpiarPantalla.limpiarConsola();
+        LimpiarPantalla.limpiarConsola();
 
         System.out.println("----------------------------------------------------");
         System.out.println("|             CREAR NUEVO EMPLEADO                 |");
@@ -41,12 +41,12 @@ public class nuevoEmpleado {
             scanner.nextLine();
 
             if (seleccion == 1) {
-                limpiarPantalla.limpiarConsola();
-                editarEmpleado.editarEmpleadoExistente(identificacion);
+                LimpiarPantalla.limpiarConsola();
+                EditarEmpleado.editarEmpleadoExistente(identificacion);
             } else {
                 System.out.println("Volviendo a Gestion de Empleados...");
-                simulacionPrograma.simulaEjecucion();
-                limpiarPantalla.limpiarConsola();
+                SimulacionPrograma.simulaEjecucion();
+                LimpiarPantalla.limpiarConsola();
             }
         } else {
             Empleado empleado = solicitarDatosEmpleado(identificacion);
@@ -181,7 +181,7 @@ public class nuevoEmpleado {
 
     // Recibe tipo de datos Empleado y Guarda la información en el archivo
     public static void guardarEmpleado(Empleado empleado) {
-        String rutaArchivo = datosDeUsoGeneral.getArchivoEmpleados();
+        String rutaArchivo = DatosDeUsoGeneral.getArchivoEmpleados();
 
         //leemos el archivo  yenviamos los datos tipo empleado separados por coma (,)
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
@@ -204,12 +204,12 @@ public class nuevoEmpleado {
 
             bw.newLine();
 
-            simulacionPrograma.simulaEjecucion();
+            SimulacionPrograma.simulaEjecucion();
             System.out.println("\n------------------------------------------");
             System.out.println("| INFO: Empleado Guadado Exitosamente.    |");
             System.out.println("------------------------------------------\n");
-            simulacionPrograma.simulaEjecucion();
-            limpiarPantalla.limpiarConsola();
+            SimulacionPrograma.simulaEjecucion();
+            LimpiarPantalla.limpiarConsola();
 
         } catch (IOException e) {
             System.out.println("Error al guardar el empleado: " + e.getMessage());
@@ -219,7 +219,7 @@ public class nuevoEmpleado {
     //Verifica si la identificación ya está en el archivo
     private static boolean existeEmpleado(String identificacion) {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoEmpleados()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoEmpleados()))) {
             String linea;
 
             while ((linea = br.readLine()) != null) {
@@ -234,7 +234,7 @@ public class nuevoEmpleado {
             System.out.println("| ERROR: No se pudo leer el archivo de empleados. " + e.getMessage()+ "|");
             System.out.println("-------------------------------------------------------\n");
 
-            simulacionPrograma.continuarConTeclado();
+            SimulacionPrograma.continuarConTeclado();
         }
 
         return false;
@@ -243,13 +243,13 @@ public class nuevoEmpleado {
     // Enviar datos para edición
     public static void enviarDatosEditarEmpleado(String identificacion) {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(datosDeUsoGeneral.getArchivoEmpleados()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoEmpleados()))) {
             String linea;
 
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
                 if (datos[1].equals(identificacion)) {
-                    editarEmpleado.editarEmpleadoExistente(identificacion);
+                    EditarEmpleado.editarEmpleadoExistente(identificacion);
                 }
             }
         } catch (IOException e) {
@@ -257,7 +257,7 @@ public class nuevoEmpleado {
             System.out.println("| ERROR: No se pudo leer el archivo de empleados. " + e.getMessage()+ "|");
             System.out.println("-------------------------------------------------------\n");
 
-            simulacionPrograma.continuarConTeclado();
+            SimulacionPrograma.continuarConTeclado();
             return;
         }
     }
