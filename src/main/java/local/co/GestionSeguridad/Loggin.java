@@ -34,6 +34,7 @@ public class Loggin {
             }
             
             Usuario usuarioValidado = validarCredenciales(usuarioIngresado, passwordIngresado);
+            
             if (usuarioValidado != null){
 
                 //actualizamos la fecha de inicio de sesion
@@ -45,7 +46,8 @@ public class Loggin {
                 System.out.println("====================================================================");
                 System.out.println("|                       BIENVENIDO A EASYPAYROLL                   |"); 
                 System.out.println("====================================================================");
-                System.out.print("Usuario actual: " +usuarioValidado.getNombreEmpleado()+"\n");
+                System.out.println("| Usuario actual: " +usuarioValidado.getNombreEmpleado());
+               
                 MenuUsuarios.menuPrincipalUsuario(usuarioValidado.getRol());
                 return;
             } else {
