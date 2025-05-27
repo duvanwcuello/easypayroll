@@ -17,14 +17,14 @@ public class GestionNominas {
         while(continuar){
             LimpiarPantalla.limpiarConsola();
 
-            System.out.println("--------------------------------");
-            System.out.println("|       GESTION DE NOMINA      |");
-            System.out.println("--------------------------------");
-            System.out.println("| 1. Liquidar Nomina           |");
-            System.out.println("| 2. Informes de Nomina        |");
-            System.out.println("| 9. Atras                     |");
-            System.out.println("| 0. Salir                     |");
-            System.out.println("--------------------------------\n");
+            System.out.println("--------------------------------------------------------------------");
+            System.out.println("|                        GESTION DE NOMINA                         |");
+            System.out.println("--------------------------------------------------------------------");
+            System.out.println("| 1. Liquidar Nomina                                               |");
+            System.out.println("| 2. Informes de Nomina                                            |");
+            System.out.println("| 9. Atras                                                         |");
+            System.out.println("| 0. Salir                                                         |");
+           System.out.println("---------------------------------------------------------------------\n");
 
             System.out.print("Seleccione una opción: ");
             

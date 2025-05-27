@@ -35,7 +35,7 @@ public class ConsultaContrato {
                 if (datos.length < 18) continue;
                 if (datos[4].equals(identificacionEmpleado)) {
 
-                    System.out.println("\n------------------------------------------------------------------");
+                    System.out.println("--------------------------------------------------------------------");
                     System.out.println(" N° CONTRATO: " + datos[2] + " | TIPO DE CONTRATO: " + datos[14]);
                     System.out.println(" FECHA INICIO: " + datos[15]);
                     System.out.println("-------------------------------------------------------------------");

@@ -22,21 +22,18 @@ public class EditarUsuarios {
      * Permite editar la contraseña y el rol de un usuario existente.
      * También actualiza la fecha del último inicio de sesión.
      */
-    public static void editarUsuarioExistente() {
+    public static void editarUsuarioExistente(String usuarioIngresado) {
        
         LimpiarPantalla.limpiarConsola();
         Scanner scanner = new Scanner(System.in);
         
-        System.out.println("|---------------------------------------------|");
-        System.out.println("| BIENVENIDO AL MODULO DE EDICION DE USUARIOS |");
-        System.out.println("|---------------------------------------------|");
-        System.out.println("| En este modulo podrá realizar:              |");
-        System.out.println("| - Contraseñas.                              |");
-        System.out.println("| - Rol de Usuario.                           |");
-        System.out.println("|---------------------------------------------|\n");
-
-        System.out.print("Ingrese Usuario a Editar: ");
-        String usuarioIngresado = scanner.nextLine();
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println("|           BIENVENIDO AL MODULO DE EDICION DE USUARIOS            |");
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println("| En este modulo podrá realizar:                                   |");
+        System.out.println("| - Contraseñas.                                                   |");
+        System.out.println("| - Rol de Usuario.                                                |");
+        System.out.println("--------------------------------------------------------------------\n");
         
         List<String> usuariosActualizados = new ArrayList<>();
         boolean encontrado = false;
@@ -48,9 +45,9 @@ public class EditarUsuarios {
 
                 if (datos.length >= 6 && datos[2].equalsIgnoreCase(usuarioIngresado)) {
 
-                    System.out.println("\n|---------------------------------------------|");
-                    System.err.println("|        Datos Registrados Actualmente        |");
-                    System.out.println("|---------------------------------------------|");
+                    System.out.println("\n-------------------------------------------------------------------");
+                    System.err.println("|                    Datos Registrados Actualmente                 |");
+                    System.out.println("--------------------------------------------------------------------");
                     System.out.println("Nombre Usuario:  | " + datos[1]);
                     System.out.println("Usuario Asignado | " + datos[2]);
                     System.out.println("Contraseña       | " + datos[3]);
@@ -131,10 +128,10 @@ public class EditarUsuarios {
                 }
 
                 LimpiarPantalla.limpiarConsola();
-                System.out.println("--------------------------------------");
-                System.out.println("|         GUARDADO EXITOSO           |");
-                System.out.println("| Usuario actualizado correctamente. |");
-                System.out.println("--------------------------------------");
+                System.out.println("--------------------------------------------------------------------");
+                System.out.println("|                         GUARDADO EXITOSO                          |");
+                System.out.println("|            Usuario actualizado correctamente.                     |");
+                System.out.println("--------------------------------------------------------------------");
                 SimulacionPrograma.simulaEjecucion();
                 LimpiarPantalla.limpiarConsola();
 
@@ -143,14 +140,14 @@ public class EditarUsuarios {
                 System.out.println("Error al guardar cambios: " + e.getMessage());
                 }
         }else {
-            System.out.println("\n---------------------------");
-            System.out.println("     ¡¡ADVERTENCIA!!");
-            System.out.println("---------------------------");
+            System.out.println("--------------------------------------------------------------------");
+            System.out.println("                            ¡¡ADVERTENCIA!!");
+            System.out.println("--------------------------------------------------------------------");
             System.out.println("Usuario no encontrado...");
             SimulacionPrograma.continuarPrograma();
             System.out.println("Intente Nuevamente...");
             SimulacionPrograma.simulaEjecucion();
-            editarUsuarioExistente();
+            editarUsuarioExistente(usuarioIngresado);
         }
         
     }    

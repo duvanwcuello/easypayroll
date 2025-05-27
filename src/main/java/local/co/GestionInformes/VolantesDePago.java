@@ -18,9 +18,9 @@ public class VolantesDePago {
         Scanner scanner = new Scanner (System.in);
         LimpiarPantalla.limpiarConsola();
 
-        System.out.println("\n------------------------------------------");
-        System.out.println("|         GENERAR VOLANTE DE PAGO         |");
-        System.out.println("------------------------------------------\n");
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println("|                    GENERAR VOLANTE DE PAGO                       |");
+        System.out.println("--------------------------------------------------------------------\n");
 
         System.out.print("- Mes de la planilla (1Q-MMMYYYY): ");
         String mes = scanner.nextLine().toUpperCase();
@@ -37,16 +37,17 @@ public class VolantesDePago {
                 String[] d = linea.split(",");
 
                 if (d[0].equals(id)) {
-                    System.out.println("\n============ VOLANTE DE PAGO ============");
+                    System.out.println("--------------------------------------------------------------------");
+                    System.out.println("\n=========================== VOLANTE DE PAGO ======================");
                     System.out.println("|) Empleado: " + d[1]);
                     System.out.println("|) Salario base: " + FormateadorTextro.formatearMoneda(Double.parseDouble(d[2])));
                     System.out.println("|) Auxilio transporte: " +FormateadorTextro.formatearMoneda(Double.parseDouble(d[3])));
                     System.out.println("|) Recargos: " +FormateadorTextro.formatearMoneda(Double.parseDouble(d[4])));
                     System.out.println("|) Total devengado: " + FormateadorTextro.formatearMoneda(Double.parseDouble(d[5])));
                     System.out.println("|) Salud: " + FormateadorTextro.formatearMoneda(Double.parseDouble(d[6])) + " | Pensión: " + FormateadorTextro.formatearMoneda(Double.parseDouble(d[7])));
-                    System.out.println("=========================================");
+                    System.out.println("====================================================================");
                     System.out.println("NETO A PAGAR: " +FormateadorTextro.formatearMoneda(Double.parseDouble(d[8])));
-                    System.out.println("-----------------------------------------");
+                    System.out.println("--------------------------------------------------------------------");
 
                     SimulacionPrograma.continuarConTeclado();
                     return;

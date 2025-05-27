@@ -6,7 +6,6 @@ import java.util.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
-import local.co.Aplicacion;
 import local.co.GestionUsuarios.*;
 import local.co.GestionUtilidades.DatosDeUsoGeneral;
 import local.co.GestionUtilidades.LimpiarPantalla;
@@ -24,27 +23,29 @@ public class Loggin {
             String usuarioIngresado = validarDatosIngresados("Ingrese Usuario Asignado: ");
             
             if (usuarioIngresado == null){
-                System.out.println("-------------------------------------------------------\n");
-                cancelarOperacion("DSatos Errados de usuario.");
+                System.out.println("--------------------------------------------------------------------\n");
+                cancelarOperacion("Datos Errados de usuario.");
             } 
                 String passwordIngresado = validarDatosIngresados("Ingrese Contraseña: ");
                 if (passwordIngresado == null){
                
-                System.out.println("--------------------------------------------");
+                System.out.println("--------------------------------------------------------------------");
                 cancelarOperacion("Datos Errados de contraseña."); 
             }
             
             Usuario usuarioValidado = validarCredenciales(usuarioIngresado, passwordIngresado);
             if (usuarioValidado != null){
+
+                //actualizamos la fecha de inicio de sesion
                 actualizarUltimaSesion(usuarioIngresado);
                 
                 System.out.print("Ingresando...");
                 SimulacionPrograma.simulaEjecucion();
                 LimpiarPantalla.limpiarConsola();
-                System.out.println("===============================");
-                System.out.println("|   BIENVENIDO A EASYPAYROLL  |"); 
-                System.out.println("===============================");
-                System.out.print("Usuario actual:\n" +usuarioValidado.getNombreEmpleado()+"\n");
+                System.out.println("====================================================================");
+                System.out.println("|                       BIENVENIDO A EASYPAYROLL                   |"); 
+                System.out.println("====================================================================");
+                System.out.print("Usuario actual: " +usuarioValidado.getNombreEmpleado()+"\n");
                 MenuUsuarios.menuPrincipalUsuario(usuarioValidado.getRol());
                 return;
             } else {
@@ -52,9 +53,9 @@ public class Loggin {
             }
         }
         LimpiarPantalla.limpiarConsola();
-        System.out.println("-------------------------------------------------------");
-        System.out.println("Ha superado el número de intentos permitidos.");
-        System.out.println("-------------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println("            Ha superado el número de intentos permitidos.");
+        System.out.println("--------------------------------------------------------------------");
         SimulacionPrograma.continuarPrograma();
         LimpiarPantalla.limpiarConsola();
         System.out.println("Cerrando el Programa...");        
@@ -92,7 +93,7 @@ public class Loggin {
             
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                if (datos.length >= 6 && datos[2].equals(usuarioIngresado) && datos[3].equals(passwordIngresado)) {
+                if (datos.length >= 7 && datos[2].equals(usuarioIngresado) && datos[3].equals(passwordIngresado)) {
                     return new Usuario(datos[1], datos[2], datos[3], datos[4]);
                 }
             }
@@ -106,6 +107,7 @@ public class Loggin {
      * Actualiza la fecha de última sesión activa del usuario en el archivo.
      */
     private static void actualizarUltimaSesion(String nombreUsuario) {
+
         List<String> lineasActualizadas = new ArrayList<>();
         String fechaActual = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
@@ -113,8 +115,8 @@ public class Loggin {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                if (datos.length >= 6 && datos[2].equals(nombreUsuario)) {
-                    datos[5] = fechaActual;
+                if (datos.length >= 7 && datos[2].equals(nombreUsuario)) {
+                    datos[6] = fechaActual;
                     linea = String.join(",", datos);
                 }
                 lineasActualizadas.add(linea);
@@ -140,7 +142,7 @@ public class Loggin {
         System.out.println(mensaje);
         System.out.println("Operación cancelada. ¡Hasta luego!");
         System.out.println("Cerrando Inicio de Sesion....");
-        System.out.println("--------------------------------------------"); 
+        System.out.println("--------------------------------------------------------------------");
         System.exit(0);
     }
 
@@ -148,9 +150,9 @@ public class Loggin {
      * Muestra un mensaje de error si el inicio de sesión falla.
      */
     private static void mostrarErrorDeInicio(int intento, String usuarioIngresado, String passwordIngresado) {
-        System.out.println("------------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------");
         System.out.println("Usuario o Contraseña Incorrecta");
-        System.out.println("Verifique los datos, Intento N°: " + intento+ " de " +DatosDeUsoGeneral.getIntentosMaximos());
-        System.out.println("------------------------------------------------------");
+        System.out.println("\nVerifique los datos, Intento N°: " + intento+ " de " +DatosDeUsoGeneral.getIntentosMaximos());
+        System.out.println("--------------------------------------------------------------------"); 
     }
 }

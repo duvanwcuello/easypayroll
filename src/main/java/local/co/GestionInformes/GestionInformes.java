@@ -15,14 +15,14 @@ public class GestionInformes {
         while (continuar) {
             LimpiarPantalla.limpiarConsola();
 
-            System.out.println("-----------------------------------");
-            System.out.println("|    MOSTRAR INFORMES DE NOMINA   |");
-            System.out.println("-----------------------------------");  
-            System.out.println("| 1. Planilla de pago de Nomina   |");
-            System.out.println("| 2. Mostrar Volante de pago      |");
-            System.out.println("| 9. Atras                        |");
-            System.out.println("| 0. Salir                        |");
-            System.out.println("-----------------------------------\n");
+            System.out.println("--------------------------------------------------------------------");
+            System.out.println("|                 MOSTRAR INFORMES DE NOMINA                       |");
+            System.out.println("--------------------------------------------------------------------");  
+            System.out.println("| 1. Planilla de pago de Nomina                                    |");
+            System.out.println("| 2. Mostrar Volante de pago                                       |");
+            System.out.println("| 9. Atras                                                         |");
+            System.out.println("| 0. Salir                                                         |");
+            System.out.println("--------------------------------------------------------------------\n");
 
             System.out.print("- Seleccione una Opcion: ");
             int seleccion = scanner.nextInt();

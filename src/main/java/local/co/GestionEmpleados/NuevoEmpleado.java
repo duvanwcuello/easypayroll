@@ -19,11 +19,10 @@ public class NuevoEmpleado {
     public static void crearNuevoEmpleado() {
 
         LimpiarPantalla.limpiarConsola();
-
-        System.out.println("----------------------------------------------------");
-        System.out.println("|             CREAR NUEVO EMPLEADO                 |");
-        System.out.println("| Por Favor Ingrese los datos del nuevo empleado.  |");
-        System.out.println("----------------------------------------------------\n");       
+        System.out.println("-------------------------------------------------------------------");
+        System.out.println("|                     CREAR NUEVO EMPLEADO                         |");
+        System.out.println("|       Por Favor Ingrese los datos del nuevo empleado.            |");
+        System.out.println("--------------------------------------------------------------------\n");      
         
         System.out.print("- Ingrese identificación: ");
         String identificacion = scanner.nextLine();
@@ -205,9 +204,9 @@ public class NuevoEmpleado {
             bw.newLine();
 
             SimulacionPrograma.simulaEjecucion();
-            System.out.println("\n------------------------------------------");
+            System.out.println("--------------------------------------------------------------------");
             System.out.println("| INFO: Empleado Guadado Exitosamente.    |");
-            System.out.println("------------------------------------------\n");
+            System.out.println("--------------------------------------------------------------------\n");
             SimulacionPrograma.simulaEjecucion();
             LimpiarPantalla.limpiarConsola();
 

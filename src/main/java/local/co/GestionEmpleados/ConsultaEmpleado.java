@@ -18,9 +18,9 @@ public class ConsultaEmpleado {
 
         LimpiarPantalla.limpiarConsola();
 
-        System.out.println("-----------------------------------------------------");
-        System.out.println("|                 CONSULTAR EMPLEADO                |");
-        System.out.println("----------------------------------------------------\n");
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println("|                         CONSULTAR EMPLEADO                       |");
+       System.out.println("--------------------------------------------------------------------\n");
 
         System.out.print("- Ingrese la identificación del empleado a consultar: ");
 
@@ -33,11 +33,11 @@ public class ConsultaEmpleado {
                 String[] datos = linea.split(",");          
                 if (datos.length < 15) continue;
                 if (datos[1].equals(identificacionEmpleado)) {
-                    System.out.println("\n-----------------------------------------------------------");
+                    System.out.println("\n--------------------------------------------------------------------");
                     System.out.println("|                   INFORMACIÓN EMPLEADO                  |");
-                    System.out.println("-----------------------------------------------------------");
-                    System.out.println("| ID UNICO: " + datos[0] + "  |  IDENTIFICACIÓN: " + datos[1]+"             |");
-                    System.out.println("-----------------------------------------------------------");
+                    System.out.println("--------------------------------------------------------------------");
+                    System.out.println(" ID UNICO: " + datos[0] + "  |  IDENTIFICACIÓN: " + datos[1]);
+                    System.out.println("--------------------------------------------------------------------");
                     if (datos[3].isEmpty()){
                         System.out.println("| * Nombre Completo: " +datos[2]+ " " +datos[4]+ " " +datos[5]);
                     } else {
@@ -48,7 +48,7 @@ public class ConsultaEmpleado {
                     System.out.println("| * Nivel de Estudio: " + datos[10]);
                     System.out.println("| * Correo Electrónico: " + datos[11]);
                     System.out.println("| * Dirección: " + datos[12] + " - Barrio: " + datos[13]);
-                    System.out.println("---------------------------------------------------------------");
+                    System.out.println("--------------------------------------------------------------------\n");
 
                     empleadoEncontrado = true;
                     SimulacionPrograma.continuarConTeclado();
@@ -64,9 +64,9 @@ public class ConsultaEmpleado {
         if (!empleadoEncontrado) {
             LimpiarPantalla.limpiarConsola();
 
-            System.out.println("---------------------------------");
-            System.out.println("| ERROR: Empleado no encontrado |");
-            System.out.println("---------------------------------\n");
+            System.out.println("--------------------------------------------------------------------");
+            System.out.println("|                  ERROR: Empleado no encontrado                    |");
+            System.out.println("--------------------------------------------------------------------\n");
 
             System.out.print("¿Desea registrar un nuevo empleado? (1 = SI | 2 = NO): ");
             int opcion = scanner.nextInt();
@@ -103,9 +103,9 @@ public class ConsultaEmpleado {
             SimulacionPrograma.continuarConTeclado();
             LimpiarPantalla.limpiarConsola();
         } catch (IOException e) {
-            System.out.println("\n-------------------------------------------------------");
+            System.out.println("--------------------------------------------------------------------");
             System.out.println("| ERROR: No se pudo leer el archivo de empleados. " + e.getMessage()+ "|");
-            System.out.println("-------------------------------------------------------\n");
+            System.out.println("--------------------------------------------------------------------\n");
             SimulacionPrograma.continuarConTeclado();
             LimpiarPantalla.limpiarConsola();
         }

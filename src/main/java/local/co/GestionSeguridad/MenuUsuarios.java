@@ -40,20 +40,20 @@ public class MenuUsuarios {
         try{
             while(continuar){
                 System.out.println("");
-                System.out.println("|------------------------------|");
-                System.out.println("|        MENU PRINCIPAL        |");
-                System.out.println("|------------------------------|");
-                System.out.println("| 1. Gestionar Usuarios.       |");
-                System.out.println("| 2. Gestionar Empleados.      |");
-                System.out.println("| 3. Gestionar Contratos.      |");
-                System.out.println("| 4. Gestionar Novedades.      |");
-                System.out.println("| 5. Gestionar Nomina.         |");
-                System.out.println("| 6. Gestionar Informes.       |");    
-                System.out.println("| 7. Parametros Generales.     |");
-                System.out.println("| 8. Cambiar Contraseña.       |");
-                System.out.println("| 9. Cerar Sesion.             |");
-                System.out.println("| 0. Salir.                    |");
-                System.out.println("|------------------------------|");
+                System.out.println("|------------------------------------------------------------------|");
+                System.out.println("|                         MENU PRINCIPAL                           |");
+                System.out.println("|------------------------------------------------------------------|");
+                System.out.println("| 1. Gestionar Usuarios.                                           |");
+                System.out.println("| 2. Gestionar Empleados.                                          |");
+                System.out.println("| 3. Gestionar Contratos.                                          |");
+                System.out.println("| 4. Gestionar Novedades.                                          |");
+                System.out.println("| 5. Gestionar Nomina.                                             |");
+                System.out.println("| 6. Gestionar Informes.                                           |");    
+                System.out.println("| 7. Parametros Generales.                                         |");
+                System.out.println("| 8. Cambiar Contraseña.                                           |");
+                System.out.println("| 9. Cerar Sesion.                                                 |");
+                System.out.println("| 0. Salir.                                                        |");
+                System.out.println("|-------------------------------------------------------------------|");
                 
                 System.out.print("Seleccione una opción: ");
                 int selecciondeUsuario = scanner.nextInt();
@@ -141,6 +141,8 @@ public class MenuUsuarios {
             }
         }catch (InputMismatchException e){
             System.out.println("¡Error! Debes ingresar un número entero.");
+            SimulacionPrograma.continuarPrograma();
+            LimpiarPantalla.limpiarConsola();
             menuPrincipalUsuario(rolActual);
         }
     }
@@ -154,18 +156,18 @@ public class MenuUsuarios {
         try{
             while(continuar){
                 System.out.println("");
-                System.out.println("|-----------------------------|");
-                System.out.println("|        MENU PRINCIPAL       |");
-                System.out.println("|-----------------------------|");
-                System.out.println("| 1. Gestionar Empleados      |");
-                System.out.println("| 2. Gestionar Contratos      |");
-                System.out.println("| 3. Gestionar Novedades      |");
-                System.out.println("| 4. Gestionar Nomina         |");
-                System.out.println("| 5. Gestion de Informes      |");
-                System.out.println("| 8. Cambiar Contraseña.      |");
-                System.out.println("| 9. Cerar Sesion             |");
-                System.out.println("| 0. Salir                    |");
-                System.out.println("|-----------------------------|");
+                System.out.println("|------------------------------------------------------------------|");
+                System.out.println("|                          MENU PRINCIPAL                          |");
+                System.out.println("|------------------------------------------------------------------|");
+                System.out.println("| 1. Gestionar Empleados                                           |");
+                System.out.println("| 2. Gestionar Contratos                                           |");
+                System.out.println("| 3. Gestionar Novedades                                           |");
+                System.out.println("| 4. Gestionar Nomina                                              |");
+                System.out.println("| 5. Gestion de Informes                                           |");
+                System.out.println("| 8. Cambiar Contraseña.                                           |");
+                System.out.println("| 9. Cerar Sesion                                                  |");
+                System.out.println("| 0. Salir                                                         |");
+                System.out.println("|------------------------------------------------------------------|");
 
                 System.out.print("Seleccione una opción: ");
                 int selecciondeUsuario = scanner.nextInt();
@@ -238,7 +240,9 @@ public class MenuUsuarios {
             }
         }catch (InputMismatchException e){
             System.out.println("¡Error! Debes ingresar un número entero.");
-           // menuPrincipalUsuario(rolActual);
+            SimulacionPrograma.continuarPrograma();
+            LimpiarPantalla.limpiarConsola();
+            menuPrincipalUsuario(rolActual);
         }
     }
 
@@ -248,17 +252,17 @@ public class MenuUsuarios {
         try{
             while(continuar){
                 System.out.println("");
-                System.out.println("|-----------------------------|");
-                System.out.println("|        MENU PRINCIPAL       |");
-                System.out.println("|-----------------------------|");
-                System.out.println("| 1. Gestionar Empleados      |");
-                System.out.println("| 2. Gestionar Contratos      |");
-                System.out.println("| 3. Gestionar Novedades      |");
-                System.out.println("| 4. Gestionar Informes       |");
-                System.out.println("| 8. Cambiar Contraseña.      |");
-                System.out.println("| 9. Cerar Sesion             |");
-                System.out.println("| 0. Salir                    |");
-                System.out.println("|-----------------------------|\n");
+                System.out.println("|------------------------------------------------------------------|");
+                System.out.println("|                          MENU PRINCIPAL                          |");
+                System.out.println("|------------------------------------------------------------------|");
+                System.out.println("| 1. Gestionar Empleados                                           |");
+                System.out.println("| 2. Gestionar Contratos                                           |");
+                System.out.println("| 3. Gestionar Novedades                                           |");
+                System.out.println("| 4. Gestionar Informes                                            |");
+                System.out.println("| 8. Cambiar Contraseña.                                           |");
+                System.out.println("| 9. Cerar Sesion                                                  |");
+                System.out.println("| 0. Salir                                                         |");
+                System.out.println("|------------------------------------------------------------------|");
 
                 System.out.print("Seleccione una opción: ");
                 int selecciondeUsuario = scanner.nextInt();
@@ -309,11 +313,14 @@ public class MenuUsuarios {
                         break;
                     default:
                         System.out.println("Opción no válida. Intente de nuevo.");
-                        SimulacionPrograma.simulaEjecucion();      
+                        SimulacionPrograma.simulaEjecucion(); 
+                        LimpiarPantalla.limpiarConsola();     
                 }
             }
         }catch (InputMismatchException e){
             System.out.println("¡Error! Debes ingresar un número entero.");
+            SimulacionPrograma.continuarPrograma();
+            LimpiarPantalla.limpiarConsola();
             menuPrincipalUsuario(rolActual);
         }
     }

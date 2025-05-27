@@ -89,10 +89,10 @@ public class GestiondeContrasenias {
                     bw.newLine();
                 }
                 LimpiarPantalla.limpiarConsola();
-                System.out.println("|--------------------------------------|");
-                System.out.println("|            GUARDADO EXITOSO          |");
-                System.out.println("| Contraseña Actualizada Correctalente |");
-                System.out.println("|--------------------------------------|");
+                System.out.println("--------------------------------------------------------------------");
+                System.out.println("|                        GUARDADO EXITOSO                           |");
+                System.out.println("|               Contraseña Actualizada Correctalente                |");
+                System.out.println("--------------------------------------------------------------------");
                 SimulacionPrograma.simulaEjecucion();
                 LimpiarPantalla.limpiarConsola();
                 
@@ -109,11 +109,11 @@ public class GestiondeContrasenias {
         boolean usuarioValidado = false;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("|----------------------------------------------------------|");
-        System.out.println("|              ¡VALIDACION DE SEGURIDAD!                   |");
-        System.out.println("| Por Seguridad es necesario atenticar sus credenciales    |");
-        System.out.println("|             Ingrese usuario y contraseña.                |");
-        System.out.println("|----------------------------------------------------------|");
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println("|                   ¡VALIDACION DE SEGURIDAD!                      |");
+        System.out.println("|      Por Seguridad es necesario atenticar sus credenciales       |");
+        System.out.println("|                   Ingrese usuario y contraseña.                  |");
+        System.out.println("--------------------------------------------------------------------");
         
         System.out.print("Usuario: ");
         String usuarioIngresado = scanner.nextLine().trim();

@@ -15,10 +15,10 @@ public class ConsultarUsuarios {
      */
     public static void consultarUsuarioExistente() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("--------------------------------------------------------------------");
+        System.out.println("|------------------------------------------------------------------|");
         System.out.println("|                        CONSULTA DE USUARIOS                      |");
         System.err.println("| Permite consultar un usuario existente por su nombre de usuario. |");   
-        System.out.println("--------------------------------------------------------------------");
+        System.out.println("|------------------------------------------------------------------|");
         System.out.print("Nombre de usuario a consultar: ");
         String usuarioBuscado = scanner.nextLine().trim();
         boolean encontrado = false;
@@ -27,16 +27,18 @@ public class ConsultarUsuarios {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] usuarioGuardado = linea.split(",");
-                if (usuarioGuardado.length >= 6 && usuarioGuardado[2].equalsIgnoreCase(usuarioBuscado)) {
-                    System.err.println("-----------------------------------------------------------");
-                    System.err.println("|                Datos de Usuario Consultado              |");
-                    System.err.println("-----------------------------------------------------------");
-                    System.out.println("ID                       | " + usuarioGuardado[0]);
-                    System.out.println("Empleado                 | " + usuarioGuardado[1]);
-                    System.out.println("Usuario                  | " + usuarioGuardado[2]);
-                    System.out.println("Rol                      | " + usuarioGuardado[4]);
-                    System.out.println("Último Inicio de Sesión: |" + usuarioGuardado[5]);
-                    System.out.println("----------------------------------------------------------");
+                if (usuarioGuardado.length >= 7 && usuarioGuardado[2].equalsIgnoreCase(usuarioBuscado)) {
+                    System.out.println("");
+                    System.out.println("--------------------------------------------------------------------");
+                    System.err.println("                    Datos de Usuario Consultado                    ");
+                    System.out.println("--------------------------------------------------------------------");
+                    System.out.println("- ID                       | " + usuarioGuardado[0]);
+                    System.out.println("- Empleado                 | " + usuarioGuardado[1]);
+                    System.out.println("- Usuario                  | " + usuarioGuardado[2]);
+                    System.out.println("- Rol                      | " + usuarioGuardado[4]);
+                    System.out.println("- Fecha de Creacion        | " + usuarioGuardado[5]);
+                    System.out.println("- Ultima Sesion            | " + usuarioGuardado[6]);
+                    System.out.println("--------------------------------------------------------------------");
                     System.out.println("");
                     encontrado = true;
                     
@@ -58,19 +60,24 @@ public class ConsultarUsuarios {
      * Incluye ID, nombre del empleado, nombre de usuario, contraseña cifrada, rol y último login.
      */
     public static void consultarTodosLosUsuarios() {
-        System.out.println("-----------------------------------------------------------------------------------------------------");
-        System.out.printf("%-3s %-25s %-10s %-10s %-15s %-25s%n", "ID", "Nombre Empleado", "Usuario", "Contraseña", "Rol", "Último Login");
-        System.out.println("-----------------------------------------------------------------------------------------------------");
-
+        
+        //formateamos texto de salida para mostrarlo tipo tabla
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+        System.out.println("                                           CONSOLIDADO DE USUARIOS");
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%-3s %-25s %-10s %-10s %-15s %-25s %-25s%n", "ID", "Nombre Empleado", "Usuario", "Contraseña", "Rol", "Fecha de Creacion", "Último Login");
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+        
+        //leemos datos desde el archivo
         try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoUsuarios()))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                if (datos.length >= 6) {
-                    System.out.printf("%-3s %-25s %-10s %-10s %-15s %-25s%n",
-                            datos[0], datos[1], datos[2], datos[3], datos[4], datos[5]);
+                if (datos.length >= 7) {
+                    System.out.printf("%-3s %-25s %-10s %-10s %-15s %-25s %-25s%n",
+                            datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6]);
                 }
-            } System.out.println("-----------------------------------------------------------------------------------------------------");
+            } System.out.println("-------------------------------------------------------------------------------------------------------------------");
             
             
         } catch (IOException e) {

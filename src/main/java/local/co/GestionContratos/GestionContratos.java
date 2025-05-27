@@ -15,18 +15,18 @@ public class GestionContratos {
         
         while (continuar) {
             LimpiarPantalla.limpiarConsola();
-            System.out.println("\n---------------------------------");
-            System.out.println("|      GESTION DE CONTRATOS     |");
-            System.out.println("---------------------------------");
-            System.out.println("| 1. Crear nuevo contrato       |");
-            System.out.println("| 2. Consultar contrato         |");
-            System.out.println("| 3. Editar contrato            |");
-            System.out.println("| 4. Consolidado de Contratos   |");
-            System.out.println("| 9. Atras                      |");
-            System.out.println("| 0. Salir                      |");
-            System.out.println("---------------------------------\n");
+            System.out.println("\n--------------------------------------------------------------------");;
+            System.out.println("|                         GESTION DE CONTRATOS                     |");
+            System.out.println("--------------------------------------------------------------------");
+            System.out.println("| 1. Crear nuevo contrato                                          |");
+            System.out.println("| 2. Consultar contrato                                            |");
+            System.out.println("| 3. Editar contrato                                               |");
+            System.out.println("| 4. Consolidado de Contratos                                      |");
+            System.out.println("| 9. Atras                                                         |");
+            System.out.println("| 0. Salir                                                         |");
+            System.out.println("--------------------------------------------------------------------\n");
 
-            System.out.print("- Seleccione una opción: ");
+            System.out.print("- Seleccione una opción: "); 
             int selecciondeUsuario = scanner.nextInt();
             scanner.nextLine();
 
@@ -41,9 +41,9 @@ public class GestionContratos {
                     break;
                 case 3:
                     LimpiarPantalla.limpiarConsola();
-                    System.out.println("-------------------------------------------");
-                    System.out.println("|           EDICIÓN DE CONTRATOS          |");
-                    System.out.println("-------------------------------------------\n");
+                    System.out.println("--------------------------------------------------------------------");
+                    System.out.println("|                          EDICIÓN DE CONTRATOS                     |");
+                    System.out.println("--------------------------------------------------------------------\n");
                     System.out.print("- Ingrese el Numero de contrato a editar: ");
                     String numeroContratoEditar = scanner.nextLine();
                     EditarContrato.editarContrato(numeroContratoEditar);

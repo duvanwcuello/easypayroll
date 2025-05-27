@@ -22,7 +22,7 @@ public class EditarEmpleado {
         try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoEmpleados()))) {
 
             System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------");
-            System.out.println("EDICIÓN DEL MAESTRO DE EMPLEADOS");
+            System.out.println("                                                 EDICIÓN DEL MAESTRO DE EMPLEADOS");
             System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------");
             System.out.printf("%-5s | %-15s | %-15s | %-15s | %-20s | %-30s | %-30s\n",
                     "ID", "IDENTIFICACIÓN", "NOMBRE", "APELLIDO", "F. NACIMIENTO", "CORREO", "DIRECCIÓN");

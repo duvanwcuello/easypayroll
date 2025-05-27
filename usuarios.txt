@@ -1,9 +1,11 @@
-1,SuperAdmin,admin,admin,ADMINISTRADOR,2025-05-27 11:07:24
-2,Anderson Pino,apino,apino123,ADMINISTRADOR,2025-05-25 19:43:28
-3,Pablo André Barreto,pbarreto,pbarreto,ADMINISTRADOR,2025-05-25 19:42:48
-4,Yuris Acevedo Morelos,yacevedo,yacevedo,ADMINISTRADOR,02025-05-139 20:05:20
-5,Maria Camila Perez,mperez,mperez23,COORDINADOR,2025-05-22 15:41:03
-6,Andrea Licona,alicona,alicona,AUXILIAR,2025-05-22 15:41:19
-7,Duvan Wilchez Cuello,dwilchez,dwilchez,ADMINISTRADOR,2025-05-25 21:38:20
-9,Valeria Cuello,vcuello,vcuello,COORDIANDOR,2025-05-24T21:29:13.1652134
-10,Usuario de Prueba,Ppruebas,Ppruebas,AUXILIAR,2025-05-26T16:46:03.7802281
+1,SuperAdmin,admin,admin,ADMINISTRADOR,2025-05-20 13:47:31,2025-05-27 15:11:44
+2,Anderson Pino,apino,apino123,ADMINISTRADOR,2025-05-21 19:43:28,null
+3,Pablo André Barreto,pbarreto,pbarreto,ADMINISTRADOR,2025-05-22 19:42:48,null
+4,Yuris Acevedo Morelos,yacevedo,yacevedo,ADMINISTRADOR,2025-05-13 20:05:20,null
+5,Maria Camila Perez,mperez,mperez23,COORDINADOR,2025-05-22 15:41:03,null
+6,Andrea Licona,alicona,alicona,AUXILIAR,2025-05-22 15:41:19,null
+7,Duvan Wilchez Cuello,dwilchez,dwilchez,ADMINISTRADOR,2025-05-25 21:38:20,null
+9,Valeria Cuello,vcuello,vcuello,COORDIANDOR,2025-05-24 21:29:13,null
+10,Usuario de Prueba,Ppruebas,Ppruebas,AUXILIAR,2025-05-26 16:46:03,null
+8,Cristian Ricardo,cricardo,cricardo,cricardo,2025-05-27T14:51:40.0183094,null
+11,Rafael Diaz,rdiaz,Rafael Diaz,COORDINADOR,2025-05-27T15:12:01.2229301,null

@@ -37,12 +37,12 @@ public class EditarContrato {
                     
                     while(continuar) {
                         LimpiarPantalla.limpiarConsola();
-                        System.out.println("\n---------------------------------------------------------");
-                        System.out.println("SELECCIONE LA INFORMACION QUE DESEA MODIFICAR     ");
-                        System.out.println("---------------------------------------------------------  ");
+                        System.out.println("\n--------------------------------------------------------------------");
+                        System.out.println("            SELECCIONE LA INFORMACION QUE DESEA MODIFICAR        ");
+                        System.out.println("--------------------------------------------------------------------");
                         System.out.println("| 1. Tipo de contrato\t\t| 2. Fecha de inicio\t|\n| 3. Cargo del empleado\t\t| 4. Salario\t\t|");
                         System.out.println("| 5. Estado del contrato\t| 6. Finalizar edición\t|    ");
-                        System.out.println("---------------------------------------------------------\n");
+                        System.out.println("--------------------------------------------------------------------\n");
                         System.out.print("- Seleccione una opción: ");
                         int seleccionEditarContrato = scanner.nextInt();
                         scanner.nextLine();
@@ -78,9 +78,9 @@ public class EditarContrato {
                                     scanner.nextLine();
                                     if (nuevoSalario >= salarioActual) {
                                         datos[17] = String.valueOf(nuevoSalario);
-                                        System.out.println("\n------------------------------------------------");
-                                        System.out.println("| Salario registrado corectamente! " + nuevoSalario + "|");
-                                        System.out.println("------------------------------------------------\n");
+                                        System.out.println("--------------------------------------------------------------------");
+                                        System.out.println("|        Salario registrado corectamente! " + nuevoSalario );
+                                        System.out.println("--------------------------------------------------------------------");
                                         SimulacionPrograma.simulaEjecucion();                                        break;
                                     } else {
                                         System.out.print("El nuevo salario no puede ser menor al actual (" + salarioActual + "), registre nuevamente: ");
