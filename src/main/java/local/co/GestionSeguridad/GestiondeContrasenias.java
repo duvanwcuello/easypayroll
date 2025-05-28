@@ -29,7 +29,7 @@ public class GestiondeContrasenias {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                if (datos.length >= 6 && datos[2].equals(usuario)) {
+                if (datos.length >= 7 && datos[2].equals(usuario)) {
                     System.out.println("\nUsuario encontrado: " + datos[2]);
                     System.out.println("Por seguridad, contacte con el administrador para restablecer su contraseña.");
                     return;
@@ -69,7 +69,7 @@ public class GestiondeContrasenias {
             String linea;
             while((linea =br.readLine())!=null){
                 String [] datos =linea.split(",");
-                if(datos.length>=6 && datos[2].equals(usuarioIngresado)&&datos[3].equals(passwordIngresado)){
+                if(datos.length>=7 && datos[2].equals(usuarioIngresado)&&datos[3].equals(passwordIngresado)){
                     System.out.print("\nIngrese su nueva contraseña: ");
                     datos[3] = scanner.nextLine().trim();
                     encontrado = true;
@@ -89,10 +89,10 @@ public class GestiondeContrasenias {
                     bw.newLine();
                 }
                 LimpiarPantalla.limpiarConsola();
-                System.out.println("|--------------------------------------|");
-                System.out.println("|            GUARDADO EXITOSO          |");
-                System.out.println("| Contraseña Actualizada Correctalente |");
-                System.out.println("|--------------------------------------|");
+                System.out.println("--------------------------------------------------------------------");
+                System.out.println("|                        GUARDADO EXITOSO                           |");
+                System.out.println("|               Contraseña Actualizada Correctalente                |");
+                System.out.println("--------------------------------------------------------------------");
                 SimulacionPrograma.simulaEjecucion();
                 LimpiarPantalla.limpiarConsola();
                 
@@ -109,11 +109,11 @@ public class GestiondeContrasenias {
         boolean usuarioValidado = false;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("|----------------------------------------------------------|");
-        System.out.println("|              ¡VALIDACION DE SEGURIDAD!                   |");
-        System.out.println("| Por Seguridad es necesario atenticar sus credenciales    |");
-        System.out.println("|             Ingrese usuario y contraseña.                |");
-        System.out.println("|----------------------------------------------------------|");
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println("|                   ¡VALIDACION DE SEGURIDAD!                      |");
+        System.out.println("|      Por Seguridad es necesario atenticar sus credenciales       |");
+        System.out.println("|                   Ingrese usuario y contraseña.                  |");
+        System.out.println("--------------------------------------------------------------------");
         
         System.out.print("Usuario: ");
         String usuarioIngresado = scanner.nextLine().trim();
@@ -124,7 +124,7 @@ public class GestiondeContrasenias {
             String linea;
             while((linea =br.readLine())!=null){
                 String [] datos =linea.split(",");
-                if(datos.length>=6 && datos[2].equals(usuarioIngresado)&&datos[3].equals(passwordIngresado)){
+                if(datos.length>=7 && datos[2].equals(usuarioIngresado)&&datos[3].equals(passwordIngresado)){
                     usuarioValidado = true;
                     break;
                 } 
@@ -139,6 +139,73 @@ public class GestiondeContrasenias {
         }
             return usuarioValidado;
     } 
-    
-    
+
+    public static void cambiarPrimeraVezUsuario(String usuarioIngresado, String passwordIngresado ){
+        
+        LimpiarPantalla.limpiarConsola();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("|==================================================================|");
+        System.out.println("|                       BIENVENIDO A EASYPAYROLL                   |"); 
+        System.out.println("|==================================================================|");
+        System.out.println("|   POR SEGURIDAD ES NECESARIO REALIZAR CAMBIO DE SU CONTRASEÑA.   |");
+        System.out.println("|------------------------------------------------------------------|");
+        System.out.println("| Al inicir por primera vez el sistema le solicitará cambio de la  |");
+        System.out.println("| contraseña que por defecto se le asignó al crear su usaurio      |");
+        System.out.println("|------------------------------------------------------------------|\n");
+        
+        List<String> usuariosGuardados = new ArrayList<>();
+        boolean encontrado = false;
+        
+        try (BufferedReader br = new BufferedReader(new FileReader(DatosDeUsoGeneral.getArchivoUsuarios()))){
+            String linea;
+            
+            while((linea =br.readLine())!=null){
+                
+                String [] datos =linea.split(",");
+                if(datos.length>=7 && datos[2].equals(usuarioIngresado) && datos[3].equals(passwordIngresado) && datos[6].equals(null )||datos[6].trim().isEmpty()){
+                    
+                    System.out.print("\nIngrese su nueva contraseña: ");
+                    String nuevaContrasena = scanner.nextLine().trim();
+
+                    while (nuevaContrasena.isEmpty()) {
+                        System.out.print("La contraseña no puede estar vacía. Intente nuevamente: ");
+                        nuevaContrasena = scanner.nextLine().trim();
+                    }
+
+                    datos[3] = nuevaContrasena;
+                    encontrado = true;
+                    usuariosGuardados.add(String.join(",", datos));
+                }
+                else {
+                    usuariosGuardados.add(linea);
+                }
+            }
+        }catch (IOException e){
+            System.err.println("Error al leer el archivo: "+ e.getMessage());
+            return;
+        }
+
+        if(encontrado){
+            try(BufferedWriter bw = new BufferedWriter(new FileWriter(DatosDeUsoGeneral.getArchivoUsuarios()))){
+                for (String u : usuariosGuardados){
+                    bw.write(u);
+                    bw.newLine();
+                }
+                LimpiarPantalla.limpiarConsola();
+                System.out.println("--------------------------------------------------------------------");
+                System.out.println("|                        GUARDADO EXITOSO                           |");
+                System.out.println("|               Contraseña Actualizada Correctalente                |");
+                System.out.println("--------------------------------------------------------------------");
+                SimulacionPrograma.simulaEjecucion();
+                LimpiarPantalla.limpiarConsola();
+                
+            }catch(IOException e){
+                System.out.println("Error al guardar cambios: " + e.getMessage());
+            }
+        }else{
+            System.out.println("Usuario  o Contraseña Incorrecto.");
+        }
+    }
+
 }

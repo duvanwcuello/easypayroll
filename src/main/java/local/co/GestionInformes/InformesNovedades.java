@@ -18,9 +18,9 @@ public class InformesNovedades {
         Scanner scanner = new Scanner(System.in);
         LimpiarPantalla.limpiarConsola();
 
-        System.out.println("----------------------------------------------------");
-        System.out.println("|               CONSULTA DE NOVEDADES              |");
-        System.out.println("----------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println("|                        CONSULTA DE NOVEDADES                     |");
+        System.out.println("--------------------------------------------------------------------");
 
         System.out.println("\n- Ingrese la nomenclatura de las novedades de las novedades que desea consultar.");
         System.out.print("\nNOMENCLATURA ESPERADA (1Q-MM-YYYY): ");
@@ -36,7 +36,7 @@ public class InformesNovedades {
         }
 
         System.out.println("\n-------------------------------------------------------------------------------------------------------");
-        System.out.println("CONSOLIDADO DE NOVEDADES                                                                               ");
+        System.out.println("                              CONSOLIDADO DE NOVEDADES                                                 ");
         System.out.println("-------------------------------------------------------------------------------------------------------");
         System.out.printf("|%-12s |%-15s |%-10s |%-8s |%-8s |%-8s |%-8s |%-8s |%-8s\n",
             "F. REGISTRO","ID EMPLEADO","PERIODO","HE.D","HE.N","R.N","HE.DDOM","HE.NDOM","REC.DOM");

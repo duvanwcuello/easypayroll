@@ -25,9 +25,9 @@ public class InformePlanillaPagos {
 
     LimpiarPantalla.limpiarConsola();
     
-    System.out.println("\n------------------------------------------");
-    System.out.println("|         GENERAR PLANILLA DE PAGO       |");
-    System.out.println("------------------------------------------\n");
+    System.out.println("--------------------------------------------------------------------");
+    System.out.println("|                     GENERAR PLANILLA DE PAGO                     |");
+    System.out.println("--------------------------------------------------------------------\n");
 
     System.out.print("- Ingrese el mes de la planilla (1Q-MM-YYYY): ");
     String planillaMes = scanner.nextLine();

@@ -13,16 +13,16 @@ public class GestionEmpleados {
         boolean continuar = true;
         
         while (continuar) {
-            System.out.println("-----------------------------------");
-            System.out.println("|      GESTION DE EMPLEADOS       |");
-            System.out.println("-----------------------------------");
-            System.out.println("| 1. Crear nuevo empleado         |");
-            System.out.println("| 2. Consultar empleado           |");
-            System.out.println("| 3. Editar empleado              |");
-            System.out.println("| 4. Mostrar todos los empleados  |");
-            System.out.println("| 9. Atras                        |");
-            System.out.println("| 0. Salir                        |");
-            System.out.println("-----------------------------------\n");
+            System.out.println("--------------------------------------------------------------------");
+            System.out.println("|                        GESTION DE EMPLEADOS                      |");
+            System.out.println("--------------------------------------------------------------------");
+            System.out.println("| 1. Crear nuevo empleado                                          |");
+            System.out.println("| 2. Consultar empleado                                            |");
+            System.out.println("| 3. Editar empleado                                               |");
+            System.out.println("| 4. Mostrar todos los empleados                                   |");
+            System.out.println("| 9. Atras                                                         |");
+            System.out.println("| 0. Salir                                                         |");
+            System.out.println("--------------------------------------------------------------------\n");
 
             System.out.print("Seleccione una opción: ");
             
@@ -40,9 +40,9 @@ public class GestionEmpleados {
                     break;
                 case 3:
                     LimpiarPantalla.limpiarConsola();
-                    System.out.println("------------------------------------");
-                    System.out.println("|        EDICIÓN DE EMPLEADOS      |");
-                    System.out.println("------------------------------------\n");
+                   System.out.println("--------------------------------------------------------------------");
+                    System.out.println("|                      EDICIÓN DE EMPLEADOS                       |");
+                    System.out.println("--------------------------------------------------------------------\n");
 
                     System.out.print("- Ingrese la identificación del empleado a editar: ");
                     String identificacion = scanner.nextLine();

@@ -22,9 +22,9 @@ public static void procesarNomina(){
 
     Scanner scanner = new Scanner(System.in);
 
-    System.out.println("----------------------------------------------------");
-    System.out.println("|        PROCESAMIENTO DE NÓMINA QUINCENAL         |");
-    System.out.println("----------------------------------------------------\n");
+    System.out.println("--------------------------------------------------------------------");
+    System.out.println("|                PROCESAMIENTO DE NÓMINA QUINCENAL                  |");
+    System.out.println("--------------------------------------------------------------------\n");
 
     System.out.print("- Ingrese el mes a procesar (1Q-MM-YYYY): ");
     String mes = scanner.nextLine().toUpperCase();
@@ -100,7 +100,7 @@ public static void procesarNomina(){
             System.out.printf("Devengado: %s\n", FormateadorTextro.formatearMoneda(devengado));
             System.out.printf("Salud: %s | Pensión: %s\n", FormateadorTextro.formatearMoneda(saludEmpleado), FormateadorTextro.formatearMoneda(pensionEmpleado));
             System.out.printf("Neto a pagar: %s\n", FormateadorTextro.formatearMoneda(salarioNeto));
-            System.out.println("----------------------------------------------------");
+            System.out.println("--------------------------------------------------------------------");
 
             // Guardamos planilla de Nomina procesada
             bw.write(id + "," + nombreEmpleado + "," + salarioBaseEmpleado + "," + aux + "," + extras + "," + devengado + "," + saludEmpleado + "," + pensionEmpleado + "," + salarioNeto);

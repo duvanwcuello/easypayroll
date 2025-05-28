@@ -8,6 +8,7 @@ package local.co.GestionUsuarios;
         private String nombreUsuario;
         private String contrasenia;
         private String rol;
+        private String ultimoAcceso;
 
         public void setNombreEmpleado(String nombreEmpleado) {
             this.nombreEmpleado = nombreEmpleado;

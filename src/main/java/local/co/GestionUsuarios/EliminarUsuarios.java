@@ -25,7 +25,7 @@ public class EliminarUsuarios {
         System.out.println("| Opere con cuidado, se eliminará todo registro del usuario. |");
         System.out.println("-------------------------------------------------------------");
 
-        System.out.print("\n- Ingrese el nombre del usuario: ");
+        System.out.print("\nIngrese el nombre del usuario: ");
         String usuarioBuscado = scanner.nextLine().trim();
 
         List<String> usuariosActualizados = new ArrayList<>();
@@ -36,17 +36,18 @@ public class EliminarUsuarios {
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
 
-                if (datos.length >= 6 && datos[2].equalsIgnoreCase(usuarioBuscado)) {
+                if (datos.length >= 7 && datos[2].equalsIgnoreCase(usuarioBuscado)) {
 
-                    System.out.println("\n|---------------------------------------------|");
-                    System.err.println("|        Datos Registrados Actualmente        |");
-                    System.out.println("|---------------------------------------------|");
-                    System.out.println("Nombre Usuario:  | " + datos[1]);
-                    System.out.println("Usuario Asignado | " + datos[2]);
-                    System.out.println("Contraseña       | " + datos[3]);
-                    System.out.println("Rol actual:      | " + datos[4]);
-                    System.out.println("Última sesión:   | " + datos[5]);
-                    System.out.println("-----------------------------------------------\n");
+                    System.out.println("\n--------------------------------------------------------------");
+                    System.err.println("|                Datos Registrados Actualmente               |");
+                    System.out.println("--------------------------------------------------------------");
+                    System.out.println("Nombre Usuario:    | " + datos[1]);
+                    System.out.println("Usuario Asignado   | " + datos[2]);
+                    System.out.println("Contraseña         | " + datos[3]);
+                    System.out.println("Rol actual:        | " + datos[4]);
+                    System.out.println("Fecha de Creacion  | " + datos[5]);
+                    System.out.println("Última sesión      | " + datos[6]);
+                    System.out.println("--------------------------------------------------------------\n");
                 }
             }
         } catch (IOException e) {
