@@ -22,18 +22,30 @@ public class EditarUsuarios {
      * Permite editar la contraseña y el rol de un usuario existente.
      * También actualiza la fecha del último inicio de sesión.
      */
-    public static void editarUsuarioExistente(String usuarioIngresado) {
-       
-        LimpiarPantalla.limpiarConsola();
+    
+    public static void bienvenidaEditarUsarioExistente(){
         Scanner scanner = new Scanner(System.in);
         
-        System.out.println("--------------------------------------------------------------------");
+        System.out.println("|------------------------------------------------------------------|");
         System.out.println("|           BIENVENIDO AL MODULO DE EDICION DE USUARIOS            |");
-        System.out.println("--------------------------------------------------------------------");
+        System.out.println("|------------------------------------------------------------------|");
         System.out.println("| En este modulo podrá realizar:                                   |");
         System.out.println("| - Contraseñas.                                                   |");
         System.out.println("| - Rol de Usuario.                                                |");
-        System.out.println("--------------------------------------------------------------------\n");
+        System.out.println("|------------------------------------------------------------------|");
+        System.out.println("");
+        System.out.print("Ingrese Usuario a Editar: ");
+        String usuarioIngresado = scanner.nextLine();
+       
+        editarUsuarioExistente(usuarioIngresado);
+        
+    }
+    
+     public static void editarUsuarioExistente(String usuarioIngresado) {
+        Scanner scanner = new Scanner(System.in);
+       
+        LimpiarPantalla.limpiarConsola();
+        
         
         List<String> usuariosActualizados = new ArrayList<>();
         boolean encontrado = false;
@@ -43,17 +55,33 @@ public class EditarUsuarios {
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
 
-                if (datos.length >= 6 && datos[2].equalsIgnoreCase(usuarioIngresado)) {
+                if (datos.length >= 9 && datos[3].equalsIgnoreCase(usuarioIngresado)) {
 
-                    System.out.println("\n-------------------------------------------------------------------");
+                    System.out.println("\n--------------------------------------------------------------------");
                     System.err.println("|                    Datos Registrados Actualmente                 |");
                     System.out.println("--------------------------------------------------------------------");
-                    System.out.println("Nombre Usuario:  | " + datos[1]);
-                    System.out.println("Usuario Asignado | " + datos[2]);
-                    System.out.println("Contraseña       | " + datos[3]);
-                    System.out.println("Rol actual:      | " + datos[4]);
-                    System.out.println("Última sesión:   | " + datos[5]);
-                    System.out.println("-----------------------------------------------\n");
+                    System.out.println(" Id Unico                     | " + datos[0]);
+                    System.out.println(" Estado                       | " + datos[1]);
+                    System.out.println(" Nombre Empleado              | " + datos[2]);
+                    System.out.println(" Usuario Asignado             | " + datos[3]);
+                    System.out.println(" Rol Actual del usuario       | " + datos[5]);
+                    System.out.println(" Fecha de Creacion            | " + datos[6]);
+                    System.out.println(" Ultimo cambio de contraseña  | " + datos[7]);
+                    System.out.println(" Ultimo inicio sesion         | " + datos[8]);
+                    System.out.println("--------------------------------------------------------------------\n");
+
+                    /* 
+                    * Estructura del Archivo Usuario:
+                    * 0 Id = idDisponible 
+                    * 1 Estado Usuario = estadoUsuario
+                    * 2 Nombre Empleado = nombreEmpleado 
+                    * 3 Usuario Asignado = nuevoUsuarioAsignado 
+                    * 4 Contraseña Usuario = contrasenaNuevoUsuario
+                    * 5 Rol Asignado = rolNuevoUsuario 
+                    * 6 Fecha de creacion del Usuario = fechaCreacionUsuario
+                    * 7 Fecha de cambio de contraseña = fechaModificacionContrasena 
+                    * 8 Ultimo inicio de sesion del usuario en el sistema = ultimoInicioSesion
+                    */
 
                     System.out.print("¿Desea continar la edicion? (S/N): ");
                     String confirmarEdicion = scanner.nextLine().trim().toUpperCase();
@@ -68,7 +96,7 @@ public class EditarUsuarios {
                             LimpiarPantalla.limpiarConsola();
                             return; 
                         } else{
-                            System.err.println("\n");
+                            System.err.println("");
                             System.out.println("REGISTRE NUEVOS DATOS.");
                             System.out.print("Nueva contraseña: ");
                             String nuevaContrasena = scanner.nextLine().trim();
@@ -77,7 +105,7 @@ public class EditarUsuarios {
                                 System.out.print("La contraseña no puede estar vacía. Inténtelo de nuevo: ");
                                 nuevaContrasena = scanner.nextLine().trim();
                             }
-                            datos[3] = nuevaContrasena;
+                            datos[4] = nuevaContrasena;
 
                             System.out.print("¿Desea Mondificar Rol? (S/N): ");
                             String confirmarRol = scanner.nextLine().trim().toUpperCase();
@@ -89,7 +117,7 @@ public class EditarUsuarios {
                                     System.out.print("El rol no puede estar vacío. Inténtelo de nuevo: ");
                                     nuevoRol = scanner.nextLine().trim().toUpperCase();
                                 }
-                                datos[4] = nuevoRol; 
+                                datos[5] = nuevoRol; 
                             }                       
                         }
                     
@@ -106,7 +134,8 @@ public class EditarUsuarios {
                         return;
                     }else{
                         // Actualizar fecha de última modificación
-                        datos[5] = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+                        datos[7] = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));;
+                        
                         // Reemplazamos la línea original con los nuevos datos
                         linea = String.join(",", datos);    
                         encontrado = true;    
@@ -132,7 +161,7 @@ public class EditarUsuarios {
                 System.out.println("|                         GUARDADO EXITOSO                          |");
                 System.out.println("|            Usuario actualizado correctamente.                     |");
                 System.out.println("--------------------------------------------------------------------");
-                SimulacionPrograma.simulaEjecucion();
+                SimulacionPrograma.continuarPrograma();;
                 LimpiarPantalla.limpiarConsola();
 
                  // menuUsuarios.menuPrincipalUsuario(usuarioIngresado);

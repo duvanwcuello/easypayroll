@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -29,7 +31,7 @@ public class GestiondeContrasenias {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                if (datos.length >= 7 && datos[2].equals(usuario)) {
+                if (datos.length >= 8 && datos[2].equals(usuario)) {
                     System.out.println("\nUsuario encontrado: " + datos[2]);
                     System.out.println("Por seguridad, contacte con el administrador para restablecer su contraseña.");
                     return;
@@ -145,15 +147,7 @@ public class GestiondeContrasenias {
         LimpiarPantalla.limpiarConsola();
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("|==================================================================|");
-        System.out.println("|                       BIENVENIDO A EASYPAYROLL                   |"); 
-        System.out.println("|==================================================================|");
-        System.out.println("|   POR SEGURIDAD ES NECESARIO REALIZAR CAMBIO DE SU CONTRASEÑA.   |");
-        System.out.println("|------------------------------------------------------------------|");
-        System.out.println("| Al inicir por primera vez el sistema le solicitará cambio de la  |");
-        System.out.println("| contraseña que por defecto se le asignó al crear su usaurio      |");
-        System.out.println("|------------------------------------------------------------------|\n");
-        
+       
         List<String> usuariosGuardados = new ArrayList<>();
         boolean encontrado = false;
         
@@ -163,19 +157,36 @@ public class GestiondeContrasenias {
             while((linea =br.readLine())!=null){
                 
                 String [] datos =linea.split(",");
-                if(datos.length>=7 && datos[2].equals(usuarioIngresado) && datos[3].equals(passwordIngresado) && datos[6].equals(null )||datos[6].trim().isEmpty()){
+
+                //validamos datos ingresados por el usuario
+                if(datos.length>=9 && datos[3].equals(usuarioIngresado) && datos[4].equals(passwordIngresado)){  
                     
-                    System.out.print("\nIngrese su nueva contraseña: ");
-                    String nuevaContrasena = scanner.nextLine().trim();
+                    //validamos la posicion 7
+                    if(datos[7]==null){
+                        System.out.println("|==================================================================|");
+                        System.out.println("|                       BIENVENIDO A EASYPAYROLL                   |"); 
+                        System.out.println("|==================================================================|");
+                        System.out.println("|   POR SEGURIDAD ES NECESARIO REALIZAR CAMBIO DE SU CONTRASEÑA.   |");
+                        System.out.println("|------------------------------------------------------------------|");
+                        System.out.println("| Al inicir por primera vez el sistema le solicitará cambio de la  |");
+                        System.out.println("| contraseña que por defecto se le asignó al crear su usaurio      |");
+                        System.out.println("|------------------------------------------------------------------|\n");
+            
+                        System.out.print("\nIngrese su nueva contraseña: ");
+                        String nuevaContrasena = scanner.nextLine().trim();
 
-                    while (nuevaContrasena.isEmpty()) {
-                        System.out.print("La contraseña no puede estar vacía. Intente nuevamente: ");
-                        nuevaContrasena = scanner.nextLine().trim();
+                        while (nuevaContrasena.isEmpty()) {
+                            System.out.print("La contraseña no puede estar vacía. Intente nuevamente: ");
+                            nuevaContrasena = scanner.nextLine().trim();
+                        }
+                        
+                        datos[3] = nuevaContrasena;
+                        datos[6] = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));;
+                        encontrado = true;
+                        
+                        linea = String.join(",", datos);
+                        //usuariosGuardados.add(String.join(",", datos));
                     }
-
-                    datos[3] = nuevaContrasena;
-                    encontrado = true;
-                    usuariosGuardados.add(String.join(",", datos));
                 }
                 else {
                     usuariosGuardados.add(linea);
@@ -185,6 +196,18 @@ public class GestiondeContrasenias {
             System.err.println("Error al leer el archivo: "+ e.getMessage());
             return;
         }
+
+    /* 
+     *Estructura del Archivo Usuario:
+     * 0 Id = idDisponible 
+     * 1 Nombre Empleado = nombreEmpleado 
+     * 2 Usuario Asiginado = nuevoUsuarioAsignado 
+     * 3 Contraseña Usuario = contrasenaNuevoUsuario
+     * 4 Rol Asignado = rolNuevoUsuario 
+     * 5 Fecha de creacion del Usuario = fechaCreacionUsuario
+     * 6 Fecha de cambio de contraseña = fechaModificacionContrasena 
+     * 7 Ultimo inicio de seson del usuario en el sistema = ultimoInicioSesion
+    */
 
         if(encontrado){
             try(BufferedWriter bw = new BufferedWriter(new FileWriter(DatosDeUsoGeneral.getArchivoUsuarios()))){

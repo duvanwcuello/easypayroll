@@ -15,17 +15,17 @@ public class GestionUsuarios {
         boolean continuar = true;       
         try {
              while (continuar) {
-                System.out.println("----------------------------------");
-                System.out.println("|       GESTION DE USUARIOS      |");
-                System.out.println("----------------------------------");
-                System.out.println("| 1. Crear nuevo Usuario         |");
-                System.out.println("| 2. Consulta por Usuario        |");
-                System.out.println("| 3. Editar usuario Existente    |");
-                System.out.println("| 4. Eliminar Usuario            |");
-                System.out.println("| 5. Consulta todos los usuarios |");
-                System.out.println("| 9. Atras                       |");
-                System.out.println("| 0. Salir                       |");
-                System.out.println("----------------------------------\n");
+                System.out.println("|------------------------------------------------------------------|");
+                System.out.println("|                        GESTION DE USUARIOS                       |");
+                System.out.println("|------------------------------------------------------------------|");
+                System.out.println("| 1. Crear nuevo Usuario                                           |");
+                System.out.println("| 2. Consulta por Usuario                                          |");
+                System.out.println("| 3. Editar usuario Existente                                      |");
+                System.out.println("| 4. Eliminar Usuario                                              |");
+                System.out.println("| 5. Consulta todos los usuarios                                   |");
+                System.out.println("| 9. Atras                                                         |");
+                System.out.println("| 0. Salir                                                         |");
+                System.out.println("|------------------------------------------------------------------|\n");
                 
                 System.out.print("Seleccione una opción: ");
                 int selecciondeUsuario = scanner.nextInt();
@@ -40,15 +40,11 @@ public class GestionUsuarios {
                     case 2:
                         LimpiarPantalla.limpiarConsola();
                         ConsultarUsuarios.consultarUsuarioExistente();
-                    // simulacionPrograma.continuarConTeclado();
                         LimpiarPantalla.limpiarConsola();
                         break;
                     case 3:
                         LimpiarPantalla.limpiarConsola();
-                        System.out.print("Ingrese Usuario a Editar: ");
-                        String usuarioIngresado = scanner.nextLine();
-                        EditarUsuarios.editarUsuarioExistente(usuarioIngresado);
-                    // simulacionPrograma.continuarConTeclado();
+                        EditarUsuarios.bienvenidaEditarUsarioExistente();
                         break;
                     case 4:
                         LimpiarPantalla.limpiarConsola();

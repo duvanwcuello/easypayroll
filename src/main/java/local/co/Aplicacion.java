@@ -29,7 +29,7 @@ public class Aplicacion {
         MensajesparaUsuarios.mostrarBienvenida();
 
         //Solicitamos Inicio de Sesion al usuario
-        Loggin.solicitarDatosSesionInicial();
+    Loggin.solicitarDatosSesionInicial();
 
         //Cargamos el menu del usuario
         MenuUsuarios.menuPrincipalUsuario(rolUsuarioIngresado);

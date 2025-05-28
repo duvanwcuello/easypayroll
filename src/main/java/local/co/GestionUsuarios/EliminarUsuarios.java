@@ -36,18 +36,27 @@ public class EliminarUsuarios {
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
 
-                if (datos.length >= 7 && datos[2].equalsIgnoreCase(usuarioBuscado)) {
+                if (datos.length >= 9 && datos[3].equalsIgnoreCase(usuarioBuscado)) {
 
-                    System.out.println("\n--------------------------------------------------------------");
+                    System.out.println("--------------------------------------------------------------");
                     System.err.println("|                Datos Registrados Actualmente               |");
                     System.out.println("--------------------------------------------------------------");
-                    System.out.println("Nombre Usuario:    | " + datos[1]);
-                    System.out.println("Usuario Asignado   | " + datos[2]);
-                    System.out.println("Contraseña         | " + datos[3]);
-                    System.out.println("Rol actual:        | " + datos[4]);
-                    System.out.println("Fecha de Creacion  | " + datos[5]);
-                    System.out.println("Última sesión      | " + datos[6]);
+                    System.out.println(" Id Unico                     | " + datos[0]);
+                    System.out.println(" Estado                       | " + datos[1]);
+                    System.out.println(" Nombre Usuario               | " + datos[2]);
+                    System.out.println(" Usuario Asignado             | " + datos[3]);
+                    System.out.println(" Rol Actual                   | " + datos[5]);
+                    System.out.println(" Fecha de Creacion            | " + datos[6]);
+                    System.out.println(" Ultimo cambio de contraseña  | " + datos[7]);
+                    System.out.println(" Ultimo inicio sesion         | " + datos[8]);
                     System.out.println("--------------------------------------------------------------\n");
+                    
+                    if( datos[8] != null){
+
+                        
+                    }                
+                
+                
                 }
             }
         } catch (IOException e) {
@@ -55,6 +64,9 @@ public class EliminarUsuarios {
             return;
         }
         
+
+
+        if()
         System.out.println("¿DESEA CONTINUAR CON LA ELIMINACION DEL USUARIO?");
         System.out.print("(S) SI   |   (N) NO : ");
         String confirmacionEliminar = scanner.nextLine().trim().toUpperCase();

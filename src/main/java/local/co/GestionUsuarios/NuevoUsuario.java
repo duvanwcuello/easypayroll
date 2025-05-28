@@ -15,11 +15,26 @@ public class NuevoUsuario {
      * Crea un nuevo usuario con ID único, nombre de empleado, usuario, contraseña, rol y fecha de registro.
      * Almacena la información en el archivo usuarios.txt.
      */
+
+    /* 
+    * Estructura del Archivo Usuario:
+    * 0 Id = idDisponible 
+    * 1 Estado Usuario = estadoUsuario
+    * 2 Nombre Empleado = nombreEmpleado 
+    * 3 Usuario Asignado = nuevoUsuarioAsignado 
+    * 4 Contraseña Usuario = contrasenaNuevoUsuario
+    * 5 Rol Asignado = rolNuevoUsuario 
+    * 6 Fecha de creacion del Usuario = fechaCreacionUsuario
+    * 7 Fecha de cambio de contraseña = fechaModificacionContrasena 
+    * 8 Ultimo inicio de sesion del usuario en el sistema = ultimoInicioSesion
+    */
+
     public static void crearNuevoUsuario() {
 
         //leemos el ultimo Id del archivo
         int idDisponible = obtenerPrimerIdDisponible();
         Scanner scanner = new Scanner(System.in);
+        
         
         System.out.println("|------------------------------------------------------------------|");
         System.out.println("|                      CREACION DE USUARIOS                        |");
@@ -27,13 +42,13 @@ public class NuevoUsuario {
         System.out.println("|------------------------------------------------------------------|");
         System.out.println("\nInicialmente se realizará una validacion \ncon los usuarios existentes\n");
         System.out.print("Ingrese nombre de usuario: ");
-        String usuarioNuevo = scanner.nextLine().trim();
+        String nuevoUsuarioAsignado = scanner.nextLine().trim();
          
         //validamos si el usuario existe si existe consultamos al usuario si desea editarlo.
-        if (usuarioYaExiste(usuarioNuevo)) {
+        if (usuarioYaExiste(nuevoUsuarioAsignado)) {
                 System.out.println("--------------------------------------------------------------------");
                 System.out.println("\t\t¡ADVERTENCIA!");
-                System.out.println("El nombre de usuario ( "+usuarioNuevo.toUpperCase()+" ), ya está en uso.");
+                System.out.println("El nombre de usuario ( "+nuevoUsuarioAsignado.toUpperCase()+" ), ya está en uso.");
                 System.out.println("--------------------------------------------------------------------");
                 System.out.println("¿Desea editar el usuario existente?");
                 System.err.print("(1. Sí | 2. No): ");
@@ -45,8 +60,9 @@ public class NuevoUsuario {
                         LimpiarPantalla.limpiarConsola();
                         
                         //si va a editar el usuario pasamos como refernecia el usuario ingresado a la funcion editarUsuarioExistente
-                        EditarUsuarios.editarUsuarioExistente(usuarioNuevo);
+                        EditarUsuarios.editarUsuarioExistente(nuevoUsuarioAsignado);
                     } else {
+                        LimpiarPantalla.limpiarConsola();
                         return;
                     }
                 } catch (InputMismatchException e) {
@@ -72,16 +88,16 @@ public class NuevoUsuario {
                 }
                 
            /*    System.out.print("Ingrese contraseña: ");
-            *    String contrasenaUsuario = scanner.nextLine().trim();
+            *    String contrasenaNuevoUsuario = scanner.nextLine().trim();
             *
-            *    while (contrasenaUsuario.isEmpty()) {
+            *    while (contrasenaNuevoUsuario.isEmpty()) {
             *    System.out.print("La contraseña no puede estar vacía. Ingrese de nuevo: ");
-            *    contrasenaUsuario = scanner.nextLine().trim();
+            *    contrasenaNuevoUsuario = scanner.nextLine().trim();
             *      
             *  }
             */  
                 //Asignamos la misma contaseña al usuario
-                String contrasenaUsuario =nombreEmpleado;
+                String contrasenaNuevoUsuario =nuevoUsuarioAsignado;
 
                 //solicitamos el rol a asignar al usurio, modificamos los datos ingresados a tipo Mayuscula
 
@@ -124,13 +140,18 @@ public class NuevoUsuario {
                 System.out.println("Debe ingresar un número.");
                 }
             }
-            //actualizamos la modificacion de usuario.
-            String fechaRegistro = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+            //damos de alta al usuario con estado A "Activo"
+            String estadoUsuario = ("A");
 
-            //pasamos referencias a la funcion guardarEmpleadosEnArchivo para guardar el usuario en el archivo externo  
+            //Registramos la fecha de creacion del usuario la fecha de modificacion de contraseña toma el mismo valor.
+            String fechaCreacionUsuario = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            String fechaModificacionContrasena = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            
             //enviamos inicio de sesion null al archivo, este se actualizará cuando el usuario inicie sesion por primera vez
             String ultimoInicioSesion = null;
-            guardarEmpleadoEnArchivo(idDisponible, nombreEmpleado, usuarioNuevo, contrasenaUsuario, rolNuevoUsuario, fechaRegistro, ultimoInicioSesion);
+            
+             //pasamos referencias a la funcion guardarEmpleadosEnArchivo para guardar el usuario en el archivo externo 
+            guardarEmpleadoEnArchivo(idDisponible, estadoUsuario , nombreEmpleado, nuevoUsuarioAsignado, contrasenaNuevoUsuario, rolNuevoUsuario, fechaCreacionUsuario, fechaModificacionContrasena ,ultimoInicioSesion);
           
         }             
     }   
@@ -170,7 +191,7 @@ public class NuevoUsuario {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                if (datos.length >= 7 && datos[2].equalsIgnoreCase(nombreUsuario)) {
+                if (datos.length >= 9 && datos[3].equalsIgnoreCase(nombreUsuario)) {
                     return true;
                 }
             }
@@ -181,22 +202,45 @@ public class NuevoUsuario {
         return false;
     }
 
-    private static void guardarEmpleadoEnArchivo(int idDisponible, String nombreEmpleado, String usuarioNuevo, String contrasenaUsuario, String rolUsuario, String fechaRegistro ,String ultimoInicioSesion ){
+    /* 
+     *Estructura del Archivo Usuario:
+     * Id = idDisponible 
+     * Nombre Empleado = nombreEmpleado 
+     * Usuario Asginado = nuevoUsuarioAsignado 
+     * Contraseña Usuario = contrasenaNuevoUsuario
+     * Rol Asignado = rolNuevoUsuario 
+     * Fecha de creacion del Usuario = fechaCreacionUsuario
+     * Fecha de cambio de contraseña = fechaModificacionContrasena 
+     * Ultimo inicio de seson del usuario en el sistema = ultimoInicioSesion
+    */
+
+    private static void guardarEmpleadoEnArchivo(   int idDisponible, String estadoUsuario, String nombreEmpleado, String nuevoUsuarioAsignado, String contrasenaNuevoUsuario, 
+                                                    String rolNuevoUsuario, String fechaCreacionUsuario ,String fechaModificacionContrasena,String ultimoInicioSesion ){
         boolean continuar = true;  
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(DatosDeUsoGeneral.getArchivoUsuarios(), true))) {
                        
             //enviamos datos al archivo
+            bw.write(idDisponible +","+ estadoUsuario + "," + nombreEmpleado + "," + nuevoUsuarioAsignado + "," + contrasenaNuevoUsuario + "," 
+                    + rolNuevoUsuario+","+ fechaCreacionUsuario+","+fechaModificacionContrasena+","+ultimoInicioSesion);
             
-            bw.write(idDisponible + "," + nombreEmpleado + "," + usuarioNuevo + "," + contrasenaUsuario + "," + rolUsuario + "," + fechaRegistro+","+ ultimoInicioSesion);
             bw.newLine();
+
             System.out.println("GUARDANDO USUARIO...");
+            
             SimulacionPrograma.continuarPrograma();
+            
             LimpiarPantalla.limpiarConsola();
+            
             System.out.println("USUARIO GUARDADO EXITOSAMENTE...");
+            
             idDisponible++;
+            
             SimulacionPrograma.continuarPrograma();
+            
             LimpiarPantalla.limpiarConsola();
+            
             continuar = false;
+            
         } catch (IOException e) {
             System.out.println("Error al guardar el usuario: " + e.getMessage());
         } 
