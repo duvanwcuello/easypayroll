@@ -27,18 +27,9 @@ public class Aplicacion {
         
         // Llamamos al metodo que muestra la bienvenida
         MensajesparaUsuarios.mostrarBienvenida();
-        
-        // presionamos una tecla para continuar
-        // continuarEjecucionPrograma.continuarPrograma();
-        
-        // Instanciamos la clase limpiarPantalla
-        // limpiarPantalla.limpiarConsola();
 
         //Solicitamos Inicio de Sesion al usuario
         Loggin.solicitarDatosSesionInicial();
-
-        //Limpiamos la pantalla
-       // limpiarPantalla.limpiarConsola();
 
         //Cargamos el menu del usuario
         MenuUsuarios.menuPrincipalUsuario(rolUsuarioIngresado);

@@ -1,4 +1,4 @@
-1,SuperAdmin,admin,admin,ADMINISTRADOR,2025-05-20 13:47:31,2025-05-27 16:50:00
+1,SuperAdmin,admin,admin,ADMINISTRADOR,2025-05-20 13:47:31,2025-05-28 07:31:03
 2,Anderson Pino,apino,apino123,ADMINISTRADOR,2025-05-21 19:43:28,null
 3,Pablo André Barreto,pbarreto,pbarreto,ADMINISTRADOR,2025-05-22 19:42:48,null
 4,Yuris Acevedo Morelos,yacevedo,yacevedo,ADMINISTRADOR,2025-05-13 20:05:20,null
