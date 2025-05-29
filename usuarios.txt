@@ -1,4 +1,4 @@
-1,I,SuperAdmin,admin,admin123,ADMINISTRADOR,2025-05-12 12:48:15,2025-05-25 07:46:52,2025-05-28 18:10:55
+1,I,SuperAdmin,admin,admin123,ADMINISTRADOR,2025-05-12 12:48:15,2025-05-25 07:46:52,2025-05-28 22:24:21
 2,A,Anderson Pino,apino,apino123,ADMINISTRADOR,2025-05-21 19:43:28,null,null
 3,A,Pablo André Barreto,pbarreto,pbarreto,ADMINISTRADOR,2025-05-22 19:42:48,null,null
 4,A,Yuris Acevedo Morelos,yacevedo,yacevedo,ADMINISTRADOR,2025-05-13 20:05:20,null,null
@@ -11,4 +11,4 @@
 11,A,Rafael Diaz,rdiaz,rdiaz1,COORDINADOR,2025-05-27 15:12:01,2025-05-28 13:06:26,null
 12,A,Maribel Cuello,mcuello,mcuello,COORDINADOR,2025-05-28 12:34:41,2025-05-28 12:34:41,null
 13,A,Ronald Cuello,rcuello,rcuello,ADMINISTRADOR,2025-05-28 12:50:35,2025-05-28 12:50:35,null
-
+14,I,Camilo Perez,cperez,12345,AUXILIAR,2025-05-28 22:25:45,null,2025-05-28 22:57:42

@@ -145,7 +145,8 @@ public class NuevoUsuario {
 
             //Registramos la fecha de creacion del usuario la fecha de modificacion de contraseña toma el mismo valor.
             String fechaCreacionUsuario = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            String fechaModificacionContrasena = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            String fechaModificacionContrasena = null;
+            //LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             
             //enviamos inicio de sesion null al archivo, este se actualizará cuando el usuario inicie sesion por primera vez
             String ultimoInicioSesion = null;

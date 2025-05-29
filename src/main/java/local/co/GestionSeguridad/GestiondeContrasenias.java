@@ -147,7 +147,6 @@ public class GestiondeContrasenias {
         LimpiarPantalla.limpiarConsola();
         Scanner scanner = new Scanner(System.in);
 
-       
         List<String> usuariosGuardados = new ArrayList<>();
         boolean encontrado = false;
         
@@ -159,10 +158,12 @@ public class GestiondeContrasenias {
                 String [] datos =linea.split(",");
 
                 //validamos datos ingresados por el usuario
-                if(datos.length>=9 && datos[3].equals(usuarioIngresado) && datos[4].equals(passwordIngresado)){  
+                if(datos.length>=9 && 
+                datos[3].equals(usuarioIngresado) && 
+                datos[4].equals(passwordIngresado)){  
                     
                     //validamos la posicion 7
-                    if(datos[7]==null){
+                    if(datos[8]==null){
                         System.out.println("|==================================================================|");
                         System.out.println("|                       BIENVENIDO A EASYPAYROLL                   |"); 
                         System.out.println("|==================================================================|");
@@ -181,7 +182,7 @@ public class GestiondeContrasenias {
                         }
                         
                         datos[3] = nuevaContrasena;
-                        datos[6] = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));;
+                        datos[7] = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));;
                         encontrado = true;
                         
                         linea = String.join(",", datos);

@@ -51,11 +51,12 @@ public class Loggin {
                 }  
               */  
                 // Validar si debe cambiar contraseña
-            if (usuarioValidado.getFechaModificacionContrasena() == null || usuarioValidado.getFechaModificacionContrasena().equalsIgnoreCase("null")) {
-                System.out.println("Primera vez ingresando. Debe cambiar su contraseña.");
-                //GestionContrasenias.cambiarPrimeraVezUsuario(usuarioIngresado, passwordIngresado);
-            }
+                String fechaCambio = usuarioValidado.getFechaModificacionContrasena();
+
+                if (fechaCambio == null || fechaCambio.trim().isEmpty() || fechaCambio.equalsIgnoreCase("null")) {
                 
+                GestiondeContrasenias.cambiarPrimeraVezUsuario(usuarioIngresado, passwordIngresado);
+            }
 
                 //actualizamos la fecha de inicio de sesion
                 actualizarUltimaSesion(usuarioIngresado);
@@ -111,7 +112,7 @@ public class Loggin {
             } else {
                 return entrada.trim();
             }
-        }
+        }   
         return null;
     }
 
